@@ -6,10 +6,10 @@ const widgetSchema = new mongoose.Schema({
   data: Object
 });
 
-// widgetSchema.pos('init', function() {
+// widgetSchema.post('init', function() {
 //   const self = this;
 //   rp({
-//     get:
+//     get: self.url
 //   })
 // })
 
