@@ -8,12 +8,15 @@
   <!-- inject:css -->
   <!-- endinject -->
 </head>
-<body class="sans-serif bg-dark-gray" ng-controller="WidgetCtrl as widgets">
-  <h1 class="light-yellow">Hello</h1>
-  <div gridster>
-      <div class="ba pa3 bg-dark-blue moon-gray" gridster-item="item" ng-repeat="item in widgets.all">
-        <p>{{item.data}}</p>
-        <p>{{item.sizeX}}, {{item.sizeY}}</p>
+<body class="sans-serif bg-white" ng-controller="WidgetCtrl as widgets">
+  <main class="pa4">
+
+    <h1 class="gray">Hello</h1>
+    <div gridster>
+      <div class="ba pa3 bg-white b--gray" gridster-item="item" ng-repeat="item in widgets.all">
+        <!-- <p>{{item}}</p> -->
+        <p>Size: {{item.sizeX}}, {{item.sizeY}}</p>
+        <p>Pos: {{item.col}}, {{item.row}}</p>
         <div ng-if="item.type === 'weather'">
           <h2>Weather</h2>
           <p><b>{{item.data.name}}: </b>{{item.data.weather[0].main}}, {{ (item.data.main.temp - 273.15).toFixed(2)}}&deg;C</p>
@@ -28,6 +31,7 @@
         </div>
         <!-- <p>{{ item.data }}</p> -->
       </div>
-  </div>
+    </div>
+  </main>
 </body>
 </html>
