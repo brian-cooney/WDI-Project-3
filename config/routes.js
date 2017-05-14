@@ -1,12 +1,14 @@
 const express         = require('express');
-const router          = require('express').Router();
+const router          = express.Router();
 const widgets         = require('../controllers/widgets');
 
 const authentications = require('../controllers/authentications');
 const users           = require('../controllers/users');
 
 router.route('/widgets')
-  .get(widgets.index);
+.get(widgets.index);
+
+
 
 router.route('/register')
   .post(authentications.register);
