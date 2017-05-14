@@ -19,7 +19,7 @@ router.route('/users/:id')
   .put(users.update)
   .delete(users.delete);
 
-router.route('/widgets')
-  .get(widgets.index);
+// router.route('/widgets')
+//   .get(widgets.index);
 
 module.exports = router;

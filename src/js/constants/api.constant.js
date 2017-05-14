@@ -1,3 +1,3 @@
 angular
   .module('wdi-group-project')
-  .constant('API', `${window.location.origin}/api`);
+  .constant('API', `http://localhost:4000/api`);
