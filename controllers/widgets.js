@@ -1,4 +1,15 @@
+const Widget = require('../models/widget');
+const mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
+
+function widgetsIndex(req, res) {
+  Widget
+    .find()
+    .exec()
+    .then(widgets => res.status(200).json(widgets))
+    .catch(err => res.json({ message: err }));
+}
+
 module.exports = {
-  port: process.env.PORT || 4000,
-  db: 'mongodb://localhost/group-project'
+  index: widgetsIndex
 };
