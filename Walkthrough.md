@@ -100,4 +100,31 @@ module.exports = {
 
 Because we want to store all the information for each widget inside that widget itself BEFORE we send it to the front-end for rendering, we need to make the call on the backend.
 
-At the moment, we're just getting the data from the API but we want it to be stored with a name and other user given data so we can style the completed widget on the front end. To do this we employ the help of **Init Hook**, a list of specific instructions to the document as you get it out of the database.
+At the moment, we're just getting the data from the API but we want it to be stored with a name and other user given data so we can style the completed widget on the front end. To do this we employ the help of **Init Hook**, a list of specific instructions to the document as you get it out of the database. 
+
+In our case, it works a little bit llike a PreSave: so the controller gets the widget from the database, then beore the controller renders the response the Init function runs and modifies it to put the data from the API into the data object within the Schema.
+
+We initially tried putting the init hook in the model file but it was rendering properly, so we moved it to the Controller file instead and it works.
+
+```
+function widgetsIndex(req, res) {
+  let thisWidget;
+  Widget
+    .findOne()
+    .exec()
+    .then(widget => {
+      thisWidget = widget;
+      rp(widget.url)
+        .then(response => {
+          const data = JSON.parse(response);
+          thisWidget.data = data;
+          res.status(200).json(widget);
+        })
+        .catch(err => res.json({ message: err }));
+    });
+
+}
+```
+
+This way, when we call ```localhost:4000/api/widgets``` we get our data parsing through.
+
