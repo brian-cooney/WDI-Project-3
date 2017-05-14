@@ -11,6 +11,10 @@ Widget
     type: 'weather',
     url: 'http://api.openweathermap.org/data/2.5/weather?q=London&APPID=d2c4c1492a04ec9081fe74119400cc6e',
     data: {}
+  }, {
+    type: 'news',
+    url: 'https://newsapi.org/v1/articles?source=bbc-news&apiKey=220bcdb5f5bd425194e8e6914bf03244', 
+    data: {}
   }])
   .then(widgets => console.log(`${widgets.length} widgets created`))
   .catch(err => console.log(err))
