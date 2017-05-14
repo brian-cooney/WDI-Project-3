@@ -14,10 +14,10 @@ router.route('/login')
 
 router.route('/users')
   .get(users.index);
-router.route('/users/:id')
-  .get(users.show)
-  .put(users.update)
-  .delete(users.delete);
+// router.route('/users/:id')
+//   .get(users.show)
+//   .put(users.update)
+//   .delete(users.delete);
 
 // router.route('/widgets')
 //   .get(widgets.index);

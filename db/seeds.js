@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 const Widget = require('../models/widget');
+const User = require('../models/user');
 const config = require('../config/config');
 
 mongoose.connect(config.db);
 Widget.collection.drop();
+User.collection.drop();
 
 Widget
   .create([{
@@ -13,7 +15,7 @@ Widget
     data: {}
   }, {
     type: 'news',
-    url: 'https://newsapi.org/v1/articles?source=bbc-news&apiKey=220bcdb5f5bd425194e8e6914bf03244', 
+    url: 'https://newsapi.org/v1/articles?source=bbc-news&apiKey=220bcdb5f5bd425194e8e6914bf03244',
     data: {}
   }])
   .then(widgets => console.log(`${widgets.length} widgets created`))

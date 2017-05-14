@@ -27,7 +27,7 @@ function Router($stateProvider, $locationProvider, $urlRouterProvider){
     url: '/users',
     templateUrl: '/js/views/users/index.html',
     controller: 'UsersIndexCtrl',
-    controllerAs: 'usersIndex'
+    controllerAs: 'users'
   });
 
   $urlRouterProvider.otherwise('/');

@@ -6,14 +6,16 @@ RegisterCtrl.$inject = ['User', 'CurrentUserService', '$state'];
 function RegisterCtrl(User, CurrentUserService, $state){
   const vm = this;
 
-  vm.register = () => {
+  vm.register = register;
+  function register() {
     User
       .register(vm.user).$promise
-      .then(() => {
+      .then(data => {
+        console.log(data);
         CurrentUserService.getUser();
         $state.go('usersIndex');
       }, err => {
         console.log(err);
       });
-  };
+  }
 }
