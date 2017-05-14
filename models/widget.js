@@ -8,14 +8,14 @@ const widgetSchema = new mongoose.Schema({
   data: Object
 });
 
-// widgetSchema.post('init', function() {
-//   const self = this;
-//   // console.log(self.url);
-//   rp(self.url)
-//     .then(data => {
-//       self.data = data;
-//       console.log('WIDGET: ', self);
-//     });
-// });
+widgetSchema.post('init', function() {
+  const self = this;
+  rp(self.url)
+    .then(response => {
+      const data = JSON.parse(response);
+      self.data = data;
+      // console.log('WIDGET: ', self);
+    });
+});
 
 module.exports = mongoose.model('Widget', widgetSchema);
