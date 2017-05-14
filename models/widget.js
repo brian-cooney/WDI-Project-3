@@ -6,4 +6,11 @@ const widgetSchema = new mongoose.Schema({
   data: Object
 });
 
+// widgetSchema.pos('init', function() {
+//   const self = this;
+//   rp({
+//     get:
+//   })
+// })
+
 module.exports = mongoose.model('Widget', widgetSchema);

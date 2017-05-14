@@ -1,12 +1,15 @@
 const Widget = require('../models/widget');
 const mongoose = require('mongoose');
+// const rp = require('request-promise');
 mongoose.Promise = require('bluebird');
 
 function widgetsIndex(req, res) {
   Widget
-    .find()
+    .findOne()
     .exec()
-    .then(widgets => res.status(200).json(widgets))
+    .then(widget => {
+      res.status(200).json(widget);
+    })
     .catch(err => res.json({ message: err }));
 }
 
