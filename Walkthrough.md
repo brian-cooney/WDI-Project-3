@@ -128,3 +128,67 @@ function widgetsIndex(req, res) {
 
 This way, when we call ```localhost:4000/api/widgets``` we get our data parsing through.
 
+Now that our API data is being retrieved and passed through correctly we can now start adding more APIs.
+
+```
+Widget
+  .create([{
+    type: 'weather',
+    url: 'http://api.openweathermap.org/data/2.5/weather?q=London&APPID=d2c4c1492a04ec9081fe74119400cc6e',
+    data: {}
+  }, {
+    type: 'news',
+    url: 'https://newsapi.org/v1/articles?source=bbc-news&apiKey=220bcdb5f5bd425194e8e6914bf03244', 
+    data: {}
+  }])
+  .then(widgets => console.log(`${widgets.length} widgets created`))
+  .catch(err => console.log(err))
+  .finally(() => mongoose.connection.close());
+```
+
+###ROADBLOCK!
+Now we've hit an issue: In our Controller, we can't use findOne as it will only retrieve the first of our seeded data, and using find all would require us to loop over it every time it came out of the database. To fix this, we had to move the init hook back ito the models file and customise the request:
+
+```
+const mongoose = require('mongoose');
+const rp = require('request-promise');
+mongoose.Promise = require('bluebird');
+
+const widgetSchema = new mongoose.Schema({
+  type: { type: String, required: true },
+  url: { type: String },
+  data: Object
+});
+
+widgetSchema.post('init', function() {
+  const self = this;
+  // console.log(self.url);
+  rp(self.url)
+    .then(response => {
+      const data = JSON.parse(response);
+      self.data = data;
+      // console.log('WIDGET: ', self);
+    });
+});
+
+module.exports = mongoose.model('Widget', widgetSchema);
+```
+
+And the controller function should now look like:
+
+```
+function widgetsIndex(req, res) {
+  Widget
+    .find()
+    .exec()
+    .then(widgets => {
+      res.json(widgets);
+    })
+    .catch(err => res.json({ message: err }));
+}
+```
+
+
+
+ 
+
