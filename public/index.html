@@ -10,30 +10,43 @@
   <link rel="stylesheet" href="/css/style.css">
   <!-- endinject -->
 </head>
+<header class="bg-light-gray ph4 pv2">
+  <ul>
+    <li class="dib">Piñata</li>
+    <div class="fr">
+      <li class="dib pr3">Settings</li>
+      <li class="dib">Logout</li>
+    </div>
+  </ul>
+</header>
 <body class="sans-serif bg-white" ng-controller="WidgetCtrl as widgets">
-  <main class="pa4">
-
+  <main class="ph4">
     <h1 class="gray">Hello</h1>
+
     <div gridster>
-      <div class="ba pa3 bg-white b--gray" gridster-item="item" ng-repeat="item in widgets.all">
+      <div class="grid-item ba pa3 bg-white b--gray" gridster-item="item" ng-repeat="item in widgets.all">
         <!-- <p>{{item}}</p> -->
         <p>Size: {{item.sizeX}}, {{item.sizeY}}</p>
         <p>Pos: {{item.col}}, {{item.row}}</p>
+
         <div ng-if="item.type === 'weather'">
           <h2>Weather</h2>
           <p><b>{{item.data.name}}: </b>{{item.data.weather[0].main}}, {{ (item.data.main.temp - 273.15).toFixed(2)}}&deg;C</p>
         </div>
+
         <h2 ng-if="item.type === 'news' && item.data.status != 'ok'">Widget failed to load :(</h2>
+
         <div ng-if="item.type === 'news' && item.data.status === 'ok'">
           <img style="max-width: 100%; max-height: 50%" ng-if="item.sizeY > 1 && item.sizeX > 1" ng-src="{{ item.data.articles[0].urlToImage }}" alt="">
           <h4>{{ item.data.articles[0].author }}</h4>
-          <h3><a target="_blank" class="white dim" href="{{item.data.articles[0].url}}">{{ item.data.articles[0].title }}</a></h3>
+          <h3><a target="_blank" class="gray dim" href="{{item.data.articles[0].url}}">{{ item.data.articles[0].title }}</a></h3>
           <p>{{ item.data.articles[0].description }}</p>
 
         </div>
         <!-- <p>{{ item.data }}</p> -->
       </div>
     </div>
+
   </main>
 </body>
 </html>
