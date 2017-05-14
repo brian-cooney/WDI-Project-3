@@ -4,6 +4,7 @@ mongoose.Promise = require('bluebird');
 
 const widgetSchema = new mongoose.Schema({
   type: { type: String, required: true },
+  color: { type: String, default: 'white' },
   url: { type: String },
   data: Object
 });
