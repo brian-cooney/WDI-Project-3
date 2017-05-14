@@ -5,9 +5,6 @@ const widgets         = require('../controllers/widgets');
 const authentications = require('../controllers/authentications');
 const users           = require('../controllers/users');
 
-router.route('/widgets')
-.get(widgets.index);
-
 
 
 router.route('/register')
@@ -22,5 +19,7 @@ router.route('/users/:id')
   .put(users.update)
   .delete(users.delete);
 
+router.route('/widgets')
+  .get(widgets.index);
 
 module.exports = router;

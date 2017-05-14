@@ -3,8 +3,11 @@ const bcrypt    = require('bcrypt');
 const validator = require('validator');
 
 const userSchema = new mongoose.Schema({
-  username: { type: String, unique: true, required: true },
-  email: { type: String, unique: true, required: true },
+  username: { type: String, unique: true, trim: true, required: true },
+  firstName: { type: String, trim: true },
+  lastName: { type: String, trim: true },
+  image: { type: String, trim: true },
+  email: { type: String, unique: true, trim: true, required: true },
   passwordHash: { type: String, required: true }
 });
 
@@ -26,14 +29,13 @@ userSchema
 
 userSchema.methods.validatePassword = validatePassword;
 
-// userSchema.set('toJSON', {
-//   transform: function(doc, ret) {
-//     delete ret.passwordHash;
-//     delete ret.email;
-//     delete ret.__v;
-//     return ret;
-//   }
-// });
+userSchema.set('toJSON', {
+  transform: function(doc, ret) {
+    delete ret.passwordHash;
+    delete ret.__v;
+    return ret;
+  }
+});
 
 module.exports = mongoose.model('User', userSchema);
 
