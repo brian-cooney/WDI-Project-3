@@ -22,6 +22,17 @@
 
       </div>
 
+      <div ng-if="item.type === 'breakfast'">
+        <h3>{{ item.data.hits[0].recipe.label }}</h3>
+        <ul>
+          <li ng-repeat="ingredient in item.data.hits[0].recipe.ingredientLines">
+            {{ ingredient }}
+          </li>
+        </ul>
+        <p>{{ item.data.hits[0].recipe.calories | number : 0 }}kcal</p>
+
+      </div>
+
     </div>
   </div>
 

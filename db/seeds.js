@@ -17,7 +17,12 @@ Widget
     type: 'news',
     url: 'https://newsapi.org/v1/articles?source=bbc-news&apiKey=220bcdb5f5bd425194e8e6914bf03244',
     data: {}
-  }])
+  }, {
+    type: 'breakfast',
+    url: 'https://api.edamam.com/search?q=breakfast',
+    data: {}
+  }
+  ])
   .then(widgets => console.log(`${widgets.length} widgets created`))
   .catch(err => console.log(err))
   .finally(() => mongoose.connection.close());
