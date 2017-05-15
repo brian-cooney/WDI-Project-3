@@ -1,5 +1,5 @@
 angular
-.module('widgetApp')
+.module('wdi-group-project')
 .controller('WidgetCtrl', WidgetCtrl);
 
 WidgetCtrl.$inject = [];

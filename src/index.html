@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
 <html ng-app="wdi-group-project">
 <head>
   <meta charset="utf-8">
   <title>Angular Stack Setup</title>
+  <base href="/">
   <!-- inject:js -->
   <!-- endinject -->
   <!-- inject:css -->
@@ -19,12 +19,13 @@
       <li class="dib"><a ng-click="main.logout()">Logout</a></li>
     </ul>
   </header>
-  <main class="ph4 sans-serif bg-white" ng-controller="WidgetCtrl as widgets">
+  <main ui-view></main>
+  <!-- <div class="ph4 sans-serif bg-white" ng-controller="WidgetCtrl as widgets">
     <h1 class="gray">Hello</h1>
 
     <div gridster>
       <div class="grid-item ba pa3 bg-white b--gray" gridster-item="item" ng-repeat="item in widgets.all">
-        <!-- <p>{{item}}</p> -->
+
         <p>Size: {{item.sizeX}}, {{item.sizeY}} Pos: {{item.col}}, {{item.row}}</p>
 
         <div ng-if="item.type === 'weather'">
@@ -41,10 +42,11 @@
           <p>{{ item.data.articles[0].description }}</p>
 
         </div>
-        <!-- <p>{{ item.data }}</p> -->
+        
       </div>
     </div>
 
-  </main>
+  </div> -->
+
 </body>
 </html>
