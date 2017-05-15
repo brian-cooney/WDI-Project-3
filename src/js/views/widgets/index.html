@@ -1,7 +1,8 @@
 <div class="ph4 bg-white">
   <h2>Hi, {{main.user.username}}. These are your widgets</h2>
   <div gridster>
-    <div class="grid-item ba pa3 bg-white b--gray" gridster-item="item" ng-repeat="item in widgets.all" ng-hide="item.deleted">
+    <div class="grid-item ba pa3 bg-white b--gray" gridster-item="item" col="item.col" row="item.row" size-x="item.sizeX" size-y="item.sizeY" ng-repeat="item in widgets.all">
+
       <button class="fr" ng-click="widgets.delete(item)">Delete</button>
 
       <p>Size: {{item.sizeX}}, {{item.sizeY}} Pos: {{item.col}}, {{item.row}}</p>
