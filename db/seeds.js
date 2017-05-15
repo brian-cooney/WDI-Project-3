@@ -27,7 +27,11 @@ Widget
     data: {}
   }, {
     type: 'numberFact',
-    url: 'http://numbersapi.com/15/trivia',
+    url: 'http://numbersapi.com/?json',
+    data: {}
+  }, {
+    type: 'thisDay',
+    url: 'http://history.muffinlabs.com/date',
     data: {}
   }
   ])
