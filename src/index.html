@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html ng-app="widgetApp">
+<<<<<<< HEAD
+<html ng-app="wdi-group-project">
 <head>
   <meta charset="utf-8">
   <title>Angular Stack Setup</title>
@@ -8,17 +9,17 @@
   <!-- inject:css -->
   <!-- endinject -->
 </head>
-<header class="bg-light-gray ph4 pv2">
-  <ul>
-    <li class="dib">Piñata</li>
-    <div class="fr">
-      <li class="dib pr3">Settings</li>
-      <li class="dib">Logout</li>
-    </div>
-  </ul>
-</header>
-<body class="sans-serif bg-white" ng-controller="WidgetCtrl as widgets">
-  <main class="ph4">
+<body ng-controller="MainCtrl as main">
+  <header class="bg-light-gray ph4 pv2">
+    <ul>
+      <li class="dib"><a ui-sref="home">Piñata</a></li>
+      <li class="dib"><a ui-sref="login">Login</a></li>
+      <li class="dib"><a ui-sref="register">Register</a></li>
+      <li class="dib"><a ui-sref="usersIndex">Users</a></li>
+      <li class="dib"><a ng-click="main.logout()">Logout</a></li>
+    </ul>
+  </header>
+  <main class="ph4 sans-serif bg-white" ng-controller="WidgetCtrl as widgets">
     <h1 class="gray">Hello</h1>
 
     <div gridster>
