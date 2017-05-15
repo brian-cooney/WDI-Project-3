@@ -6,14 +6,16 @@ LoginCtrl.$inject = ['User', 'CurrentUserService', '$state'];
 function LoginCtrl(User, CurrentUserService, $state) {
   const vm = this;
 
-  vm.login = () => {
+  vm.login = login;
+  function login() {
     User
       .login(vm.user).$promise
-      .then(() => {
+      .then(data => {
+        console.log(data);
         CurrentUserService.getUser();
         $state.go('usersIndex');
       }, err => {
         console.log(err);
       });
-  };
+  }
 }
