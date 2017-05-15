@@ -188,6 +188,29 @@ function widgetsIndex(req, res) {
 }
 ```
 
+##Authentication
+Adding anuglar authentication proved troublesome as the lesson notes were incomplete, so we 
+
+##Gridster Implementation
+So for our app we want users to be able to and drag their widgets across the screen to their liking, and Gridster was recommended to us.
+
+Gridster is basically a jQuery library specifically designed for the task, and we're using an angular version of it. 
+
+The first step is to download and install ```angular-gridster``` through Bower in the terminal, then load it in the angular module in the app.js (by writing 'angular-gridster' into the array. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
  

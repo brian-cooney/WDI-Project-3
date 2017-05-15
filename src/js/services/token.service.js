@@ -20,8 +20,8 @@ function TokenService($window, jwtHelper) {
     $window.localStorage.clear();
   };
 
-  // self.decodeToken = () => {
-  //   // const token = self.getToken();
-  //   return token ? jwtHelper.decodeToken(token) : null;
-  // };
+  self.decodeToken = () => {
+    const token = self.getToken();
+    return token ? jwtHelper.decodeToken(token) : null;
+  };
 }
