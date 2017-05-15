@@ -30,7 +30,17 @@
           </li>
         </ul>
         <p>{{ item.data.hits[0].recipe.calories | number : 0 }}kcal</p>
+      </div>
 
+      <div ng-if="item.type === 'advice'">
+        <h3>Wise Words of the Day</h3>
+        <h4>{{ item.data.slip.advice }}</h4>
+      </div>
+
+      <div ng-if="item.type === 'numberFact'">
+        <h3>Number Fact of the Day</h3>
+        <!-- <h5>Today is the {{ date }} day of the year</h5> -->
+        <h4>{{ item.data }}</h4>
       </div>
 
     </div>

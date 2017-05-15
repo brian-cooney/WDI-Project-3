@@ -21,6 +21,14 @@ Widget
     type: 'breakfast',
     url: 'https://api.edamam.com/search?q=breakfast',
     data: {}
+  }, {
+    type: 'advice',
+    url: 'http://api.adviceslip.com/advice',
+    data: {}
+  }, {
+    type: 'numberFact',
+    url: 'http://numbersapi.com/15/trivia',
+    data: {}
   }
   ])
   .then(widgets => console.log(`${widgets.length} widgets created`))
