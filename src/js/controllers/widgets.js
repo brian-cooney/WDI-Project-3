@@ -11,6 +11,10 @@ function WidgetCtrl() {
       'type': 'weather',
       'url': 'http://api.openweathermap.org/data/2.5/weather?q=London&APPID=d2c4c1492a04ec9081fe74119400cc6e',
       '__v': 0,
+      sizeY: 1,
+      sizeX: 1,
+      row: 0,
+      col: 0,
       'data': {
         'coord': {
           'lon': -0.13,
@@ -60,6 +64,10 @@ function WidgetCtrl() {
       'type': 'news',
       'url': 'https://newsapi.org/v1/articles?source=bbc-news&apiKey=220bcdb5f5bd425194e8e6914bf03244',
       '__v': 0,
+      sizeY: 1,
+      sizeX: 1,
+      row: 0,
+      col: 1,
       'data': {
         'status': 'ok',
         'source': 'bbc-news',

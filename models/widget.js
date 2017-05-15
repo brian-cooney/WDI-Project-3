@@ -6,6 +6,10 @@ const widgetSchema = new mongoose.Schema({
   type: { type: String, required: true },
   color: { type: String, default: 'white' },
   url: { type: String },
+  sizeY: Number,
+  sizeX: Number,
+  row: Number,
+  col: Number,
   data: Object
 });
 

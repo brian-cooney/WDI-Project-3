@@ -24,8 +24,7 @@
     <div gridster>
       <div class="grid-item ba pa3 bg-white b--gray" gridster-item="item" ng-repeat="item in widgets.all">
         <!-- <p>{{item}}</p> -->
-        <p>Size: {{item.sizeX}}, {{item.sizeY}}</p>
-        <p>Pos: {{item.col}}, {{item.row}}</p>
+        <p>Size: {{item.sizeX}}, {{item.sizeY}} Pos: {{item.col}}, {{item.row}}</p>
 
         <div ng-if="item.type === 'weather'">
           <h2>Weather</h2>
