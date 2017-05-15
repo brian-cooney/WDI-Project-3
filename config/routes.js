@@ -5,8 +5,8 @@ const authentications = require('../controllers/authentications');
 const users           = require('../controllers/users');
 
 router.route('/widgets')
-  .get(widgets.index);
-  // .post(widgets.create);
+  .get(widgets.index)
+  .post(widgets.new);
 router.route('/widgets/:id')
   .get(widgets.show)
   .put(widgets.update)
@@ -19,5 +19,7 @@ router.route('/login')
 
 router.route('/users')
   .get(users.index);
+router.route('/users/:id')
+  .get(users.show);
 
 module.exports = router;

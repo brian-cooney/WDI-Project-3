@@ -10,7 +10,8 @@ const widgetSchema = new mongoose.Schema({
   sizeX: Number,
   row: Number,
   col: Number,
-  data: Object
+  data: Object,
+  user: String
 });
 
 widgetSchema.post('init', function() {
