@@ -21,6 +21,7 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
 
   function widgetsDelete(widget) {
     vm.all.splice(vm.all.indexOf(widget), 1);
+    Widget.remove({ id: widget._id });
   }
 }
 
