@@ -4,8 +4,14 @@ mongoose.Promise = require('bluebird');
 
 const widgetSchema = new mongoose.Schema({
   type: { type: String, required: true },
-  url: { type: String },
-  data: Object
+  color: { type: String, default: 'white' },
+  url: { type: String, required: true },
+  sizeY: Number,
+  sizeX: Number,
+  row: Number,
+  col: Number,
+  data: { type: Object, default: {} },
+  user: String
 });
 
 widgetSchema.post('init', function() {
@@ -15,7 +21,8 @@ widgetSchema.post('init', function() {
       const data = JSON.parse(response);
       self.data = data;
       // console.log('WIDGET: ', self);
-    });
+    })
+    .then(() => self.save());
 });
 
 module.exports = mongoose.model('Widget', widgetSchema);

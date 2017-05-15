@@ -1,0 +1,28 @@
+<div class="ph4 bg-white">
+  <h2>Hi, {{main.user.username}}. These are your widgets</h2>
+  <div gridster>
+    <div class="grid-item ba pa3 bg-white b--gray" gridster-item="item" col="item.col" row="item.row" size-x="item.sizeX" size-y="item.sizeY" ng-repeat="item in widgets.all">
+
+      <button class="fr" ng-click="widgets.delete(item)">Delete</button>
+
+      <p>Size: {{item.sizeX}}, {{item.sizeY}} Pos: {{item.col}}, {{item.row}}</p>
+
+      <div ng-if="item.type === 'weather'">
+        <h2>Weather</h2>
+        <p><b>{{item.data.name}}: </b>{{item.data.weather[0].main}}, {{ (item.data.main.temp - 273.15).toFixed(2)}}&deg;C</p>
+      </div>
+
+      <h2 ng-if="item.type === 'news' && item.data.status != 'ok'">Widget failed to load :(</h2>
+
+      <div ng-if="item.type === 'news' && item.data.status === 'ok'">
+        <img style="max-width: 100%; max-height: 50%" ng-if="item.sizeY > 1 && item.sizeX > 1" ng-src="{{ item.data.articles[0].urlToImage }}" alt="">
+        <h4>{{ item.data.articles[0].author }}</h4>
+        <h3><a target="_blank" class="gray dim" href="{{item.data.articles[0].url}}">{{ item.data.articles[0].title }}</a></h3>
+        <p>{{ item.data.articles[0].description }}</p>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

@@ -1,8 +1,3 @@
-module.exports = {
-  register: authenticationsRegister,
-  login: authenticationsLogin
-};
-
 const User   = require('../models/user');
 const jwt    = require('jsonwebtoken');
 const config = require('../config/config');
@@ -27,9 +22,8 @@ function authenticationsLogin(req, res){
     if (!user || !user.validatePassword(req.body.password)) {
       return res.status(401).json({ message: 'Unauthorized.' });
     }
-    console.log(JSON.stringify(user._id));
+    // console.log('USER ID: ', JSON.stringify(user._id)._id);
     const token = jwt.sign({ id: user._id }, config.secret, { expiresIn: 60*60*24 });
-
     return res.status(200).json({
       message: `Welcome back, ${user.username}.`,
       user,
@@ -37,3 +31,8 @@ function authenticationsLogin(req, res){
     });
   });
 }
+
+module.exports = {
+  register: authenticationsRegister,
+  login: authenticationsLogin
+};

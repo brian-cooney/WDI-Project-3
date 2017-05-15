@@ -1,1 +1,17 @@
 // Import all of your scss files here
+@import 'helpers/tachyons';
+a {
+  text-decoration: none;
+}
+body, html, ul, li {
+  margin: 0;
+  padding: 0;
+}
+.grid-item {
+  -webkit-box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.31);
+  -moz-box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.31);
+  box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.31);
+}
+ul, li {
+  list-style: none
+}

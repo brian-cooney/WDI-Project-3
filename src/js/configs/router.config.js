@@ -1,6 +1,6 @@
 angular
-  .module('wdi-group-project')
-  .config(Router);
+.module('wdi-group-project')
+.config(Router);
 
 Router.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider'];
 function Router($stateProvider, $locationProvider, $urlRouterProvider){
@@ -28,6 +28,18 @@ function Router($stateProvider, $locationProvider, $urlRouterProvider){
     templateUrl: '/js/views/users/index.html',
     controller: 'UsersIndexCtrl',
     controllerAs: 'users'
+  })
+  .state('widgetsIndex', {
+    url: '/widgets',
+    templateUrl: '/js/views/widgets/index.html',
+    controller: 'WidgetsIndexCtrl',
+    controllerAs: 'widgets'
+  })
+  .state('widgetsNew', {
+    url: '/widgets/new',
+    templateUrl: '/js/views/widgets/new.html',
+    controller: 'WidgetsNewCtrl',
+    controllerAs: 'widgets'
   });
 
   $urlRouterProvider.otherwise('/');

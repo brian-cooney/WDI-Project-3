@@ -1,0 +1,12 @@
+<form ng-submit="widgets.create()">
+  <div class="">
+    <label for="type">Type: </label>
+    <input type="text" name="type" ng-model="widgets.widget.type" placeholder="type">
+  </div>
+  <div class="">
+    <label for="url">API url: </label>
+    <input type="text" name="url" ng-model="widgets.widget.url" placeholder="url">
+  </div>
+  <p>User: {{widgets.widget.user}}</p>
+  <input type="submit" name="" value="Add">
+</form>
