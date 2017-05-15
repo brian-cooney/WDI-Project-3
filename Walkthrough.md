@@ -189,7 +189,7 @@ function widgetsIndex(req, res) {
 ```
 
 ##Authentication
-Adding anuglar authentication proved troublesome as the lesson notes were incomplete, so we 
+Adding anuglar authentication proved troublesome as the lesson notes were incomplete, so we had a lot of trial and error
 
 ##Gridster Implementation
 So for our app we want users to be able to and drag their widgets across the screen to their liking, and Gridster was recommended to us.
