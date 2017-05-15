@@ -3,19 +3,23 @@ const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
 function widgetsIndex(req, res) {
-  Widget
-    .find()
-    .exec()
-    .then(widgets => {
-      res.json(widgets);
-    })
-    .catch(err => res.json({ message: err }));
+  console.log('QUERY: ', req.query);
+  const search = Widget.find();
+  if (req.query.user) {
+    search
+      .where({ user: req.query.user })
+      .then(widgets => {
+        // console.log('FOUND: ', widgets);
+        res.json(widgets);
+      })
+      .catch(err => res.json({ error: err }));
+  }
 }
 function widgetsShow(req, res) {
   Widget
     .findById(req.params.id)
-  .then(widget => res.status(200).json(widget))
-  .catch(err => res.json({ error: err }));
+    .then(widget => res.status(200).json(widget))
+    .catch(err => res.json({ error: err }));
 }
 function widgetsCreate(req, res) {
   const widget = new Widget(req.body);

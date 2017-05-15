@@ -1,16 +1,10 @@
-module.exports = {
-  index: usersIndex,
-  show: usersShow,
-  update: usersUpdate,
-  delete: usersDelete
-};
-
 const User = require('../models/user');
+let currentUser;
 
 function usersIndex(req, res) {
   User.find((err, users) => {
     if (err) return res.status(500).json({ message: 'Something went wrong.' });
-    console.log('USERS: ', users);
+    // console.log('USERS: ', users);
     return res.status(200).json(users);
   });
 }
@@ -19,7 +13,8 @@ function usersShow(req, res) {
   User.findById(req.params.id, (err, user) => {
     if (err) return res.status(500).json({ message: 'Something went wrong.' });
     if (!user) return res.status(404).json({ message: 'User not found.' });
-    console.log('USER: ', user);
+    // console.log('USER: ', user);
+    currentUser = user;
     return res.status(200).json(user);
   });
 }
@@ -39,3 +34,11 @@ function usersDelete(req, res) {
     return res.sendStatus(204);
   });
 }
+
+module.exports = {
+  index: usersIndex,
+  show: usersShow,
+  update: usersUpdate,
+  delete: usersDelete,
+  user: currentUser
+};

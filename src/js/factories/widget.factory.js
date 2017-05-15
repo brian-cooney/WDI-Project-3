@@ -4,7 +4,8 @@ angular
 
 Widget.$inject = ['API', '$resource'];
 function Widget(API, $resource) {
-  return $resource(`${API}/widgets/:id`, { id: '@_id'},
+  return $resource(`${API}/widgets/:id`,
+    { id: '@_id'},
     { 'update': { method: 'PUT' }
     });
 }

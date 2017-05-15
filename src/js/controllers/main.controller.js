@@ -1,6 +1,6 @@
 angular
-  .module('wdi-group-project')
-  .controller('MainCtrl', MainCtrl);
+.module('wdi-group-project')
+.controller('MainCtrl', MainCtrl);
 
 MainCtrl.$inject = ['$rootScope', 'CurrentUserService', '$state'];
 function MainCtrl($rootScope, CurrentUserService, $state) {
@@ -18,5 +18,6 @@ function MainCtrl($rootScope, CurrentUserService, $state) {
   vm.logout = () => {
     CurrentUserService.removeUser();
   };
+
 
 }
