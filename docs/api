@@ -1,0 +1,21 @@
+Breakfast Recipes
+https://api.edamam.com/search?q=breakfast
+
+Trumpify
+{{ Insert the name of someone you don't like }}
++
+https://api.whatdoestrumpthink.com/api/v1/quotes
+
+Advice
+http://api.adviceslip.com/advice
+
+Is this for that
+http://itsthisforthat.com/api.php?json
+
+Random Number Fact
+http://numbersapi.com/15/trivia
+number is the fact-number and the type is trivia, math, date, or year
+Using a simple Date() function we can calculate how many days into the year it is
+
+On this day...
+http://history.muffinlabs.com/date
