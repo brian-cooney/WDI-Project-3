@@ -4,7 +4,9 @@ angular
 
 giphy.$inject = ['$window'];
 function giphy($window) {
-  const directive = {
-    
-  }
+  return {
+    restrict: 'E',
+    replace: true,
+    template: '<div><img src="http://fillmurray.com/200/200"><p>Giphy image here.</p></div>'
+  };
 }
