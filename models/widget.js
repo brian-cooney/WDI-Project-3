@@ -12,7 +12,7 @@ const widgetSchema = new mongoose.Schema({
   col: Number,
   data: { type: Object, default: {} },
   user: String,
-  giphyIndex: { type: Number, default: 0 }
+  index: { type: Number, default: 0 }
 });
 
 widgetSchema.pre('save', function(next) {

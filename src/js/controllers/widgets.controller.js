@@ -18,13 +18,21 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
     });
   }
   vm.delete = widgetsDelete;
-  vm.nextGiphy = nextGiphy;
-  function nextGiphy(item) {
-    console.log(item.giphyIndex);
-    if (item.giphyIndex+1 === item.data.data.length) {
-      item.giphyIndex = 0;
-    } else item.giphyIndex++;
+  vm.nextItem = nextItem;
+
+  function nextItem(item) {
+    console.log(item.index);
+    if (item.type === 'giphy') {
+      if (item.index+1 === item.data.data.length) {
+        item.index = 0;
+      } else item.index++;
+    } else if (item.type === 'news') {
+      if (item.index+1 === item.data.articles.length) {
+        item.index = 0;
+      } else item.index++;
+    }
   }
+
   vm.icons = [{
     type: 'sun',
     url: '/images/weather-icons/sun.png'
@@ -42,7 +50,7 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
   vm.create = widgetsCreate;
   vm.widget = {};
   vm.widget.data = {};
-  vm.widget.giphyIndex = 0;
+  vm.widget.index = 0;
   vm.widget.user = CurrentUserService.currentUser._id;
   function widgetsCreate() {
     Widget
@@ -135,20 +143,20 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
     console.log('changed', option);
     switch (option) {
       case 'cat': vm.widget.url = 'http://thecatapi.com/api/images/get?format=src&type=gif';
-      vm.widget.sizeX = 2; vm.widget.sizeY = 2;
-      break;
+        vm.widget.sizeX = 2; vm.widget.sizeY = 2;
+        break;
       case 'trumpify': vm.widget.url = 'https://api.whatdoestrumpthink.com/api/v1/quotes';
-      break;
+        break;
       case 'chuck': vm.widget.url = 'https://api.chucknorris.io/jokes/random';
-      break;
+        break;
       case 'advice': vm.widget.url = 'http://api.adviceslip.com/advice';
-      break;
+        break;
       case 'news': vm.widget.sizeX = 4; vm.widget.sizeY = 1;
-      break;
+        break;
       case 'giphy': vm.widget.sizeX = 2; vm.widget.sizeY = 2;
-      break;
+        break;
       case 'weather': vm.widget.sizeX = 1; vm.widget.sizeY = 1;
-      break;
+        break;
       default: break;
     }
   }

@@ -12,8 +12,8 @@
       </div>
 
       <div ng-if="item.type === 'giphy'"
-      style="background-image: url('{{item.data.data[item.giphyIndex].images.original.url}}')" class="pa2 cover cat h-100">
-      <button ng-click="widgets.nextGiphy(item)">Moar!!</button>
+      style="background-image: url('{{item.data.data[item.index].images.original.url}}')" class="pa2 cover bg-center h-100">
+      <button ng-click="widgets.nextItem(item)">Moar!!</button>
       </div>
 
       <div ng-if="item.type === 'weather' && item.data.cod === 200" class="pa2">
@@ -32,11 +32,12 @@
       <h2 ng-if="item.type === 'weather' && item.data.cod !== 200">City not found.</h2>
 
       <div ng-if="item.type === 'news' && item.data.status === 'ok'"
-        style="background-image: url({{item.data.articles[0].urlToImage}})"
+        style="background-image: url({{item.data.articles[item.index].urlToImage}})"
         class="grid-news pa2 h-100 cover">
-        <h4>{{ item.data.articles[0].author }}</h4>
-        <h3 class="pt2"><a target="_blank" class="black dim" href="{{item.data.articles[0].url}}">{{ item.data.articles[0].title }}</a></h3>
-        <p>{{ item.data.articles[0].description }}</p>
+        <button class="fr" ng-click="widgets.nextItem(item)">Next article</button>
+        <h4>{{ item.data.articles[item.index].author }}</h4>
+        <h3 class="pt2"><a target="_blank" class="black dim" href="{{item.data.articles[0].url}}">{{ item.data.articles[item.index].title }}</a></h3>
+        <p>{{ item.data.articles[item.index].description }}</p>
 
       </div>
 
