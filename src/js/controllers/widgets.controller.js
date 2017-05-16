@@ -4,18 +4,18 @@ angular
 .controller('WidgetsNewCtrl', WidgetsNewCtrl);
 
 // finds only the widgets belonging to the logged in user
-WidgetsIndexCtrl.$inject = ['Widget', 'CurrentUserService'];
-function WidgetsIndexCtrl(Widget, CurrentUserService) {
+WidgetsIndexCtrl.$inject = ['Widget', 'CurrentUserService', '$stateParams'];
+function WidgetsIndexCtrl(Widget, CurrentUserService, $stateParams) {
   const vm = this;
   if (CurrentUserService.currentUser) {
     vm.user = CurrentUserService.currentUser._id;
     vm.all = {};
     Widget
-      .query({ 'user': vm.user })
-      .$promise
-      .then(widgets => {
-        vm.all = widgets;
-      });
+    .query({ 'user': vm.user })
+    .$promise
+    .then(widgets => {
+      vm.all = widgets;
+    });
   }
   vm.delete = widgetsDelete;
 
@@ -39,15 +39,32 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
   vm.widget.user = CurrentUserService.currentUser._id;
   function widgetsCreate() {
     Widget
-      .save(vm.widget)
-      .$promise
-      .then(() => {
-        console.log(vm.widget);
-        $state.go('widgetsIndex');
-      });
+    .save(vm.widget)
+    .$promise
+    .then(() => {
+      console.log(vm.widget);
+      $state.go('widgetsIndex');
+    });
+  }
+  vm.options = [
+    { type: 'news', name: 'News' },
+    { type: 'weather', name: 'Weather' },
+    { type: 'giphy', name: 'Giphy' },
+    { type: 'cat', name: 'Cat Gif' },
+    { type: 'events', name: 'Events' },
+    { type: 'chuck', name: 'Chuck Norris Jokes' },
+    { type: 'recipes', name: 'Recipes' },
+    { type: 'joke', name: 'Jokes' },
+    { type: 'quote', name: 'Random Quote' },
+    { type: 'trumpify', name: 'Trumpify' },
+    { type: 'advice', name: 'Advice' },
+    { type: 'today', name: 'This Day in History' }
+  ];
+  vm.onChange = onChange;
+  function onChange(option) {
+    console.log('changed', option);
   }
 }
-
 
 // angular.module('app')
 //

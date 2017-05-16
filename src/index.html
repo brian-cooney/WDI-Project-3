@@ -9,8 +9,9 @@
   <!-- inject:css -->
   <!-- endinject -->
 </head>
-<body class="sans-serif" ng-controller="MainCtrl as main">
+<body class="sans-serif black-70" ng-controller="MainCtrl as main">
   <header class="bg-light-gray ph4 pv2">
+
     <a ui-sref="home">Piñata</a>
     <ul class="fr">
       <li class="dib" ng-hide="main.user"><a ui-sref="login">Login</a></li>
@@ -19,6 +20,7 @@
       <li class="dib" ng-show="main.user"><a ui-sref="widgetsNew">New Widget</a></li>
       <li class="dib" ng-show="main.user"><a ui-sref="usersIndex">Users</a></li>
       <li class="dib" ng-show="main.user"><a ng-click="main.logout()">Logout</a></li>
+
     </ul>
   </header>
   <main ui-view></main>
