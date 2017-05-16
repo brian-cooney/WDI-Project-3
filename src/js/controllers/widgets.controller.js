@@ -4,8 +4,8 @@ angular
 .controller('WidgetsNewCtrl', WidgetsNewCtrl);
 
 // finds only the widgets belonging to the logged in user
-WidgetsIndexCtrl.$inject = ['Widget', 'CurrentUserService'];
-function WidgetsIndexCtrl(Widget, CurrentUserService) {
+WidgetsIndexCtrl.$inject = ['Widget', 'CurrentUserService', '$stateParams'];
+function WidgetsIndexCtrl(Widget, CurrentUserService, $stateParams) {
   const vm = this;
   if (CurrentUserService.currentUser) {
     vm.user = CurrentUserService.currentUser._id;
@@ -18,7 +18,6 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
       });
   }
   vm.delete = widgetsDelete;
-
   function widgetsDelete(widget) {
     vm.all.splice(vm.all.indexOf(widget), 1);
     Widget.remove({ id: widget._id });

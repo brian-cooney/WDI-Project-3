@@ -4,6 +4,7 @@
     <div class="overflow-hidden grid-item ba bg-white b--gray cover" gridster-item="item" col="item.col" row="item.row" size-x="item.sizeX" size-y="item.sizeY" ng-repeat="item in widgets.all">
 
       <button class="fr" ng-click="widgets.delete(item)">Delete</button>
+      <button class="fr" ng-click="widgets.refresh(item)">Refresh</button>
 
       <!-- <p>Size: {{item.sizeX}}, {{item.sizeY}} Pos: {{item.col}}, {{item.row}}</p> -->
 
@@ -16,9 +17,9 @@
 
       <div ng-if="item.type === 'news' && item.data.status === 'ok'"
         style="background-image: url({{item.data.articles[0].urlToImage}})"
-        class="pa2 h-100 cover">
+        class="grid-news pa2 h-100 cover">
         <h4>{{ item.data.articles[0].author }}</h4>
-        <h3 class="pt2"><a target="_blank" class="red dim" href="{{item.data.articles[0].url}}">{{ item.data.articles[0].title }}</a></h3>
+        <h3 class="pt2"><a target="_blank" class="black dim" href="{{item.data.articles[0].url}}">{{ item.data.articles[0].title }}</a></h3>
         <p>{{ item.data.articles[0].description }}</p>
 
       </div>
