@@ -1,60 +1,72 @@
 <form ng-submit="widgets.create()">
   <div class="">
     <label for="type">Type: </label>
-      <select name="type" ng-model="widgets.widget.type" ng-options="option.type as option.name for option in widgets.options" placeholder="Type">
-        <option value="" disabled selected style="display: none;">Please Select</option>
-      </select>
-      {{ widgets.widget.type }}
+    <select name="type" ng-model="widgets.widget.type" ng-options="option.type as option.name for option in widgets.options" placeholder="Type">
+      <!-- option.type is the value of the options in the widgets controller -->
+      <option value="" disabled selected style="display: none;">Please Select</option>
+    </select>
+    {{ widgets.widget.type }}
   </div>
   <div class="">
     <label for="url">API url: </label>
     <input type="text" name="url" ng-model="widgets.widget.url" placeholder="url">
   </div>
 
-<h2 ng-if="widgets.widget.type === 'news'">News params</h2>
-<h2 ng-if="widgets.widget.type === 'weather'">weather params</h2>
-<h2 ng-if="widgets.widget.type === 'giphy'">giphy params</h2>
-<h2 ng-if="widgets.widget.type === 'events'">events params</h2>
-<h2 ng-if="widgets.widget.type === 'chuck'">chuck params</h2>
-<h2 ng-if="widgets.widget.type === 'recipes'">recipe params</h2>
-<h2 ng-if="widgets.widget.type === 'joke'">joke params</h2>
-<h2 ng-if="widgets.widget.type === 'quote'">quote params</h2>
-<h2 ng-if="widgets.widget.type === 'trumpify'">trump params</h2>
-<h2 ng-if="widgets.widget.type === 'advice'">advice params</h2>
-<h2 ng-if="widgets.widget.type === 'today'">today params</h2>
+  <h2 ng-if="widgets.widget.type === 'news'">News params</h2>
+  <h2 ng-if="widgets.widget.type === 'weather'">weather params</h2>
+  <h2 ng-if="widgets.widget.type === 'giphy'">giphy params</h2>
+  <h2 ng-if="widgets.widget.type === 'events'">events params</h2>
+  <h2 ng-if="widgets.widget.type === 'chuck'">chuck params</h2>
+  <h2 ng-if="widgets.widget.type === 'recipes'">recipe params</h2>
+  <h2 ng-if="widgets.widget.type === 'joke'">joke params</h2>
+  <h2 ng-if="widgets.widget.type === 'quote'">quote params</h2>
+  <h2 ng-if="widgets.widget.type === 'trumpify'">trump params</h2>
+  <h2 ng-if="widgets.widget.type === 'advice'">advice params</h2>
+  <h2 ng-if="widgets.widget.type === 'today'">today params</h2>
 
 
 
 
-<div ng-if="widgets.widget.type === 'events'">Events </div>
+  <div ng-if="widgets.widget.type === 'events'">
+    <h1>Events</h1>
+    <select name="location" ng-model="widgets.eventsWidget.location" ng-options="eventsLocation.city for eventsLocation in widgets.eventsLocation" placeholder="Location" ng-change="widgets.events()">
+      <option value="">
+        <!-- Dynamic cities -->
+        Please Select
+      </option>
+    </select>
+
+    <select name="location" ng-model="widgets.eventsWidget.type" ng-options="eventsType.id as eventsType.type for eventsType in widgets.eventsType" placeholder="Type"  ng-change="widgets.events()">
+      <option value="">
+        <!-- Dynamic cities -->
+        Please Select
+      </option>
 
 
-<div ng-if="widgets.widget.type === 'cat'">
-  <h2>Creates a widget with a random cat gif like so:</h2>
-  <img src="http://thecatapi.com/api/images/get?format=src&type=gif" alt="">
-
-</div>
+    </select>
 
 
+    {{ widgets.eventsWidget.location.city}}
+    {{ widgets.eventsWidget.type}}
+  </div>
 
+  <!-- News -->
+  <div ng-if="widgets.widget.type === 'news'">
+    <select name="source" ng-model="widgets.newsWidget.source" ng-options="newsOption.source as newsOption.name for newsOption in widgets.newsOptions" placeholder="Source" ng-change="widgets.test()">
+      <option value="" disabled selected style="display: none;">Please Select</option>
+    </select>
+    <br>
+    {{widgets.newsWidget.source}}
+    <br>
+    {{widgets.newsApi}}
+  </div>
 
+  <!-- Cat -->
+  <div ng-if="widgets.widget.type === 'cat'">
+    <h2>Creates a widget with a random cat gif like so:</h2>
+    <img src="http://thecatapi.com/api/images/get?format=src&type=gif" alt="">
 
-
-
-
-_____________________________________________________________________________________
-
-
-
-
-
-
-
-
-
-
-
-
+  </div>
 
 
 
@@ -63,9 +75,30 @@ ________________________________________________________________________________
 
 
 
+  _____________________________________________________________________________________
 
 
-_____________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  _____________________________________________________________________________________
   <p>User: {{widgets.widget.user}}</p>
   <input type="submit" name="" value="Add">
 </form>
