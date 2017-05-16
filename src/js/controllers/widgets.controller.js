@@ -19,6 +19,14 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
   }
   vm.delete = widgetsDelete;
 
+  vm.giphyIndex = 0;
+  vm.nextGiphy = nextGiphy;
+  function nextGiphy(items) {
+    console.log(vm.giphyIndex);
+    if (vm.giphyIndex+1 === items.length) {
+      vm.giphyIndex = 0;
+    } else vm.giphyIndex++;
+  }
   vm.icons = [{
     type: 'sun',
     url: '/images/weather-icons/sun.png'
@@ -65,20 +73,20 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
     console.log('changed', option);
     switch (option) {
       case 'cat': vm.widget.url = 'http://thecatapi.com/api/images/get?format=src&type=gif';
-        vm.widget.sizeX = 2; vm.widget.sizeY = 2;
-        break;
+      vm.widget.sizeX = 2; vm.widget.sizeY = 2;
+      break;
       case 'trumpify': vm.widget.url = 'https://api.whatdoestrumpthink.com/api/v1/quotes';
-        break;
+      break;
       case 'chuck': vm.widget.url = 'https://api.chucknorris.io/jokes/random';
-        break;
+      break;
       case 'advice': vm.widget.url = 'http://api.adviceslip.com/advice';
-        break;
+      break;
       case 'news': vm.widget.sizeX = 4; vm.widget.sizeY = 1;
-        break;
+      break;
       case 'giphy': vm.widget.sizeX = 2; vm.widget.sizeY = 2;
-        break;
+      break;
       case 'weather': vm.widget.sizeX = 1; vm.widget.sizeY = 1;
-        break;
+      break;
       default: break;
     }
   }
