@@ -16,13 +16,16 @@ const widgetSchema = new mongoose.Schema({
 
 widgetSchema.post('init', function() {
   const self = this;
-  rp(self.url)
-    .then(response => {
-      const data = JSON.parse(response);
-      self.data = data;
-      // console.log('WIDGET: ', self);
-    })
-    .then(() => self.save());
+  if (self.type !== 'cat') {
+    rp(self.url)
+      .then(response => {
+        const data = JSON.parse(response);
+        self.data = data;
+        // console.log('WIDGET: ', self);
+      })
+      .then(() => self.save());
+  }
+
 });
 
 module.exports = mongoose.model('Widget', widgetSchema);

@@ -1,10 +1,11 @@
 <form ng-submit="widgets.create()">
   <div class="">
     <label for="type">Type: </label>
-      <select name="type" ng-model="widgets.widget.type" ng-options="option.type as option.name for option in widgets.options" placeholder="Type">
+      <select name="type" ng-model="widgets.widget.type" ng-options="option.type as option.name for option in widgets.options" ng-change="widgets.onChange(widgets.widget.type)" placeholder="Type">
         <option value="" disabled selected style="display: none;">Please Select</option>
       </select>
       {{ widgets.widget.type }}
+      {{ widgets.catOpts }}
   </div>
   <div class="">
     <label for="url">API url: </label>
@@ -13,7 +14,7 @@
 
 <h2 ng-if="widgets.widget.type === 'news'">News params</h2>
 <h2 ng-if="widgets.widget.type === 'weather'">weather params</h2>
-<h2 ng-if="widgets.widget.type === 'giphy'">giphy params</h2>
+<!-- <h2 ng-if="widgets.widget.type === 'giphy'">giphy params</h2> -->
 <h2 ng-if="widgets.widget.type === 'events'">events params</h2>
 <h2 ng-if="widgets.widget.type === 'chuck'">chuck params</h2>
 <h2 ng-if="widgets.widget.type === 'recipes'">recipe params</h2>
@@ -31,8 +32,15 @@
 
 <div ng-if="widgets.widget.type === 'cat'">
   <h2>Creates a widget with a random cat gif like so:</h2>
-  <img src="http://thecatapi.com/api/images/get?format=src&type=gif" alt="">
+  <img ng-src="{{widgets.widget.url}}" alt="">
 
+</div>
+
+<div ng-if="widgets.widget.type === 'giphy'" class="">
+  <h2>Create a Giphy widget</h2>
+  <input type="text" ng-model="widgets.giphySearchTerms" value="">
+  <button type="button" name="" ng-click="widgets.giphySearch()"></button>
+  {{widgets.widget.url}}
 </div>
 
 
@@ -40,8 +48,6 @@
 
 
 
-
-
 _____________________________________________________________________________________
 
 
@@ -66,6 +72,6 @@ ________________________________________________________________________________
 
 
 _____________________________________________________________________________________
-  <p>User: {{widgets.widget.user}}</p>
+  <p>Widget: {{widgets.widget}}</p>
   <input type="submit" name="" value="Add">
 </form>

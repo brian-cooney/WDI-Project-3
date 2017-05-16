@@ -4,8 +4,8 @@ angular
 .controller('WidgetsNewCtrl', WidgetsNewCtrl);
 
 // finds only the widgets belonging to the logged in user
-WidgetsIndexCtrl.$inject = ['Widget', 'CurrentUserService', '$stateParams'];
-function WidgetsIndexCtrl(Widget, CurrentUserService, $stateParams) {
+WidgetsIndexCtrl.$inject = ['Widget', 'CurrentUserService'];
+function WidgetsIndexCtrl(Widget, CurrentUserService) {
   const vm = this;
   if (CurrentUserService.currentUser) {
     vm.user = CurrentUserService.currentUser._id;
@@ -63,6 +63,32 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
   vm.onChange = onChange;
   function onChange(option) {
     console.log('changed', option);
+    switch (option) {
+      case 'cat': vm.widget.url = 'http://thecatapi.com/api/images/get?format=src&type=gif';
+        vm.widget.sizeX = 2; vm.widget.sizeY = 2;
+        break;
+      case 'trumpify': vm.widget.url = 'https://api.whatdoestrumpthink.com/api/v1/quotes';
+        break;
+      case 'chuck': vm.widget.url = 'https://api.chucknorris.io/jokes/random';
+        break;
+      case 'advice': vm.widget.url = 'http://api.adviceslip.com/advice';
+        break;
+      case 'news': vm.widget.sizeX = 4; vm.widget.sizeY = 1;
+        break;
+      case 'giphy': vm.widget.sizeX = 2; vm.widget.sizeY = 2;
+        break;
+      case 'weather': vm.widget.sizeX = 1; vm.widget.sizeY = 1;
+        break;
+      default: break;
+    }
+  }
+  vm.giphySearch = giphySearch;
+  vm.giphySearchTerms = '';
+  function giphySearch() {
+    const search = vm.giphySearchTerms.split(' ').join('+');
+    console.log(search);
+    vm.widget.url = `http://api.giphy.com/v1/gifs/search?q=${search}&api_key=dc6zaTOxFJmzC`;
+    console.log(vm.widget.url);
   }
 }
 

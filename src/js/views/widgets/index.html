@@ -1,16 +1,23 @@
 <div class="ph4 bg-white">
   <h2 class="pv3">Hi, {{main.user.username}}. These are your widgets</h2>
   <div gridster>
-    <div class="overflow-hidden grid-item ba bg-white b--gray cover" gridster-item="item" col="item.col" row="item.row" size-x="item.sizeX" size-y="item.sizeY" ng-repeat="item in widgets.all">
+    <div class="overflow-auto grid-item ba bg-white b--gray cover" gridster-item="item" col="item.col" row="item.row" size-x="item.sizeX" size-y="item.sizeY" ng-repeat="item in widgets.all">
 
       <button class="fr" ng-click="widgets.delete(item)">Delete</button>
-      <button class="fr" ng-click="widgets.refresh(item)">Refresh</button>
 
       <!-- <p>Size: {{item.sizeX}}, {{item.sizeY}} Pos: {{item.col}}, {{item.row}}</p> -->
 
+      <div ng-if="item.type === 'cat'"
+      style="background-image: url({{item.url}})" class="pa2 cover cat h-100">
+      </div>
+
+      <div ng-if="item.type === 'giphy'"
+      style="background-image: url('http://i.giphy.com/{{item.data.data.id}}.gif')" class="pa2 cover cat h-100">
+      </div>
+
       <div ng-if="item.type === 'weather' && item.data.cod === 200" class="pa2">
         <div ng-repeat="icon in widgets.icons">
-          <img  ng-if="type === 'sun'" ng-src="{{icon.url}}">
+          <img ng-if="type === 'sun'" ng-src="{{icon.url}}">
           <img src="/images/weather-icons/sun.png" alt="">
         </div>
         <p><b>{{item.data.name}}:</b>
