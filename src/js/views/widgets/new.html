@@ -1,20 +1,10 @@
 <form ng-submit="widgets.create()">
   <div class="">
     <label for="type">Type: </label>
-      <select ng-model="widgets.widget.type" placeholder="Type">
-        <option value="news">News</option>
-        <option value="weather">Weather</option>
-        <option value="giphy">Random Gif</option>
-        <option value="cat">Cat</option>
-        <option value="events">Events</option>
-        <option value="chuck">Chuck Norris</option>
-        <option value="recipes">Breakfast Recipes</option>
-        <option value="joke">Random Joke</option>
-        <option value="quote">Random Quote</option>
-        <option value="trumpify">Trump</option>
-        <option value="advice">Advice</option>
-        <option value="today">Today in history</option>
+      <select name="type" ng-model="widgets.widget.type" ng-options="option.type as option.name for option in widgets.options" placeholder="Type">
+        <option value="" disabled selected style="display: none;">Please Select</option>
       </select>
+      {{ widgets.widget.type }}
   </div>
   <div class="">
     <label for="url">API url: </label>
@@ -24,7 +14,6 @@
 <h2 ng-if="widgets.widget.type === 'news'">News params</h2>
 <h2 ng-if="widgets.widget.type === 'weather'">weather params</h2>
 <h2 ng-if="widgets.widget.type === 'giphy'">giphy params</h2>
-<h2 ng-if="widgets.widget.type === 'cat'">cat params</h2>
 <h2 ng-if="widgets.widget.type === 'events'">events params</h2>
 <h2 ng-if="widgets.widget.type === 'chuck'">chuck params</h2>
 <h2 ng-if="widgets.widget.type === 'recipes'">recipe params</h2>
@@ -37,14 +26,14 @@
 
 
 
+<div ng-if="widgets.widget.type === 'events'">Events </div>
 
 
+<div ng-if="widgets.widget.type === 'cat'">
+  <h2>Creates a widget with a random cat gif like so:</h2>
+  <img src="http://thecatapi.com/api/images/get?format=src&type=gif" alt="">
 
-
-
-
-
-
+</div>
 
 
 

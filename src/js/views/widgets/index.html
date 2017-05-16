@@ -4,23 +4,58 @@
     <div class="overflow-hidden grid-item ba bg-white b--gray cover" gridster-item="item" col="item.col" row="item.row" size-x="item.sizeX" size-y="item.sizeY" ng-repeat="item in widgets.all">
 
       <button class="fr" ng-click="widgets.delete(item)">Delete</button>
+      <button class="fr" ng-click="widgets.refresh(item)">Refresh</button>
 
       <!-- <p>Size: {{item.sizeX}}, {{item.sizeY}} Pos: {{item.col}}, {{item.row}}</p> -->
 
-      <div ng-if="item.type === 'weather'" class="pa2">
-        <h2>Weather</h2>
-        <p><b>{{item.data.name}}: </b>{{item.data.weather[0].main}}, {{ (item.data.main.temp - 273.15).toFixed(2)}}&deg;C</p>
+      <div ng-if="item.type === 'weather' && item.data.cod === 200" class="pa2">
+        <div ng-repeat="icon in widgets.icons">
+          <img  ng-if="type === 'sun'" ng-src="{{icon.url}}">
+          <img src="/images/weather-icons/sun.png" alt="">
+        </div>
+        <p><b>{{item.data.name}}:</b>
+          <span ng-repeat="weather in item.data.weather">{{ weather.main }}<span ng-if="!$last">, </span>
+          </span>
+          {{ (item.data.main.temp - 273.15).toFixed(2)}}&deg;C
+        </p>
       </div>
 
       <h2 ng-if="item.type === 'news' && item.data.status != 'ok'">Widget failed to load :(</h2>
+      <h2 ng-if="item.type === 'weather' && item.data.cod !== 200">City not found.</h2>
 
       <div ng-if="item.type === 'news' && item.data.status === 'ok'"
         style="background-image: url({{item.data.articles[0].urlToImage}})"
-        class="pa2 h-100 cover">
+        class="grid-news pa2 h-100 cover">
         <h4>{{ item.data.articles[0].author }}</h4>
-        <h3 class="pt2"><a target="_blank" class="red dim" href="{{item.data.articles[0].url}}">{{ item.data.articles[0].title }}</a></h3>
+        <h3 class="pt2"><a target="_blank" class="black dim" href="{{item.data.articles[0].url}}">{{ item.data.articles[0].title }}</a></h3>
         <p>{{ item.data.articles[0].description }}</p>
 
+      </div>
+
+      <div ng-if="item.type === 'breakfast'">
+        <h3>{{ item.data.hits[0].recipe.label }}</h3>
+        <ul>
+          <li ng-repeat="ingredient in item.data.hits[0].recipe.ingredientLines">
+            {{ ingredient }}
+          </li>
+        </ul>
+        <p>{{ item.data.hits[0].recipe.calories | number : 0 }}kcal</p>
+      </div>
+
+      <div ng-if="item.type === 'advice'">
+        <h3>Wise Words of the Day</h3>
+        <h4>{{ item.data.slip.advice }}</h4>
+      </div>
+
+      <div ng-if="item.type === 'numberFact'">
+        <h3>Number Fact of the Day</h3>
+        <h5>Today is the {{ date }} day of the year</h5>
+        <h4>{{ item.data.text }}</h4>
+      </div>
+
+      <div ng-if="item.type === 'thisDay'">
+        <h3>On this day in history...</h3>
+        <h4>{{ item.data.events[0].text }}</h4>
       </div>
 
     </div>
