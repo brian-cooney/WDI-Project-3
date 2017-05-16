@@ -19,6 +19,11 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
   }
   vm.delete = widgetsDelete;
 
+  vm.icons = [{
+    type: 'sun',
+    url: '/images/weather-icons/sun.png'
+  }];
+
   function widgetsDelete(widget) {
     vm.all.splice(vm.all.indexOf(widget), 1);
     Widget.remove({ id: widget._id });
