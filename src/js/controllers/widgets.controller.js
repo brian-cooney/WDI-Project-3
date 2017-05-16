@@ -67,6 +67,69 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
     { type: 'advice', name: 'Advice' },
     { type: 'today', name: 'This Day in History' }
   ];
+
+  // News
+  vm.newsWidget = {};
+  vm.newsOptions = [
+    { source: 'abc-news-au', name: 'ABC' },
+    { source: 'bbc-sport', name: 'BBC Sport' }
+  ];
+  vm.test = test;
+  function test() {
+    vm.newsApi = `https://newsapi.org/v1/articles?source=${vm.newsWidget.source}&apiKey=902a003f156c4002995eb5a6c8267b0a`;
+  }
+
+  // Events
+  vm.eventsWidget = {};
+  vm.eventsLocation = [
+    { city: 'London' },
+    { city: 'Paris' },
+    { city: 'New York' },
+    { city: 'Lisbon' }
+  ];
+  vm.eventsType = [
+    { id: 'music', type: 'Concerts & Tour Dates' },
+    { id: 'conference', type: 'Conferences & Tradeshows' },
+    { id: 'comedy', type: 'Comedy' },
+    { id: 'learning_education', type: 'Education' },
+    { id: 'family_fun_kids', type: 'Kids & Family' },
+    { id: 'festivals_parades', type: 'Festivals' },
+    { id: 'movies_film', type: 'Film' },
+    { id: 'food', type: 'Food & Wine' },
+    { id: 'fundraisers', type: 'Fundraising & Charity' },
+    { id: 'art', type: 'Art Galleries & Exhibits' },
+    { id: 'support', type: 'Health & Wellness' },
+    { id: 'holiday', type: 'Holiday' },
+    { id: 'books', type: 'Literary & Books' },
+    { id: 'attractions', type: 'Museums & Attractions' },
+    { id: 'community', type: 'Neighborhood' },
+    { id: 'singles_social', type: 'Nightlife & Singles' },
+    { id: 'schools_alumni', type: 'University & Alumni' },
+    { id: 'clubs_associations', type: 'Organizations & Meetups' },
+    { id: 'outdoors_recreation', type: 'Outdoors & Recreation' },
+    { id: 'performing_arts', type: 'Performing Arts' },
+    { id: 'animals', type: 'Pets' },
+    { id: 'politics_activism', type: 'Politics & Activism' },
+    { id: 'sales', type: 'Sales & Retail' },
+    { id: 'science', type: 'Science' },
+    { id: 'sports', type: 'Sports' },
+    { id: 'technology', type: 'Technology' },
+    { id: 'other', type: 'Other & Miscellaneous' }
+  ];
+  vm.eventsTime = [
+    { time: ''}
+  ];
+  vm.time = '';
+
+  vm.events = events;
+  function events() {
+    vm.eventOpts.url = `http://api.eventful.com/json/events/search?${vm.eventsType}&location=${vm.eventOpts.location}&app_key=BKn3H5D8pC7vHPP3`;
+
+  }
+
+
+
+
   vm.onChange = onChange;
   function onChange(option) {
     console.log('changed', option);
@@ -97,6 +160,18 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
     vm.widget.url = `http://api.giphy.com/v1/gifs/search?q=${search}&api_key=dc6zaTOxFJmzC`;
     console.log(vm.widget.url);
   }
+
+  vm.newsWidget = {};
+  vm.newsSourceOptions = [
+    { source: 'abc-news-au', name: 'ABC' },
+    { source: 'bild', name: 'Bild' },
+    { source: 'bbc-sport', name: 'BBC Sport' }
+  ];
+  vm.test = test;
+  function test() {
+    vm.widget.url = `https://newsapi.org/v1/articles?source=${vm.newsWidget.source}&apiKey=902a003f156c4002995eb5a6c8267b0a`;
+  }
+
 }
 
 // angular.module('app')

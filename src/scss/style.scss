@@ -20,6 +20,6 @@ ul, li {
   background-blend-mode: screen;
   background-position: center;
 }
-.cat {
-  background-position: center;
+.gridster .gridster-item:hover .handle-se {
+  border-color: transparent transparent white;
 }
