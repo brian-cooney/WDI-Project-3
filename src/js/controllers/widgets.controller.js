@@ -9,7 +9,7 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
   const vm = this;
   if (CurrentUserService.currentUser) {
     vm.user = CurrentUserService.currentUser._id;
-    vm.all = {};
+    vm.all = [];
     Widget
     .query({ 'user': vm.user })
     .$promise
@@ -18,14 +18,12 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
     });
   }
   vm.delete = widgetsDelete;
-
-  vm.giphyIndex = 0;
   vm.nextGiphy = nextGiphy;
-  function nextGiphy(items) {
-    console.log(vm.giphyIndex);
-    if (vm.giphyIndex+1 === items.length) {
-      vm.giphyIndex = 0;
-    } else vm.giphyIndex++;
+  function nextGiphy(item) {
+    console.log(item.giphyIndex);
+    if (item.giphyIndex+1 === item.data.data.length) {
+      item.giphyIndex = 0;
+    } else item.giphyIndex++;
   }
   vm.icons = [{
     type: 'sun',
@@ -44,6 +42,7 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
   vm.create = widgetsCreate;
   vm.widget = {};
   vm.widget.data = {};
+  vm.widget.giphyIndex = 0;
   vm.widget.user = CurrentUserService.currentUser._id;
   function widgetsCreate() {
     Widget

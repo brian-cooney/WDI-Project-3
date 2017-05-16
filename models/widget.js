@@ -11,7 +11,8 @@ const widgetSchema = new mongoose.Schema({
   row: Number,
   col: Number,
   data: { type: Object, default: {} },
-  user: String
+  user: String,
+  giphyIndex: { type: Number, default: 0 }
 });
 
 widgetSchema.post('init', function() {

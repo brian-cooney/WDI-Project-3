@@ -12,8 +12,8 @@
       </div>
 
       <div ng-if="item.type === 'giphy'"
-      style="background-image: url('{{item.data.data[widgets.giphyIndex].images.original.url}}')" class="pa2 cover cat h-100">
-      <button ng-click="widgets.nextGiphy(item.data.data)">Moar!!</button>
+      style="background-image: url('{{item.data.data[item.giphyIndex].images.original.url}}')" class="pa2 cover cat h-100">
+      <button ng-click="widgets.nextGiphy(item)">Moar!!</button>
       </div>
 
       <div ng-if="item.type === 'weather' && item.data.cod === 200" class="pa2">
