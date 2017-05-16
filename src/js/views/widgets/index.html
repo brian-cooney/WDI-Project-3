@@ -9,7 +9,11 @@
 
       <div ng-if="item.type === 'weather'" class="pa2">
         <h2>Weather</h2>
-        <p><b>{{item.data.name}}: </b>{{item.data.weather[0].main}}, {{ (item.data.main.temp - 273.15).toFixed(2)}}&deg;C</p>
+        <p><b>{{item.data.name}}:</b>
+          <span ng-repeat="weather in item.data.weather">{{ weather.main }}<span ng-if="!$last">, </span>
+          </span>
+          {{ (item.data.main.temp - 273.15).toFixed(2)}}&deg;C
+        </p>
       </div>
 
       <h2 ng-if="item.type === 'news' && item.data.status != 'ok'">Widget failed to load :(</h2>
