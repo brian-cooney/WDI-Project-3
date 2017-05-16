@@ -123,10 +123,23 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
 
 
 
+
   vm.onChange = onChange;
   function onChange(option) {
     console.log('changed', option);
   }
+
+  vm.newsWidget = {};
+  vm.newsSourceOptions = [
+    { source: 'abc-news-au', name: 'ABC' },
+    { source: 'bild', name: 'Bild' },
+    { source: 'bbc-sport', name: 'BBC Sport' }
+  ];
+  vm.test = test;
+  function test() {
+    vm.widget.url = `https://newsapi.org/v1/articles?source=${vm.newsWidget.source}&apiKey=902a003f156c4002995eb5a6c8267b0a`;
+  }
+
 }
 
 // angular.module('app')

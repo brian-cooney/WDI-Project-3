@@ -53,9 +53,18 @@
         <h4>{{ item.data.text }}</h4>
       </div>
 
-      <div ng-if="item.type === 'thisDay'">
+      <div ng-if="item.type === 'today'">
         <h3>On this day in history...</h3>
         <h4>{{ item.data.events[0].text }}</h4>
+      </div>
+
+      <div ng-if="item.type === 'chuck'">
+        <h4>{{ item.data.value }}</h4>
+      </div>
+
+      <div ng-if="item.type === 'quote'">
+        <h3>{{ item.data[0].title }}</h3>
+        {{ item.data[0].content }}
       </div>
 
     </div>
