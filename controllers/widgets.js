@@ -39,7 +39,7 @@ function widgetsUpdate(req, res) {
   Widget.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, widget) => {
     if (err) return res.status(500).json({message: 'Something went wrong.'});
     if (!widget) return res.status(404).json({message: 'No widget was found.'});
-    return res.status(200).json({message: 'Widget successfully deleted'});
+    return res.status(200).json({message: 'Widget successfully updated'});
   });
 }
 module.exports = {

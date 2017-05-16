@@ -1,6 +1,7 @@
 <div class="ph4 bg-white">
   <h2 class="pv3">Hi, {{main.user.username}}. These are your widgets</h2>
-  <div gridster>
+  <!-- change how the gridster directive behaves in the vm.gridsterOpts in WidgetsIndexCtrl -->
+  <div gridster="widgets.gridsterOpts">
     <div class="overflow-auto grid-item ba bg-white b--gray cover" gridster-item="item" col="item.col" row="item.row" size-x="item.sizeX" size-y="item.sizeY" ng-repeat="item in widgets.all">
 
       <button class="fr" ng-click="widgets.delete(item)">Delete</button>
@@ -16,28 +17,30 @@
       <button ng-click="widgets.nextItem(item)">Moar!!</button>
       </div>
 
+      <h2 ng-if="item.type === 'weather' && item.data.cod !== 200">City not found.</h2>
       <div ng-if="item.type === 'weather' && item.data.cod === 200" class="pa2">
-        <div ng-repeat="icon in widgets.icons">
-          <img ng-if="type === 'sun'" ng-src="{{icon.url}}">
-          <img src="/images/weather-icons/sun.png" alt="">
-        </div>
-        <p><b>{{item.data.name}}:</b>
-          <span ng-repeat="weather in item.data.weather">{{ weather.main }}<span ng-if="!$last">, </span>
-          </span>
+
+        <img width="40" ng-if="item.data.weather[0].main === 'Clear'" ng-src="{{widgets.icons.sunny.url}}">
+        <img width="40" ng-if="item.data.weather[0].main === 'Rain'" ng-src="{{widgets.icons.rain.url}}">
+        <img width="40" ng-if="item.data.weather[0].main === 'Clouds'" ng-src="{{widgets.icons.cloudy.url}}">
+
+        <dl>
+          <dt class="dib m0 b">{{item.data.name}}, {{item.data.sys.country}}:</dt>
+          <dd class="dib m0" ng-repeat="weather in item.data.weather">{{ weather.main }}<span ng-if="!$last">, </span>
+          </dd>
           {{ (item.data.main.temp - 273.15).toFixed(2)}}&deg;C
-        </p>
+        </dl>
       </div>
 
-      <h2 ng-if="item.type === 'news' && item.data.status != 'ok'">Widget failed to load :(</h2>
-      <h2 ng-if="item.type === 'weather' && item.data.cod !== 200">City not found.</h2>
-
+      <h2 ng-if="item.type === 'news' && item.data.status != 'ok'">News failed to load :(</h2>
       <div ng-if="item.type === 'news' && item.data.status === 'ok'"
         style="background-image: url({{item.data.articles[item.index].urlToImage}})"
         class="grid-news pa2 h-100 cover">
         <button class="fr" ng-click="widgets.nextItem(item)">Next article</button>
-        <h4>{{ item.data.articles[item.index].author }}</h4>
-        <h3 class="pt2"><a target="_blank" class="black dim" href="{{item.data.articles[0].url}}">{{ item.data.articles[item.index].title }}</a></h3>
-        <p>{{ item.data.articles[item.index].description }}</p>
+        <!-- this ng-if stops the author being displayed if it's a link -->
+        <h4 ng-if="item.data.articles[item.index].author.split('http').length === 1">{{ item.data.articles[item.index].author }}</h4>
+        <h3 class="pt2"><a target="_blank" class="black" href="{{item.data.articles[0].url}}">{{ item.data.articles[item.index].title }}</a></h3>
+        <p class="pt1">{{ item.data.articles[item.index].description }}</p>
 
       </div>
 

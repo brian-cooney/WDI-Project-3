@@ -33,15 +33,60 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
     }
   }
 
-  vm.icons = [{
-    type: 'sun',
-    url: '/images/weather-icons/sun.png'
-  }];
+  vm.icons = {
+    sunny: { url: '/images/weather-icons/sunny.png' },
+    cloudy: { url: '/images/weather-icons/cloudy.png' },
+    rain: { url: '/images/weather-icons/rain.png' }
+  };
 
   function widgetsDelete(widget) {
     vm.all.splice(vm.all.indexOf(widget), 1);
     Widget.remove({ id: widget._id });
   }
+
+  vm.update = function widgetsUpdate(widget, index) {
+    console.log('WIDGET: ', widget);
+    console.log('INDEX: ', index);
+    Widget
+      .update({ id: widget._id }, vm[index])
+      .$promise
+      .then(() => {
+      });
+  };
+
+  vm.widgetUpdatePos = function widgetUpdatePos(widget) {
+    const index = vm.all.indexOf(widget);
+    // console.log(vm.all[index]);
+    // ONLY update the position/size 
+    Widget
+      .update({ id: widget._id }, {
+        sizeX: vm.all[index].sizeX,
+        sizeY: vm.all[index].sizeY,
+        row: vm.all[index].row,
+        col: vm.all[index].col
+      });
+  };
+
+  vm.gridsterOpts = {
+    resizable: {
+      enabled: true,
+      handles: ['n', 'e', 's', 'w', 'ne', 'se', 'sw', 'nw'],
+      start: function(event, $element, widget) {}, // optional callback fired when resize is started,
+      resize: function(event, $element, widget) {}, // optional callback fired when item is resized,
+      stop: function(event, $element, widget) {
+        // console.log(widget._id, widget.sizeX, widget.sizeY);
+        vm.widgetUpdatePos(widget);
+      } // optional callback fired when item is finished resizing
+    },
+    draggable: {
+      start: function(event, $element, widget) {}, // optional callback fired when drag is started,
+      drag: function(event, $element, widget) {}, // optional callback fired when item is moved,
+      stop: function(event, $element, widget) {
+        // console.log(widget._id, widget.row, widget.col);
+        vm.widgetUpdatePos(widget);
+      } // optional callback fired when item is finished dragging
+    }
+  };
 }
 
 WidgetsNewCtrl.$inject = ['$state', 'Widget', 'CurrentUserService'];
@@ -135,9 +180,7 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
 
   }
 
-
-
-
+  // sets parameters for the widget when the type dropdown is changed
   vm.onChange = onChange;
   function onChange(option) {
     console.log('changed', option);
@@ -155,19 +198,24 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
         break;
       case 'giphy': vm.widget.sizeX = 2; vm.widget.sizeY = 2;
         break;
-      case 'weather': vm.widget.sizeX = 1; vm.widget.sizeY = 1;
+      case 'weather': vm.widget.sizeX = 2; vm.widget.sizeY = 1;
         break;
       default: break;
     }
   }
-  vm.giphySearch = giphySearch;
   vm.giphySearchTerms = '';
-  function giphySearch() {
+  vm.giphySearch = function giphySearch() {
     const search = vm.giphySearchTerms.split(' ').join('+');
-    console.log(search);
+    // console.log(search);
     vm.widget.url = `http://api.giphy.com/v1/gifs/search?q=${search}&api_key=dc6zaTOxFJmzC`;
-    console.log(vm.widget.url);
-  }
+    // console.log(vm.widget.url);
+  };
+
+  vm.weatherLocation = null;
+  vm.getWeather = function getWeather() {
+    const location = vm.weatherLocation;
+    vm.widget.url = `http://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=d2c4c1492a04ec9081fe74119400cc6e`;
+  };
 
   vm.newsWidget = {};
   vm.newsSourceOptions = [

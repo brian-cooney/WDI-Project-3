@@ -17,30 +17,27 @@ const widgetSchema = new mongoose.Schema({
 
 widgetSchema.pre('save', function(next) {
   const self = this;
-  if (self.type !== 'cat') {
+  if (self.isNew) {
     rp(self.url)
-      .then(response => {
-        const data = JSON.parse(response);
-        self.data = data;
-        // console.log('WIDGET: ', self);
-      })
-      .then(() => next());
+    .then(response => {
+      const data = JSON.parse(response);
+      self.data = data;
+      // console.log('WIDGET: ', self);
+    })
+    .then(() => next());
   }
 
 });
 
 widgetSchema.post('init', function() {
   const self = this;
-  if (self.type !== 'cat') {
-    rp(self.url)
-      .then(response => {
-        const data = JSON.parse(response);
-        self.data = data;
-        // console.log('WIDGET: ', self);
-      })
-      .then(() => self.save());
-  }
-
+  rp(self.url)
+  .then(response => {
+    const data = JSON.parse(response);
+    self.data = data;
+    // console.log('WIDGET: ', self);
+  })
+  .then(() => self.save());
 });
 
 
