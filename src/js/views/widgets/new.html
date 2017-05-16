@@ -1,12 +1,82 @@
 <form ng-submit="widgets.create()">
   <div class="">
     <label for="type">Type: </label>
-    <input type="text" name="type" ng-model="widgets.widget.type" placeholder="type">
+      <select ng-model="widgets.widget.type" placeholder="Type">
+        <option value="news">News</option>
+        <option value="weather">Weather</option>
+        <option value="giphy">Random Gif</option>
+        <option value="cat">Cat</option>
+        <option value="events">Events</option>
+        <option value="chuck">Chuck Norris</option>
+        <option value="recipes">Breakfast Recipes</option>
+        <option value="joke">Random Joke</option>
+        <option value="quote">Random Quote</option>
+        <option value="trumpify">Trump</option>
+        <option value="advice">Advice</option>
+        <option value="today">Today in history</option>
+      </select>
   </div>
   <div class="">
     <label for="url">API url: </label>
     <input type="text" name="url" ng-model="widgets.widget.url" placeholder="url">
   </div>
+
+<h2 ng-if="widgets.widget.type === 'news'">News params</h2>
+<h2 ng-if="widgets.widget.type === 'weather'">weather params</h2>
+<h2 ng-if="widgets.widget.type === 'giphy'">giphy params</h2>
+<h2 ng-if="widgets.widget.type === 'cat'">cat params</h2>
+<h2 ng-if="widgets.widget.type === 'events'">events params</h2>
+<h2 ng-if="widgets.widget.type === 'chuck'">chuck params</h2>
+<h2 ng-if="widgets.widget.type === 'recipes'">recipe params</h2>
+<h2 ng-if="widgets.widget.type === 'joke'">joke params</h2>
+<h2 ng-if="widgets.widget.type === 'quote'">quote params</h2>
+<h2 ng-if="widgets.widget.type === 'trumpify'">trump params</h2>
+<h2 ng-if="widgets.widget.type === 'advice'">advice params</h2>
+<h2 ng-if="widgets.widget.type === 'today'">today params</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+_____________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+_____________________________________________________________________________________
   <p>User: {{widgets.widget.user}}</p>
   <input type="submit" name="" value="Add">
 </form>
