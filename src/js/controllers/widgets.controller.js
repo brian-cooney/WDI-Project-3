@@ -60,16 +60,23 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
     { type: 'advice', name: 'Advice' },
     { type: 'today', name: 'This Day in History' }
   ];
+
   vm.onChange = onChange;
   function onChange(option) {
     console.log('changed', option);
   }
 
-
-
-
   vm.newsWidget = {};
+  vm.newsOptions = [
+    { source: 'abc-news-au', name: 'ABC' },
+    { source: 'bbc-sport', name: 'BBC Sport' }
+  ];
+  vm.test = test;
+  function test() {
+    vm.newsApi = `https://newsapi.org/v1/articles?source=${vm.newsWidget.source}&sortBy=___SORT___&apiKey=___KEY___`;
 
+    console.log(vm.newsApi);
+  }
 
 }
 
