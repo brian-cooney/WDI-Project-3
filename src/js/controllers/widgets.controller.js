@@ -67,15 +67,14 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
   }
 
   vm.newsWidget = {};
-  vm.newsOptions = [
+  vm.newsSourceOptions = [
     { source: 'abc-news-au', name: 'ABC' },
+    { source: 'bild', name: 'Bild' },
     { source: 'bbc-sport', name: 'BBC Sport' }
   ];
   vm.test = test;
   function test() {
-    vm.newsApi = `https://newsapi.org/v1/articles?source=${vm.newsWidget.source}&sortBy=___SORT___&apiKey=___KEY___`;
-
-    console.log(vm.newsApi);
+    vm.widget.url = `https://newsapi.org/v1/articles?source=${vm.newsWidget.source}&apiKey=902a003f156c4002995eb5a6c8267b0a`;
   }
 
 }

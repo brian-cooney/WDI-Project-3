@@ -47,14 +47,9 @@
 
 
   <div ng-if="widgets.widget.type === 'news'">
-
-    <select name="source" ng-model="widgets.newsWidget.source" ng-options="newsOption.source as newsOption.name for newsOption in widgets.newsOptions" placeholder="Source" ng-change="widgets.test()">
+    <select name="source" ng-model="widgets.newsWidget.source" ng-options="newsSourceOption.source as newsSourceOption.name for newsSourceOption in widgets.newsSourceOptions" placeholder="Source" ng-change="widgets.test()">
       <option value="" disabled selected style="display: none;">Please Select</option>
     </select>
-      <br>
-      {{widgets.newsWidget.source}}
-      <br>
-      {{widgets.newsApi}}
   </div>
 
 
