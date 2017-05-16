@@ -41,6 +41,13 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
         $state.go('widgetsIndex');
       });
   }
+
+
+
+
+  vm.newsWidget = {};
+
+
 }
 
 
