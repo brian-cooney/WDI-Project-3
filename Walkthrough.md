@@ -189,7 +189,14 @@ function widgetsIndex(req, res) {
 ```
 
 ##Authentication
-Adding anuglar authentication proved troublesome as the lesson notes were incomplete, so we had a lot of trial and error
+Adding anuglar authentication proved troublesome as the lesson notes were incomplete, so we had a lot of trial and error. The first step was to set up what folders we'll need, so we created Config, Constants, Controllers, Factories, Services and Views (all within our ```src/js``` folder.
+
+
+
+
+
+
+
 
 ##Gridster Implementation
 So for our app we want users to be able to and drag their widgets across the screen to their liking, and Gridster was recommended to us.
@@ -199,7 +206,31 @@ Gridster is basically a jQuery library specifically designed for the task, and w
 The first step is to download and install ```angular-gridster``` through Bower in the terminal, then load it in the angular module in the app.js (by writing 'angular-gridster' into the array. 
 
 
+```
+<div gridster>
+      <div class="grid-item ba pa3 bg-white b--gray" gridster-item="item" ng-repeat="item in widgets.all">
+        <!-- <p>{{item}}</p> -->
+        <p>Size: {{item.sizeX}}, {{item.sizeY}}</p>
+        <p>Pos: {{item.col}}, {{item.row}}</p>
 
+        <div ng-if="item.type === 'weather'">
+          <h2>Weather</h2>
+          <p><b>{{item.data.name}}: </b>{{item.data.weather[0].main}}, {{ (item.data.main.temp - 273.15).toFixed(2)}}&deg;C</p>
+        </div>
+
+        <h2 ng-if="item.type === 'news' && item.data.status != 'ok'">Widget failed to load :(</h2>
+
+        <div ng-if="item.type === 'news' && item.data.status === 'ok'">
+          <img style="max-width: 100%; max-height: 50%" ng-if="item.sizeY > 1 && item.sizeX > 1" ng-src="{{ item.data.articles[0].urlToImage }}" alt="">
+          <h4>{{ item.data.articles[0].author }}</h4>
+          <h3><a target="_blank" class="gray dim" href="{{item.data.articles[0].url}}">{{ item.data.articles[0].title }}</a></h3>
+          <p>{{ item.data.articles[0].description }}</p>
+
+        </div>
+        <!-- <p>{{ item.data }}</p> -->
+      </div>
+    </div>
+```
 
 
 
