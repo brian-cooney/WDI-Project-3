@@ -36,18 +36,26 @@
       </option>
     </select>
 
-    <select name="location" ng-model="widgets.eventsWidget.type" ng-options="eventsType.id as eventsType.type for eventsType in widgets.eventsType" placeholder="Type"  ng-change="widgets.events()">
+    <select name="type" ng-model="widgets.eventsWidget.type" ng-options="eventsType.id as eventsType.type for eventsType in widgets.eventsType" placeholder="Type"  ng-change="widgets.events()">
       <option value="">
-        <!-- Dynamic cities -->
+        <!-- Dynamic types -->
         Please Select
       </option>
-
-
     </select>
 
+    <input type="radio" name="time" value="rel" ng-model="widgets.time">
+    <input type="radio" name="time" value="exa" ng-model="widgets.time">
+    <select name="time" ng-if="widgets.time === 'rel'" ng-model="widgets.eventsWidget.date" ng-options="eventsDate.date for eventsDate in widgets.eventsDate" placeholder="Time"  ng-change="widgets.events()">
+      <option value="">
+        <!-- Dynamic times -->
+        Please Select
+      </option>
+      <input type="date" ng-if="widgets.time === 'exa'" >
+    </select>
 
     {{ widgets.eventsWidget.location.city}}
     {{ widgets.eventsWidget.type}}
+    {{ widgets.time }}
   </div>
 
   <!-- News -->

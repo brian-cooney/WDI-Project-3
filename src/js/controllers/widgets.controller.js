@@ -110,6 +110,10 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
     { id: 'technology', type: 'Technology' },
     { id: 'other', type: 'Other & Miscellaneous' }
   ];
+  vm.eventsTime = [
+    { time: ''}
+  ];
+  vm.time = '';
 
   vm.events = events;
   function events() {
