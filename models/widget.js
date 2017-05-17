@@ -8,15 +8,19 @@ const widgetSchema = new mongoose.Schema({
   url: { type: String, required: true },
   sizeY: Number,
   sizeX: Number,
+  minSizeY: Number,
+  minSizeX: Number,
   row: Number,
   col: Number,
   description: String,
   data: { type: Object, default: {} },
-  user: String
+  user: String,
+  index: { type: Number, default: 0 }
 });
 
-widgetSchema.post('init', function() {
+widgetSchema.pre('save', function(next) {
   const self = this;
+<<<<<<< HEAD
   rp(self.url)
   .then(response => {
     const data = JSON.parse(response);
@@ -32,6 +36,30 @@ widgetSchema.post('init', function() {
     // console.log('WIDGET: ', self);
   })
   .then(() => self.save());
+=======
+  if (self.isNew) {
+    rp(self.url)
+    .then(response => {
+      const data = JSON.parse(response);
+      self.data = data;
+      // console.log('WIDGET: ', self);
+    })
+    .then(() => next());
+  }
+
+>>>>>>> development
 });
+
+widgetSchema.post('init', function() {
+  const self = this;
+  rp(self.url)
+  .then(response => {
+    const data = JSON.parse(response);
+    self.data = data;
+    // console.log('WIDGET: ', self);
+  })
+  .then(() => self.save());
+});
+
 
 module.exports = mongoose.model('Widget', widgetSchema);

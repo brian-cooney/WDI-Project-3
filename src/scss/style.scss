@@ -3,19 +3,69 @@
 a {
   text-decoration: none;
 }
-body, html, ul, li, h1, h2, h3, h4, h5, h6, p {
+body, html, ul, li, h1, h2, h3, h4, h5, h6, p, dd, dt, dl {
   margin: 0;
   padding: 0;
-}
-.grid-item {
-  -webkit-box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.31);
-  -moz-box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.31);
-  box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.31);
 }
 ul, li {
   list-style: none
 }
-.grid-news {
-  background-color: #ccc;
-  background-blend-mode: screen;
+
+.gridster .gridster-item:hover .handle-se {
+  border-color: transparent transparent white;
+}
+header {
+  height: 125px;
+  margin-top: -125px;
+  line-height: 125px;
+}
+main {
+  margin-top: 125px;
+}
+// make sure gifs don't get squished in mobile layout
+.gridster-mobile .gridster-item .giphy {
+  height: 500px !important;
+}
+.new-box {
+  height: 200px;
+}
+.ng-hide {
+  animation: 0.2s expandOut linear;
+}
+.ng-hide-remove {
+  animation: 0.2s expandIn linear;
+  opacity: 1;
+  height: 200px;
+}
+@keyframes expandOut {
+  0% {
+    height: 200px;
+    opacity: 1;
+  }
+  100% {
+    height: 0;
+    opacity: 0;
+  }
+}
+@keyframes expandIn {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    height: 200px;
+    opacity: 1;
+  }
+}
+.new-button {
+  transition: all .2s ease;
+}
+.cancel {
+  transform: rotate(135deg);
+  transition: all .2s ease;
+}
+.oops {
+  margin: 0 auto;
+  width: 955px;
+  height: 505
 }
