@@ -15,12 +15,12 @@ ul, li {
   border-color: transparent transparent white;
 }
 header {
-  height: 125px;
-  margin-top: -125px;
-  line-height: 125px;
+  height: 100px;
+  margin-top: -100px;
+  line-height: 100px;
 }
 main {
-  margin-top: 125px;
+  margin-top: 100px;
 }
 // make sure gifs don't get squished in mobile layout
 .gridster-mobile .gridster-item .giphy {
@@ -29,10 +29,10 @@ main {
 .new-box {
   height: 200px;
 }
-.ng-hide {
+.new-box.ng-hide {
   animation: 0.2s expandOut linear;
 }
-.ng-hide-remove {
+.new-box.ng-hide-remove {
   animation: 0.2s expandIn linear;
   opacity: 1;
   height: 200px;
@@ -68,4 +68,10 @@ main {
   margin: 0 auto;
   width: 955px;
   height: 505
+}
+.icon {
+  -webkit-filter: drop-shadow(0 0 1px rgba(0,0,0,0.6))
+  drop-shadow(0 0 1px rgba(0,0,0,0.6));
+  filter: drop-shadow(0 0 1px rgba(0,0,0,0.6))
+  drop-shadow(0 0 1px rgba(0,0,0,0.6));
 }
