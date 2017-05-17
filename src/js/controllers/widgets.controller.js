@@ -127,7 +127,7 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
     .$promise
     .then(() => {
       console.log(vm.widget);
-      $state.go('widgetsIndex');
+      $state.reload();
     });
   }
   vm.options = [
