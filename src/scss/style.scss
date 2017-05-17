@@ -15,11 +15,26 @@ body, html, ul, li, h1, h2, h3, h4, h5, h6, p, dd, dt, dl {
 ul, li {
   list-style: none
 }
-.grid-news {
-  background-color: #ccc;
-  background-blend-mode: screen;
-  background-position: center;
-}
+// .grid-news {
+//   background-color: #ccc;
+//   background-blend-mode: screen;
+//   background-position: center;
+// }
 .gridster .gridster-item:hover .handle-se {
   border-color: transparent transparent white;
+}
+header {
+  height: 125px;
+  margin-top: -125px;
+  line-height: 125px;
+}
+main {
+  margin-top: 125px;
+}
+.add-button {
+  font-size: 10rem;
+}
+// make sure gifs don't get squished in mobile layout
+.gridster-mobile .gridster-item .giphy {
+  height: 500px !important;
 }

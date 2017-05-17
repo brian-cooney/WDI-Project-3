@@ -19,6 +19,12 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
   }
   vm.delete = widgetsDelete;
   vm.nextItem = nextItem;
+  vm.newButton = {
+    sizeY: 1, sizeX: 1, maxSizeY: 1, maxSizeX: 1
+  };
+  vm.newButtonOpts = {
+    resizable: { enabled: false }
+  };
 
   function nextItem(item) {
     console.log(item.index);
@@ -57,17 +63,19 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
   vm.widgetUpdatePos = function widgetUpdatePos(widget) {
     const index = vm.all.indexOf(widget);
     // console.log(vm.all[index]);
-    // ONLY update the position/size 
+    // ONLY update the position/size
     Widget
-      .update({ id: widget._id }, {
-        sizeX: vm.all[index].sizeX,
-        sizeY: vm.all[index].sizeY,
-        row: vm.all[index].row,
-        col: vm.all[index].col
-      });
+    .update({ id: widget._id }, {
+      sizeX: vm.all[index].sizeX,
+      sizeY: vm.all[index].sizeY,
+      row: vm.all[index].row,
+      col: vm.all[index].col
+    });
+
   };
 
   vm.gridsterOpts = {
+    mobileBreakPoint: 400,
     resizable: {
       enabled: true,
       handles: ['n', 'e', 's', 'w', 'ne', 'se', 'sw', 'nw'],
@@ -177,7 +185,6 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
   vm.events = events;
   function events() {
     vm.eventOpts.url = `http://api.eventful.com/json/events/search?${vm.eventsType}&location=${vm.eventOpts.location}&app_key=BKn3H5D8pC7vHPP3`;
-
   }
 
   // sets parameters for the widget when the type dropdown is changed
@@ -194,7 +201,7 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
         break;
       case 'advice': vm.widget.url = 'http://api.adviceslip.com/advice';
         break;
-      case 'news': vm.widget.sizeX = 4; vm.widget.sizeY = 1;
+      case 'news': vm.widget.minSizeX = 2; vm.widget.minSizeY = 2; vm.widget.sizeX = 2; vm.widget.sizeY = 2;
         break;
       case 'giphy': vm.widget.sizeX = 2; vm.widget.sizeY = 2;
         break;

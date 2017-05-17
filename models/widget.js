@@ -8,6 +8,8 @@ const widgetSchema = new mongoose.Schema({
   url: { type: String, required: true },
   sizeY: Number,
   sizeX: Number,
+  minSizeY: Number,
+  minSizeX: Number,
   row: Number,
   col: Number,
   data: { type: Object, default: {} },

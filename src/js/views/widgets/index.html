@@ -1,10 +1,12 @@
-<div class="ph4 bg-white">
   <h2 class="pv3">Hi, {{main.user.username}}. These are your widgets</h2>
   <!-- change how the gridster directive behaves in the vm.gridsterOpts in WidgetsIndexCtrl -->
   <div gridster="widgets.gridsterOpts">
+    <div class="add-button overflow-auto grid-item ba bg-white b--gray cover" gridster-item="widgets.newButton">
+      +
+    </div>
     <div class="overflow-auto grid-item ba bg-white b--gray cover" gridster-item="item" col="item.col" row="item.row" size-x="item.sizeX" size-y="item.sizeY" ng-repeat="item in widgets.all">
 
-      <button class="fr mt2 mr2" ng-click="widgets.delete(item)">Delete</button>
+      <button class="absolute top-0 right-0 z-3 mt2 mr2" ng-click="widgets.delete(item)">Delete</button>
 
       <!-- <p>Size: {{item.sizeX}}, {{item.sizeY}} Pos: {{item.col}}, {{item.row}}</p> -->
 
@@ -14,7 +16,7 @@
 
       <div ng-if="item.type === 'giphy'"
       style="background-image: url('{{item.data.data[item.index].images.original.url}}')"
-      class="pa2 cover bg-center h5 h-100-ns">
+      class="giphy pa2 cover bg-center h5 h-100">
       <button ng-click="widgets.nextItem(item)">Moar!!</button>
       </div>
 
@@ -35,8 +37,11 @@
 
       <h2 ng-if="item.type === 'news' && item.data.status != 'ok'">News failed to load :(</h2>
       <div ng-if="item.type === 'news' && item.data.status === 'ok'"
-        style="background-image: url({{item.data.articles[item.index].urlToImage}})"
-        class="grid-news pa2 h-100 cover">
+        class="overflow-hidden grid-news pa2 h-100 cover">
+        <div class="aspect-ratio aspect-ratio--16x9">
+          <div class="aspect-ratio--object cover"
+          style="background-image: url({{item.data.articles[item.index].urlToImage}})"></div>
+        </div>
         <button class="fr" ng-click="widgets.nextItem(item)">Next article</button>
         <!-- this ng-if stops the author being displayed if it's a link -->
         <h4 class="" ng-if="item.data.articles[item.index].author.split('http').length === 1">{{ item.data.articles[item.index].author }}</h4>
@@ -82,5 +87,3 @@
 
     </div>
   </div>
-
-</div>
