@@ -11,8 +11,12 @@
 
   <!-- change how the gridster directive behaves in the vm.gridsterOpts in WidgetsIndexCtrl -->
   <div gridster="widgets.gridsterOpts">
-    <div ng-click="widgets.newWidget()" ng-class="{ cancel: widgets.newCancel }" class="add-button overflow-hidden grid-item bg-moon-gray cover pa2" gridster-item="widgets.newButton">
-      <img class="h-100 w-100 v-top pointer" src="/images/plus.png" alt="">
+
+<!-- Add Widget Button -->
+
+    <div ng-click="widgets.newWidget()" ng-class="{ cancel: widgets.newCancel }"
+    class="add-button overflow-hidden grid-item bg-moon-gray cover pa2" gridster-item="widgets.newButton">
+      <img class="grow h-100 w-100 v-top pointer" src="/images/plus.png" alt="">
     </div>
 
     <div class="overflow-hidden border-box grid-item bg-white cover" gridster-item="item" col="item.col" row="item.row" size-x="item.sizeX" size-y="item.sizeY" ng-repeat="item in widgets.all">

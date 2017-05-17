@@ -65,17 +65,17 @@
   <!-- News -->
 
   <div class="fr w-two-thirds pa3" ng-if="widgets.widget.type === 'news'">
-    <h2 ng-if="widgets.widget.type === 'news'">Choose news source: </h2>
+    <h2 class="pb2" ng-if="widgets.widget.type === 'news'">Choose news source: </h2>
     <select class="h2 w5" name="source" ng-model="widgets.newsWidget.source" ng-options="newsSourceOption.source as newsSourceOption.name for newsSourceOption in widgets.newsSourceOptions" placeholder="Source" ng-change="widgets.test()">
       <option value="" disabled selected style="display: none;">Please Select</option>
     </select>
   </div>
 
 <!-- Submit -->
-<div class="w-two-thirds fr pa3">
 
+<div class="w-two-thirds fr pa3">
   <p>Widget: {{widgets.widget}}</p>
-  <input class="br-pill bg-white w4 bw0 pa2 f3" type="submit" name="" value="Add">
+  <input class="pointer grow br-pill bg-white w4 bw0 pa2 f3" type="submit" name="" value="Add">
 </div>
 
 </form>
