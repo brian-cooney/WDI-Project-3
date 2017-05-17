@@ -1,7 +1,7 @@
   <h2 class="pv3">Hi, {{main.user.username}}. These are your widgets</h2>
   <!-- change how the gridster directive behaves in the vm.gridsterOpts in WidgetsIndexCtrl -->
   <div class="white grid-item new-box bg-mid-gray" ng-hide="widgets.newIsHidden" ng-controller="WidgetsNewCtrl as widget">
-    New widget {{ widget.widget }}
+    <new-widgets ng-controller="WidgetsNewCtrl as widgets"></new-widgets>
   </div>
   <div gridster="widgets.gridsterOpts">
     <div class="add-button overflow-hidden grid-item bg-mid-gray cover pa2" gridster-item="widgets.newButton">
