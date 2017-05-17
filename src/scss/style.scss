@@ -78,3 +78,88 @@ main {
   filter: drop-shadow(0 0 1px rgba(0,0,0,0.6))
   drop-shadow(0 0 1px rgba(0,0,0,0.6));
 }
+.login, .register {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 35px;
+}
+.inputText {
+  margin-top: 30px;
+  width: 400px;
+  height: 30px;
+  font-size: 17px;
+  font-weight: 500;
+  border: none;
+  border-bottom: 1px solid #000;
+}
+.submitButton {
+  margin-top: 30px;
+  width: 400px;
+  height: 40px;
+  font-size: 13px;
+  border: none;
+  background-color: #e5e6e8;
+  font-weight: 800;
+}
+.inputText:focus {
+  outline-width: 0;
+}
+.submitButton:hover {
+  animation: colorchange 5s infinite;
+  -webkit-animation: colorchange 5s infinite;
+}
+.submitButton:focus {
+  background-color: rgba(0, 255, 0, .7);
+  outline-width: thick;
+  outline-color: green;
+}
+.first {
+  border-bottom: 2px solid #f26c4f;
+}
+.second {
+  border-bottom: 2px solid #fff568;
+}
+.third {
+  border-bottom: 2px solid #7cc576;
+}
+.fourth {
+  border-bottom: 2px solid #8560a8;
+}
+.fith {
+  border-bottom: 2px solid #f06eaa;
+}
+.first:focus {
+  border-bottom: 4px solid #f26c4f;
+}
+.second:focus {
+  border-bottom: 4px solid #fff568;
+}
+.third:focus {
+  border-bottom: 4px solid #7cc576;
+}
+.fourth:focus {
+  border-bottom: 4px solid #8560a8;
+}
+.fith:focus {
+  border-bottom: 4px solid #f06eaa;
+}
+
+
+@keyframes colorchange
+{
+  0%   {background: #f26c4f;}
+  20%  {background: #fff568;}
+  40%  {background: #7cc576;}
+  60%  {background: #8560a8;}
+  80%  {background: #f06eaa;}
+  100% {background: #f26c4f;}
+}
+@-webkit-keyframes colorchange
+{
+  0%   {background: #f26c4f;}
+  20%  {background: #fff568;}
+  40%  {background: #7cc576;}
+  60%  {background: #8560a8;}
+  80%  {background: #f06eaa;}
+  100% {background: #f26c4f;}
+}

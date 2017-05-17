@@ -10,7 +10,7 @@
 
     <div class="overflow-auto grid-item bg-white ba b--moon-gray cover" gridster-item="item" col="item.col" row="item.row" size-x="item.sizeX" size-y="item.sizeY" ng-repeat="item in widgets.all">
 
-      <img height="20" src="/images/delete.png" class="pointer icon fl z-5 mt2 ml2" ng-click="widgets.delete(item)">
+      <img height="20" src="/images/delete.png" class="pointer icon fl z-5 mt2 ml2 absolute" ng-click="widgets.delete(item)">
 
       <!-- <p>Size: {{item.sizeX}}, {{item.sizeY}} Pos: {{item.col}}, {{item.row}}</p> -->
 
@@ -105,9 +105,9 @@
         <a target="_blank" href="{{ item.data.events.event[0].url }}">See more...</a>
       </div>
 
-      <div ng-if="item.type === 'ron'">
-        <h3>{{ item.data[0]}}</h3>
-        <p>-Ron Swanson</p>
+      <div ng-if="item.type === 'ron'" class="dt h-100 tc">
+        <h3 class="dtc v-mid"><span class="f3">"</span>{{ item.data[0]}}<span class="f3">"</span></h3>
+        <p class="dtc v-btm i">-Ron Swanson</p>
       </div>
 
 
