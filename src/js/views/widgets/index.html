@@ -10,7 +10,7 @@
 
     <div class="overflow-auto grid-item bg-white ba b--moon-gray cover" gridster-item="item" col="item.col" row="item.row" size-x="item.sizeX" size-y="item.sizeY" ng-repeat="item in widgets.all">
 
-      <img height="20" src="/images/delete.png" class="pointer icon fl z-4 mt2 ml2" ng-click="widgets.delete(item)">
+      <img height="20" src="/images/delete.png" class="pointer icon fl z-5 mt2 ml2" ng-click="widgets.delete(item)">
 
       <!-- <p>Size: {{item.sizeX}}, {{item.sizeY}} Pos: {{item.col}}, {{item.row}}</p> -->
 
@@ -26,7 +26,11 @@
 
       <h2 ng-if="item.type === 'weather' && item.data.cod !== 200">City not found.</h2>
       <div ng-if="item.type === 'weather' && item.data.cod === 200"
-      ng-class="item.data.weather[0].main === 'Rain' ? 'bg-light-blue' : ''" class="pa2 h-100">
+      ng-class="{
+        'bg-light-blue': item.data.weather[0].main === 'Rain',
+        'bg-light-yellow': item.data.weather[0].main === 'Clear',
+        'bg-light-gray': item.data.weather[0].main === 'Clouds',
+      }" class="pa2 h-100">
 
         <img class="db-ns dib v-mid h-50" ng-if="item.data.weather[0].main === 'Clear'" ng-src="{{widgets.icons.clear.url}}">
         <img class="db-ns dib v-mid h-50" ng-if="item.data.weather[0].main === 'Rain'" ng-src="{{widgets.icons.rain.url}}">
@@ -44,7 +48,7 @@
 
       <h2 ng-if="item.type === 'news' && item.data.status != 'ok'">News failed to load :(</h2>
       <div ng-if="item.type === 'news' && item.data.status === 'ok'"
-        class="overflow-hidden grid-news pa2 h-100 cover">
+        class="absolute overflow-hidden grid-news pa2 h-100 cover">
         <div class="aspect-ratio aspect-ratio--16x9">
           <div class="aspect-ratio--object cover"
           style="background-image: url({{item.data.articles[item.index].urlToImage}})"></div>

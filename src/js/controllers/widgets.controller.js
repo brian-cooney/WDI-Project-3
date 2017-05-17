@@ -64,16 +64,6 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
     console.log(vm.newIsHidden);
   };
 
-  vm.update = function widgetsUpdate(widget, index) {
-    console.log('WIDGET: ', widget);
-    console.log('INDEX: ', index);
-    Widget
-      .update({ id: widget._id }, vm[index])
-      .$promise
-      .then(() => {
-      });
-  };
-
   vm.widgetUpdatePos = function widgetUpdatePos(widget) {
     const index = vm.all.indexOf(widget);
     // console.log(vm.all[index]);
@@ -136,6 +126,7 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
   vm.widget.index = 0;
   vm.widget.user = CurrentUserService.currentUser._id;
   function widgetsCreate() {
+    console.log(vm.widget);
     Widget
     .save(vm.widget)
     .$promise

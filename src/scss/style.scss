@@ -22,6 +22,9 @@ header {
 main {
   margin-top: 100px;
 }
+.grid-news {
+  z-index: -1;
+}
 // make sure gifs don't get squished in mobile layout
 .gridster-mobile .gridster-item .giphy {
   height: 500px !important;
