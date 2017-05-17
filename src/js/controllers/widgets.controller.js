@@ -210,7 +210,7 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
 
   }
 
-  vm.eventOpts.url = `http://api.eventful.com/json/events/search?${vm.eventsType}&location=${vm.eventOpts.location}&app_key=BKn3H5D8pC7vHPP3`;
+  // vm.eventOpts.url = `http://api.eventful.com/json/events/search?${vm.eventsType}&location=${vm.eventOpts.location}&app_key=BKn3H5D8pC7vHPP3`;
 
   // sets parameters for the widget when the type dropdown is changed
   vm.onChange = onChange;
