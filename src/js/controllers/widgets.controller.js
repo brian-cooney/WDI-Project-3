@@ -150,13 +150,37 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
 
   // News
   vm.newsWidget = {};
-  vm.newsOptions = [
+  vm.newsSourceOptions = [
     { source: 'abc-news-au', name: 'ABC' },
-    { source: 'bbc-sport', name: 'BBC Sport' }
+    { source: 'bild', name: 'Bild' },
+    { source: 'bbc-sport', name: 'BBC Sport' },
+    { source: 'bbc-news', name: 'BBC News' },
+    { source: 'al-jazeera-english', name: 'Al Jazeera English' },
+    { source: 'bloomberg', name: 'Bloomberg' },
+    { source: 'cnn', name: 'CNN' },
+    { source: 'business-insider-uk', name: 'Business Insider (UK)' },
+    { source: 'cnbc', name: 'CNBC' },
+    { source: 'time', name: 'Time' },
+    { source: 'hacker-news', name: 'Hacker News' },
+    { source: 'the-washington-post', name: 'The Washington Post' },
+    { source: 'the-new-york-times', name: 'The New York Times' },
+    { source: 'the-lad-bible', name: 'The Lad Bible' },
+    { source: 'espn', name: 'ESPN' },
+    { source: 'usa-today', name: 'USA Today' },
+    { source: 'the-huffington-post', name: 'The Huffington Post' },
+    { source: 'techcrunch', name: 'TechCrunch' },
+    { source: 'the-economist', name: 'The Economist' },
+    { source: 'the-guardian-au', name: 'The Guardian (AU)' },
+    { source: 'reddit-r-all', name: 'Reddit' },
+    { source: 'polygon', name: 'Polygon' },
+    { source: 'mtv-news', name: 'MTV News' },
+    { source: 'financial-times', name: 'Financial Times' },
+    { source: 'daily-mail', name: 'Daily Mail' }
   ];
   vm.test = test;
   function test() {
-    vm.newsApi = `https://newsapi.org/v1/articles?source=${vm.newsWidget.source}&apiKey=902a003f156c4002995eb5a6c8267b0a`;
+    const source = vm.newsWidget.source;
+    vm.widget.url = `https://newsapi.org/v1/articles?source=${source}&apiKey=902a003f156c4002995eb5a6c8267b0a`;
   }
 
   // Events
@@ -260,35 +284,7 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
     vm.widget.url = `http://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=baecb13f15a7cb38326ec2b57025083e`;
   };
 
-  vm.newsWidget = {};
-  vm.newsSourceOptions = [
-    { source: 'abc-news-au', name: 'ABC' },
-    { source: 'bild', name: 'Bild' },
-    { source: 'bbc-sport', name: 'BBC Sport' },
-    { source: 'bbc-news', name: 'BBC News' },
-    { source: 'al-jazeera-english', name: 'Al Jazeera English' },
-    { source: 'bloomberg', name: 'Bloomberg' },
-    { source: 'cnn', name: 'CNN' },
-    { source: 'business-insider-uk', name: 'Business Insider (UK)' },
-    { source: 'cnbc', name: 'CNBC' },
-    { source: 'time', name: 'Time' },
-    { source: 'hacker-news', name: 'Hacker News' },
-    { source: 'the-washington-post', name: 'The Washington Post' },
-    { source: 'the-new-york-times', name: 'The New York Times' },
-    { source: 'the-lad-bible', name: 'The Lad Bible' },
-    { source: 'espn', name: 'ESPN' },
-    { source: 'usa-today', name: 'USA Today' },
-    { source: 'the-huffington-post', name: 'The Huffington Post' },
-    { source: 'techcrunch', name: 'TechCrunch' },
-    { source: 'the-economist', name: 'The Economist' },
-    { source: 'the-guardian-au', name: 'The Guardian (AU)' },
-    { source: 'reddit-r-all', name: 'Reddit' },
-    { source: 'polygon', name: 'Polygon' },
-    { source: 'mtv-news', name: 'MTV News' },
-    { source: 'financial-times', name: 'Financial Times' },
-    { source: 'daily-mail', name: 'Daily Mail' }
 
-  ];
 
 }
 
