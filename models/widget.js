@@ -26,6 +26,7 @@ widgetSchema.pre('save', function(next) {
     self.data = data;
   })
   .then(() => self.save());
+  console.log('saved', this.type);
   if (self.isNew) {
     rp(self.url)
     .then(response => {
@@ -35,11 +36,11 @@ widgetSchema.pre('save', function(next) {
     })
     .then(() => next());
   }
-
 });
 
 widgetSchema.post('init', function() {
   const self = this;
+  console.log('ACCESSED', this.type);
   rp(self.url)
   .then(response => {
     const data = JSON.parse(response);

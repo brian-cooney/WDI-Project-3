@@ -34,7 +34,7 @@ function Router($stateProvider, $locationProvider, $urlRouterProvider){
     controllerAs: 'users'
   })
   .state('widgetsIndex', {
-    url: '/widgets',
+    url: '/dashboard',
     templateUrl: '/js/views/widgets/index.html',
     controller: 'WidgetsIndexCtrl',
     controllerAs: 'widgets'
