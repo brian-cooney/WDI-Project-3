@@ -19,7 +19,7 @@ const widgetSchema = new mongoose.Schema({
 
 widgetSchema.pre('save', function(next) {
   const self = this;
-  console.log('saved');
+  console.log('saved', this.type);
   if (self.isNew) {
     rp(self.url)
     .then(response => {
@@ -29,20 +29,19 @@ widgetSchema.pre('save', function(next) {
     })
     .then(() => next());
   }
-
 });
 
-// widgetSchema.post('init', function() {
-//   const self = this;
-//   console.log(self.isModified('url'));
-//   // rp(self.url)
-//   // .then(response => {
-//   //   const data = JSON.parse(response);
-//   //   self.data = data;
-//   //   // console.log('WIDGET: ', self);
-//   // })
-//   // .then(() => self.save());
-// });
+widgetSchema.post('init', function() {
+  const self = this;
+  console.log('ACCESSED', this.type);
+  rp(self.url)
+  .then(response => {
+    const data = JSON.parse(response);
+    self.data = data;
+    // console.log('WIDGET: ', self);
+  })
+  .then(() => self.save());
+});
 
 
 module.exports = mongoose.model('Widget', widgetSchema);

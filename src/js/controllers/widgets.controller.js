@@ -77,15 +77,25 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
   vm.widgetUpdatePos = function widgetUpdatePos(widget) {
     const index = vm.all.indexOf(widget);
     // console.log(vm.all[index]);
-    // ONLY update the position/size
-    Widget
-    .update({ id: widget._id }, {
-      sizeX: vm.all[index].sizeX,
-      sizeY: vm.all[index].sizeY,
-      row: vm.all[index].row,
-      col: vm.all[index].col
-    });
+    // ONLY update the position/size if different from starting position/size
+    if (vm.startY !== widget.sizeY || vm.startX !== widget.sizeX || vm.startCol !== widget.col || vm.startRow !== widget.row) {
+      console.log('pos and size updated');
+      Widget
+      .update({ id: widget._id }, {
+        sizeX: vm.all[index].sizeX,
+        sizeY: vm.all[index].sizeY,
+        row: vm.all[index].row,
+        col: vm.all[index].col
+      });
+    }
+  };
 
+  vm.widgetMoveStart = function widgetMoveStart(widget) {
+    vm.startX = widget.sizeX;
+    vm.startY = widget.sizeY;
+    vm.startCol = widget.col;
+    vm.startRow = widget.row;
+    console.log(vm.startY, vm.startX, vm.startCol, vm.startRow);
   };
 
   vm.gridsterOpts = {
@@ -95,7 +105,9 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
     resizable: {
       enabled: true,
       handles: ['n', 'e', 's', 'w', 'ne', 'se', 'sw', 'nw'],
-      start: function(event, $element, widget) {}, // optional callback fired when resize is started,
+      start: function(event, $element, widget) {
+        vm.widgetMoveStart(widget);
+      }, // optional callback fired when resize is started,
       resize: function(event, $element, widget) {}, // optional callback fired when item is resized,
       stop: function(event, $element, widget) {
         // console.log(widget._id, widget.sizeX, widget.sizeY);
@@ -103,7 +115,9 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
       } // optional callback fired when item is finished resizing
     },
     draggable: {
-      start: function(event, $element, widget) {}, // optional callback fired when drag is started,
+      start: function(event, $element, widget) {
+        vm.widgetMoveStart(widget);
+      }, // optional callback fired when drag is started,
       drag: function(event, $element, widget) {}, // optional callback fired when item is moved,
       stop: function(event, $element, widget) {
         // console.log(widget._id, widget.row, widget.col);
