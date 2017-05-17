@@ -12,6 +12,7 @@ const widgetSchema = new mongoose.Schema({
   minSizeX: Number,
   row: Number,
   col: Number,
+  description: String,
   data: { type: Object, default: {} },
   user: String,
   index: { type: Number, default: 0 }
@@ -19,6 +20,12 @@ const widgetSchema = new mongoose.Schema({
 
 widgetSchema.pre('save', function(next) {
   const self = this;
+  rp(self.url)
+  .then(response => {
+    const data = JSON.parse(response);
+    self.data = data;
+  })
+  .then(() => self.save());
   console.log('saved', this.type);
   if (self.isNew) {
     rp(self.url)

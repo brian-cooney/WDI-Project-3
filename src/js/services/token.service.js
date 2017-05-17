@@ -22,20 +22,6 @@ function TokenService($window, jwtHelper) {
   self.removeToken = () => {
     $window.localStorage.clear();
   };
-  //
-  // self.setToken = (token) => {
-  //
-  //   return $window.localStorage.setItem('auth-token', token);
-  // };
-  //
-  // self.getToken = () => {
-  //   console.log($window.localStorage.getItem('auth-token'));
-  //   return $window.localStorage.getItem('auth-token');
-  // };
-  //
-  // self.removeToken = () => {
-  //   $window.localStorage.clear();
-  // };
 
   self.decodeToken = () => {
     const token = self.getToken();
