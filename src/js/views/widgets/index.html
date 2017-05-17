@@ -90,20 +90,19 @@
         {{ item.data[0].content }}
       </div>
 
-<<<<<<< HEAD
       <div ng-if="item.type === 'events'">
         <h3>{{ item.data.events.event[0].title }}</h3>
         <p ng-bind-html="item.data.events.event[0].description | htmlToPlaintext "></p>
         <p>{{ item.data.events.event[0].city_name }}</p>
         <p>{{ item.data.events.event[0].venue_address }}</p>
         <a target="_blank" href="{{ item.data.events.event[0].url }}">See more...</a>
-=======
+      </div>
+
       <div ng-if="item.type === 'ron'">
         <h3>{{ item.data[0]}}</h3>
         <p>-Ron Swanson</p>
-
->>>>>>> development
       </div>
+
 
     </div>
   </div>

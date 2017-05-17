@@ -20,23 +20,12 @@ const widgetSchema = new mongoose.Schema({
 
 widgetSchema.pre('save', function(next) {
   const self = this;
-<<<<<<< HEAD
   rp(self.url)
   .then(response => {
     const data = JSON.parse(response);
     self.data = data;
-    // if (self.data.type !== undefined) {
-      // if (self.data.type === 'events') {
-    //     var newDesc = self.data.events.event[0].description.replace(/(<([^>]+)>)/ig, '');
-    //     console.log('******************NEW DESC', newDesc);
-    //     console.log('*****************DESCRIPTION', self.data.events.event[0].description);
-    //     self.description = newDesc;
-      // }
-    // }
-    // console.log('WIDGET: ', self);
   })
   .then(() => self.save());
-=======
   if (self.isNew) {
     rp(self.url)
     .then(response => {
@@ -47,7 +36,6 @@ widgetSchema.pre('save', function(next) {
     .then(() => next());
   }
 
->>>>>>> development
 });
 
 widgetSchema.post('init', function() {

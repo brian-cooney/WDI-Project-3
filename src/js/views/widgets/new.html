@@ -11,7 +11,6 @@
     <input type="text" name="url" ng-model="widgets.widget.url" placeholder="url">
   </div>
 
-<<<<<<< HEAD
   <h2 ng-if="widgets.widget.type === 'news'">News params</h2>
   <h2 ng-if="widgets.widget.type === 'weather'">weather params</h2>
   <h2 ng-if="widgets.widget.type === 'giphy'">giphy params</h2>
@@ -23,17 +22,6 @@
   <h2 ng-if="widgets.widget.type === 'advice'">advice params</h2>
   <h2 ng-if="widgets.widget.type === 'today'">today params</h2>
 
-=======
-<h2 ng-if="widgets.widget.type === 'news'">News params</h2>
-<h2 ng-if="widgets.widget.type === 'giphy'">giphy params</h2>
-<h2 ng-if="widgets.widget.type === 'events'">events params</h2>
-<h2 ng-if="widgets.widget.type === 'chuck'">chuck params</h2>
-<h2 ng-if="widgets.widget.type === 'recipes'">recipe params</h2>
-<h2 ng-if="widgets.widget.type === 'joke'">joke params</h2>
-<h2 ng-if="widgets.widget.type === 'quote'">quote params</h2>
-<h2 ng-if="widgets.widget.type === 'trumpify'">trump params</h2>
-<h2 ng-if="widgets.widget.type === 'advice'">advice params</h2>
-<h2 ng-if="widgets.widget.type === 'today'">today params</h2>
 
 <div ng-if="widgets.widget.type === 'weather'">
   <h2>Choose your weather location:</h2>
@@ -46,7 +34,6 @@
   <input type="text" ng-model="widgets.giphySearchTerms" value="" ng-change="widgets.giphySearch()">
   {{widgets.widget.url}}
 </div>
->>>>>>> development
 
   <div ng-if="widgets.widget.type === 'events'">
     <h1>Events</h1>
@@ -71,10 +58,6 @@
         Please Select
       </option>
     </select>
-
-    {{ widgets.eventsWidget.location.city}}
-    {{ widgets.eventsWidget.type}}
-    {{ widgets.eventsWidget.time.time }}
   </div>
 
   <!-- News -->
