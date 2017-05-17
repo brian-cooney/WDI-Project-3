@@ -1,16 +1,23 @@
-  <h2 class="pv3">Hi, {{main.user.username}}. These are your widgets</h2>
-  <!-- change how the gridster directive behaves in the vm.gridsterOpts in WidgetsIndexCtrl -->
-  <div class="pa2 grid-item new-box bg-moon-gray" ng-hide="widgets.newIsHidden" ng-controller="WidgetsNewCtrl as widget">
+<div ng-hide="main.user" class="ph5 pt3"><h1>HOME</h1>Not logged in</div>
+  <h2 ng-show="main.user" class="pv3">Hi, {{main.user.username}}. These are your widgets</h2>
+
+  <!-- New Widget -->
+
+  <div class="br4 pa2 grid-item new-box bg-moon-gray" ng-hide="widgets.newIsHidden" ng-controller="WidgetsNewCtrl as widget">
     <new-widgets ng-controller="WidgetsNewCtrl as widgets"></new-widgets>
   </div>
+
+  <!-- Gridster -->
+
+  <!-- change how the gridster directive behaves in the vm.gridsterOpts in WidgetsIndexCtrl -->
   <div gridster="widgets.gridsterOpts">
-    <div class="add-button overflow-hidden grid-item bg-moon-gray cover pa2" gridster-item="widgets.newButton">
-      <img ng-click="widgets.newWidget()" ng-class="{ cancel: widgets.newCancel }" class="new-button h-100 w-100 v-top pointer" src="/images/plus.png" alt="">
+    <div ng-click="widgets.newWidget()" ng-class="{ cancel: widgets.newCancel }" class="add-button overflow-hidden grid-item bg-moon-gray cover pa2" gridster-item="widgets.newButton">
+      <img class="h-100 w-100 v-top pointer" src="/images/plus.png" alt="">
     </div>
 
-    <div class="overflow-auto grid-item bg-white ba b--moon-gray cover" gridster-item="item" col="item.col" row="item.row" size-x="item.sizeX" size-y="item.sizeY" ng-repeat="item in widgets.all">
+    <div class="overflow-hidden border-box grid-item bg-white cover" gridster-item="item" col="item.col" row="item.row" size-x="item.sizeX" size-y="item.sizeY" ng-repeat="item in widgets.all">
 
-      <img height="20" src="/images/delete.png" class="pointer icon fl z-5 mt2 ml2" ng-click="widgets.delete(item)">
+      <img height="20" src="/images/delete.png" class="absolute pointer icon fl z-5 mt2 ml2" ng-click="widgets.delete(item)">
 
       <!-- <p>Size: {{item.sizeX}}, {{item.sizeY}} Pos: {{item.col}}, {{item.row}}</p> -->
 
@@ -27,37 +34,32 @@
       <h2 ng-if="item.type === 'weather' && item.data.cod !== 200">City not found.</h2>
       <div ng-if="item.type === 'weather' && item.data.cod === 200"
       ng-class="{
-        'bg-light-blue': item.data.weather[0].main === 'Rain',
-        'bg-light-yellow': item.data.weather[0].main === 'Clear',
-        'bg-light-gray': item.data.weather[0].main === 'Clouds',
-      }" class="pa2 h-100">
-
-        <img class="pa1 v-mid h-50" ng-if="item.data.weather[0].main === 'Clear'" ng-src="{{widgets.icons.clear.url}}">
-        <img class="pa1 v-mid h-50" ng-if="item.data.weather[0].main === 'Rain'" ng-src="{{widgets.icons.rain.url}}">
-        <img class="pa1 v-mid h-50" ng-if="item.data.weather[0].main === 'Drizzle'" ng-src="{{widgets.icons.rain.url}}">
-        <img class="pa1 v-mid h-50" ng-if="item.data.weather[0].main === 'Clouds'" ng-src="{{widgets.icons.cloudy.url}}">
-        <img class="pa1 v-mid h-50" ng-if="item.data.weather[0].main === 'Snow'" ng-src="{{widgets.icons.snow.url}}">
-
-        <dl class="db-ns dib h-50">
-          <dt class="dib m0 b">{{item.data.name}}, {{item.data.sys.country}}:</dt>
-          <dd class="dib m0" ng-repeat="weather in item.data.weather">{{ weather.main }}<span ng-if="!$last">, </span>
-          </dd>
-          {{ (item.data.main.temp - 273.15).toFixed(2)}}&deg;C
-        </dl>
+        'weather-rain': item.data.weather[0].main === 'Rain',
+        'weather-clear': item.data.weather[0].main === 'Clear',
+        'weather-clouds': item.data.weather[0].main === 'Clouds',
+        'weather-snow': item.data.weather[0].main === 'Snow',
+      }" class="dt tc pa2 h-100 w-100">
+      <p class="dtc v-mid m0">
+          <span class="b">{{item.data.name}}, {{item.data.sys.country}}:&nbsp;</span><span ng-repeat="weather in item.data.weather">{{ weather.main }}<span ng-if="!$last">, </span></span>
+          {{ (item.data.main.temp - 273.15).toFixed(2)}}&deg;C</p>
       </div>
 
       <h2 ng-if="item.type === 'news' && item.data.status != 'ok'">News failed to load :(</h2>
       <div ng-if="item.type === 'news' && item.data.status === 'ok'"
-        class="absolute overflow-hidden grid-news pa2 h-100 cover">
-        <div class="aspect-ratio aspect-ratio--16x9">
-          <div class="aspect-ratio--object cover"
+        class="absolute overflow-hidden z--1 w-100 h-100"
+        style="background-color: {{item.color}}" >
+        <img height="20" class="absolute z-5 top-0 mt2 right-0 mr2 pointer icon fr" src="/images/arrow.png" ng-click="widgets.nextItem(item)">
+
+        <div class="h-50 bg-center w-100 cover"
           style="background-image: url({{item.data.articles[item.index].urlToImage}})"></div>
-        </div>
-        <button class="fr" ng-click="widgets.nextItem(item)">Next article</button>
         <!-- this ng-if stops the author being displayed if it's a link -->
-        <h4 class="pt1" ng-if="item.data.articles[item.index].author.split('http').length === 1">{{ item.data.articles[item.index].author }}</h4>
-        <h3 class="f5 f4-l pt1"><a target="_blank" class="black" href="{{item.data.articles[0].url}}">{{ item.data.articles[item.index].title }}</a></h3>
-        <p class="pt1">{{ item.data.articles[item.index].description }}</p>
+        <div class="flex-wrap pa2">
+        <h4 class="pt1" ng-if="item.data.articles[item.index].author.split('http').length === 1">
+          {{ item.data.articles[item.index].author }}</h4>
+        <h3 class="f5 f4-l pt1"><a target="_blank" class="black" href="{{item.data.articles[0].url}}">
+          {{ item.data.articles[item.index].title }}</a></h3>
+        <p class="justify-end pt1">{{ item.data.articles[item.index].description }}</p>
+        </div>
 
       </div>
 
@@ -88,8 +90,8 @@
         <h4>{{ item.data.data.Events[0].text }}</h4>
       </div>
 
-      <div class="h-100 tc" ng-if="item.type === 'chuck'">
-        <h4 class="v-mid">{{ item.data.value }}</h4>
+      <div class="pa2 dt h-100 w-100 tc" style="background-color: {{item.color}}" ng-if="item.type === 'chuck'">
+        <h4 class="v-mid dtc">{{ item.data.value }}</h4>
       </div>
 
       <div ng-if="item.type === 'quote'">
