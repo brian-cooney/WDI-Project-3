@@ -17,7 +17,6 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
       vm.all = widgets;
     });
   }
-  vm.delete = widgetsDelete;
   vm.nextItem = nextItem;
   vm.newButton = {
     sizeY: 1, sizeX: 1, maxSizeY: 1, maxSizeX: 1
@@ -45,10 +44,23 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
     rain: { url: '/images/weather-icons/rain.png' }
   };
 
-  function widgetsDelete(widget) {
+  vm.delete = function widgetsDelete(widget) {
     vm.all.splice(vm.all.indexOf(widget), 1);
     Widget.remove({ id: widget._id });
-  }
+  };
+  vm.newCancel = false;
+  vm.newIsHidden = true;
+  vm.newWidget = function newWidget() {
+    console.log('clicked');
+    if (vm.newIsHidden) {
+      vm.newIsHidden = false;
+      vm.newCancel = true;
+    } else {
+      vm.newIsHidden = true;
+      vm.newCancel = false;
+    }
+    console.log(vm.newIsHidden);
+  };
 
   vm.update = function widgetsUpdate(widget, index) {
     console.log('WIDGET: ', widget);
@@ -75,7 +87,9 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
   };
 
   vm.gridsterOpts = {
-    mobileBreakPoint: 400,
+    mobileBreakPoint: 700,
+    margins: [5, 5], // the pixel distance between each widget
+    outerMargin: false,
     resizable: {
       enabled: true,
       handles: ['n', 'e', 's', 'w', 'ne', 'se', 'sw', 'nw'],
