@@ -15,6 +15,7 @@ function WidgetsIndexCtrl(Widget, CurrentUserService, $stateParams) {
     .$promise
     .then(widgets => {
       vm.all = widgets;
+console.log(vm.all)
     });
   }
   vm.delete = widgetsDelete;
@@ -110,15 +111,31 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
     { id: 'other', type: 'Other & Miscellaneous' }
   ];
   vm.eventsTime = [
-    { time: ''}
+    { time: 'All' },
+    { time: 'Future' },
+    { time: 'Past' },
+    { time: 'Today' },
+    { time: 'Last Week' },
+    { time: 'This Week' },
+    { time: 'Next Week' }
   ];
   vm.time = '';
 
   vm.events = events;
   function events() {
-    vm.eventOpts.url = `http://api.eventful.com/json/events/search?${vm.eventsType}&location=${vm.eventOpts.location}&app_key=BKn3H5D8pC7vHPP3`;
+    const event = vm.eventsWidget.type;
+    const location = vm.eventsWidget.location.city;
+    const time = vm.eventsWidget.time.time;
+    vm.widget.url = `http://api.eventful.com/json/events/search?${event}&location=${location}&t=${time}&app_key=BKn3H5D8pC7vHPP3`;
+    console.log(vm.widget.url);
+// var regex = /(<([^>]+)>)/ig
 
+    // vm.eventsDescription = eventsDescription();
+    // function eventsDescription(e) {
+    //   e.replace('<br>', '');
+    // }
   }
+
 
 
 
