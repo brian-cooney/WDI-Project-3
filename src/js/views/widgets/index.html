@@ -14,10 +14,6 @@
 
       <!-- <p>Size: {{item.sizeX}}, {{item.sizeY}} Pos: {{item.col}}, {{item.row}}</p> -->
 
-      <div ng-if="item.type === 'cat'"
-      style="background-image: url({{item.url}})" class="pa2 cover cat h-100">
-      </div>
-
       <div ng-if="item.type === 'giphy'"
       style="background-image: url('{{item.data.data[item.index].images.original.url}}')"
       class="giphy pa2 cover bg-center h5 h-100">
@@ -62,25 +58,22 @@
       </div>
 
       <div ng-if="item.type === 'recipes'">
+        <img ng-src="{{ item.data.hits[0].recipe.image }}" alt="{{ item.data.hits[0].recipe.label }}">
         <h3>{{ item.data.hits[0].recipe.label }}</h3>
+        <p>{{ item.data.hits[0].recipe.calories | number : 0 }}kcal</p>
         <ul>
           <li ng-repeat="ingredient in item.data.hits[0].recipe.ingredientLines">
             {{ ingredient }}
           </li>
         </ul>
-        <p>{{ item.data.hits[0].recipe.calories | number : 0 }}kcal</p>
+
+
       </div>
 
       <div ng-if="item.type === 'advice'">
         <h3>Wise Words of the Day</h3>
         <h4>{{ item.data.slip.advice }}</h4>
       </div>
-
-      <!-- <div ng-if="item.type === 'numberFact'">
-        <h3>Number Fact of the Day</h3>
-        <h5>Today is the {{ date }} day of the year</h5>
-        <h4>{{ item.data.text }}</h4>
-      </div> -->
 
       <div ng-if="item.type === 'today'">
         <h3>On this day in history...</h3>
@@ -98,11 +91,13 @@
       </div>
 
       <div ng-if="item.type === 'events'">
-        <h3>{{ item.data.events.event[0].title }}</h3>
-        <p ng-bind-html="item.data.events.event[0].description | htmlToPlaintext "></p>
-        <p>{{ item.data.events.event[0].city_name }}</p>
-        <p>{{ item.data.events.event[0].venue_address }}</p>
-        <a target="_blank" href="{{ item.data.events.event[0].url }}">See more...</a>
+        <!-- <img ng-src="" alt=""> -->
+        <!-- {{ item.data }} -->
+        <h3 class="f4 pt2 pr3 tr">{{ item.data.events.event[0].title }}</h3>
+        <p  class="f5 pa3" ng-bind-html="item.data.events.event[0].description | htmlToPlaintext | limitTo : 65">...</p>
+        <p class="f5 pt3 pl3"><em>{{ item.data.events.event[0].venue_address }}</em></p>
+        <p class="f5 pb3 pl3">{{ item.data.events.event[0].city_name }}</p>
+        <a class="f5 pa3 fr" target="_blank" href="{{ item.data.events.event[0].url }}">See more...</a>
       </div>
 
       <div ng-if="item.type === 'ron'">
@@ -110,6 +105,11 @@
         <p>-Ron Swanson</p>
       </div>
 
+      <!-- <div ng-if="item.type === 'numberFact'">
+        <h3>Number Fact of the Day</h3>
+        <h5>Today is the {{ date }} day of the year</h5>
+        <h4>{{ item.data.text }}</h4>
+      </div> -->
 
     </div>
   </div>
