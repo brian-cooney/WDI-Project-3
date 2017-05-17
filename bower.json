@@ -20,6 +20,7 @@
     "angular-ui-router": "^1.0.3",
     "angular-gridster": "^0.13.15",
     "angular-jwt": "^0.1.8",
+    "angular-sanitize": "^1.6.4",
     "angular-animate": "^1.6.4"
   },
   "overrides": {

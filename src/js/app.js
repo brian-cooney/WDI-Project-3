@@ -5,5 +5,6 @@ angular
     'gridster',
     'ui.router',
     'ngResource',
-    'angular-jwt'
+    'angular-jwt',
+    'ngSanitize'
   ]);

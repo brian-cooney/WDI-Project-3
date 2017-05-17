@@ -12,6 +12,7 @@ const widgetSchema = new mongoose.Schema({
   minSizeX: Number,
   row: Number,
   col: Number,
+  description: String,
   data: { type: Object, default: {} },
   user: String,
   index: { type: Number, default: 0 }
