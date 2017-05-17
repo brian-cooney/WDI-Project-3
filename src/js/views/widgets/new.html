@@ -24,15 +24,13 @@
 
 <div ng-if="widgets.widget.type === 'weather'">
   <h2>Choose your weather location:</h2>
-  <input type="text" ng-model="widgets.weatherLocation" placeholder="City name">
-  <button type="button" name="" ng-click="widgets.getWeather()">Add</button>
+  <input type="text" ng-model="widgets.weatherLocation" placeholder="City name" ng-change="widgets.getWeather()">
   {{widgets.url}}
 </div>
 
 <div ng-if="widgets.widget.type === 'giphy'" class="">
   <h2>Create a Giphy widget</h2>
-  <input type="text" ng-model="widgets.giphySearchTerms" value="">
-  <button type="button" name="" ng-click="widgets.giphySearch()">Add</button>
+  <input type="text" ng-model="widgets.giphySearchTerms" value="" ng-change="widgets.giphySearch()">
   {{widgets.widget.url}}
 </div>
 
