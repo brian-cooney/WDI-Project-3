@@ -60,15 +60,16 @@
         <h4>{{ item.data.slip.advice }}</h4>
       </div>
 
-      <div ng-if="item.type === 'numberFact'">
+      <!-- <div ng-if="item.type === 'numberFact'">
         <h3>Number Fact of the Day</h3>
         <h5>Today is the {{ date }} day of the year</h5>
         <h4>{{ item.data.text }}</h4>
-      </div>
+      </div> -->
 
       <div ng-if="item.type === 'today'">
         <h3>On this day in history...</h3>
-        <h4>{{ item.data.events[0].text }}</h4>
+        <h4>In {{item.data.data.Events[0].year}}</h4>
+        <h4>{{ item.data.data.Events[0].text }}</h4>
       </div>
 
       <div ng-if="item.type === 'chuck'">
@@ -78,6 +79,12 @@
       <div ng-if="item.type === 'quote'">
         <h3>{{ item.data[0].title }}</h3>
         {{ item.data[0].content }}
+      </div>
+
+      <div ng-if="item.type === 'ron'">
+        <h3>{{ item.data[0]}}</h3>
+        <p>-Ron Swanson</p>
+
       </div>
 
     </div>

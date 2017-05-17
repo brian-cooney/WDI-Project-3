@@ -57,7 +57,7 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
   vm.widgetUpdatePos = function widgetUpdatePos(widget) {
     const index = vm.all.indexOf(widget);
     // console.log(vm.all[index]);
-    // ONLY update the position/size 
+    // ONLY update the position/size
     Widget
       .update({ id: widget._id }, {
         sizeX: vm.all[index].sizeX,
@@ -110,13 +110,11 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
     { type: 'news', name: 'News' },
     { type: 'weather', name: 'Weather' },
     { type: 'giphy', name: 'Giphy' },
-    { type: 'cat', name: 'Cat Gif' },
     { type: 'events', name: 'Events' },
     { type: 'chuck', name: 'Chuck Norris Jokes' },
     { type: 'recipes', name: 'Recipes' },
-    { type: 'joke', name: 'Jokes' },
+    { type: 'ron', name: 'Ron Swanson Quotes' },
     { type: 'quote', name: 'Random Quote' },
-    { type: 'trumpify', name: 'Trumpify' },
     { type: 'advice', name: 'Advice' },
     { type: 'today', name: 'This Day in History' }
   ];
@@ -185,14 +183,15 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
   function onChange(option) {
     console.log('changed', option);
     switch (option) {
-      case 'cat': vm.widget.url = 'http://thecatapi.com/api/images/get?format=src&type=gif';
-        vm.widget.sizeX = 2; vm.widget.sizeY = 2;
-        break;
-      case 'trumpify': vm.widget.url = 'https://api.whatdoestrumpthink.com/api/v1/quotes';
-        break;
       case 'chuck': vm.widget.url = 'https://api.chucknorris.io/jokes/random';
         break;
       case 'advice': vm.widget.url = 'http://api.adviceslip.com/advice';
+        break;
+      case 'today': vm.widget.url = 'http://history.muffinlabs.com/date';
+        break;
+      case 'ron': vm.widget.url = 'http://ron-swanson-quotes.herokuapp.com/v2/quotes';
+        break;
+      case 'quote': vm.widget.url = 'http://quotesondesign.com/wp-json/posts?filter=rand&filter=1';
         break;
       case 'news': vm.widget.sizeX = 4; vm.widget.sizeY = 1;
         break;
@@ -204,12 +203,13 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
     }
   }
   vm.giphySearchTerms = '';
-  vm.giphySearch = function giphySearch() {
-    const search = vm.giphySearchTerms.split(' ').join('+');
-    // console.log(search);
+  vm.giphySearch = giphySearch;
+
+  function giphySearch() {
+    let search = vm.giphySearchTerms;
+    search = search.split(' ').join('+');
     vm.widget.url = `http://api.giphy.com/v1/gifs/search?q=${search}&api_key=dc6zaTOxFJmzC`;
-    // console.log(vm.widget.url);
-  };
+  }
 
   vm.weatherLocation = null;
   vm.getWeather = function getWeather() {
@@ -221,7 +221,30 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
   vm.newsSourceOptions = [
     { source: 'abc-news-au', name: 'ABC' },
     { source: 'bild', name: 'Bild' },
-    { source: 'bbc-sport', name: 'BBC Sport' }
+    { source: 'bbc-sport', name: 'BBC Sport' },
+    { source: 'bbc-news', name: 'BBC News' },
+    { source: 'al-jazeera-english', name: 'Al Jazeera English' },
+    { source: 'bloomberg', name: 'Bloomberg' },
+    { source: 'cnn', name: 'CNN' },
+    { source: 'business-insider-uk', name: 'Business Insider (UK)' },
+    { source: 'cnbc', name: 'CNBC' },
+    { source: 'time', name: 'Time' },
+    { source: 'hacker-news', name: 'Hacker News' },
+    { source: 'the-washington-post', name: 'The Washington Post' },
+    { source: 'the-new-york-times', name: 'The New York Times' },
+    { source: 'the-lad-bible', name: 'The Lad Bible' },
+    { source: 'espn', name: 'ESPN' },
+    { source: 'usa-today', name: 'USA Today' },
+    { source: 'the-huffington-post', name: 'The Huffington Post' },
+    { source: 'techcrunch', name: 'TechCrunch' },
+    { source: 'the-economist', name: 'The Economist' },
+    { source: 'the-guardian-au', name: 'The Guardian (AU)' },
+    { source: 'reddit-r-all', name: 'Reddit' },
+    { source: 'polygon', name: 'Polygon' },
+    { source: 'mtv-news', name: 'MTV News' },
+    { source: 'financial-times', name: 'Financial Times' },
+    { source: 'daily-mail', name: 'Daily Mail' }
+
   ];
   vm.test = test;
   function test() {

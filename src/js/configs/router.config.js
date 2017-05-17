@@ -11,6 +11,10 @@ function Router($stateProvider, $locationProvider, $urlRouterProvider){
     url: '/',
     templateUrl: '/js/views/home.html'
   })
+  .state('oops', {
+    url: '/oops',
+    templateUrl: '/js/views/oops.html'
+  })
   .state('register', {
     url: '/register',
     templateUrl: '/js/views/register.html',
@@ -42,5 +46,5 @@ function Router($stateProvider, $locationProvider, $urlRouterProvider){
     controllerAs: 'widgets'
   });
 
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/oops');
 }
