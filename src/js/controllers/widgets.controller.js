@@ -22,7 +22,8 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
     sizeY: 1, sizeX: 1, maxSizeY: 1, maxSizeX: 1
   };
   vm.newButtonOpts = {
-    resizable: { enabled: false }
+    resizable: { enabled: false },
+    draggable: { enabled: true }
   };
 
   function nextItem(item) {
@@ -39,9 +40,10 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
   }
 
   vm.icons = {
-    sunny: { url: '/images/weather-icons/sunny.png' },
+    clear: { url: '/images/weather-icons/clear.png' },
     cloudy: { url: '/images/weather-icons/cloudy.png' },
-    rain: { url: '/images/weather-icons/rain.png' }
+    rain: { url: '/images/weather-icons/rain.png' },
+    snow: { url: '/images/weather-icons/snow.png' }
   };
 
   vm.delete = function widgetsDelete(widget) {
@@ -88,7 +90,7 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
 
   vm.gridsterOpts = {
     mobileBreakPoint: 700,
-    margins: [5, 5], // the pixel distance between each widget
+    margins: [15, 15], // the pixel distance between each widget
     outerMargin: false,
     resizable: {
       enabled: true,
@@ -235,7 +237,7 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
   vm.weatherLocation = null;
   vm.getWeather = function getWeather() {
     const location = vm.weatherLocation;
-    vm.widget.url = `http://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=d2c4c1492a04ec9081fe74119400cc6e`;
+    vm.widget.url = `http://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=baecb13f15a7cb38326ec2b57025083e`;
   };
 
   vm.newsWidget = {};
