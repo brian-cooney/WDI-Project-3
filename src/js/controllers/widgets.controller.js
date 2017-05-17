@@ -216,6 +216,8 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
         break;
       case 'quote': vm.widget.url = 'http://quotesondesign.com/wp-json/posts?filter=rand&filter=1';
         break;
+      case 'recipes': vm.widget.url = 'https://api.edamam.com/search?q=breakfast';
+        break;
       case 'giphy': vm.widget.sizeX = 2; vm.widget.sizeY = 2;
         break;
       case 'weather': vm.widget.sizeX = 2; vm.widget.sizeY = 1;

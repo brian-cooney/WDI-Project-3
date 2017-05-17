@@ -54,7 +54,7 @@
 
       </div>
 
-      <div ng-if="item.type === 'breakfast'">
+      <div ng-if="item.type === 'recipes'">
         <h3>{{ item.data.hits[0].recipe.label }}</h3>
         <ul>
           <li ng-repeat="ingredient in item.data.hits[0].recipe.ingredientLines">
