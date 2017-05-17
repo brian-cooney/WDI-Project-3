@@ -1,17 +1,17 @@
 <form ng-submit="widgets.create()">
   <div class="">
-    <label for="type">Type: </label>
+    <label for="type">Widget type: </label>
       <select name="type" ng-model="widgets.widget.type" ng-options="option.type as option.name for option in widgets.options" ng-change="widgets.onChange(widgets.widget.type)" placeholder="Type">
         <option value="" disabled selected style="display: none;">Please Select</option>
       </select>
-      {{ widgets.widget.type }}
+      <!-- {{ widgets.widget.type }} -->
   </div>
-  <div class="">
+  <!-- <div class="">
     <label for="url">API url: </label>
     <input type="text" name="url" ng-model="widgets.widget.url" placeholder="url">
-  </div>
+  </div> -->
 
-<h2 ng-if="widgets.widget.type === 'news'">News params</h2>
+<h2 ng-if="widgets.widget.type === 'news'">Choose news source: </h2>
 <h2 ng-if="widgets.widget.type === 'giphy'">giphy params</h2>
 <h2 ng-if="widgets.widget.type === 'events'">events params</h2>
 <h2 ng-if="widgets.widget.type === 'chuck'">chuck params</h2>
@@ -23,7 +23,7 @@
 <h2 ng-if="widgets.widget.type === 'today'">today params</h2>
 
 <div ng-if="widgets.widget.type === 'weather'">
-  <h2>Choose your weather location:</h2>
+  <h2>Choose weather location:</h2>
   <input type="text" ng-model="widgets.weatherLocation" placeholder="City name" ng-change="widgets.getWeather()">
   {{widgets.url}}
 </div>

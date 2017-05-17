@@ -1,10 +1,10 @@
   <h2 class="pv3">Hi, {{main.user.username}}. These are your widgets</h2>
   <!-- change how the gridster directive behaves in the vm.gridsterOpts in WidgetsIndexCtrl -->
-  <div class="white grid-item new-box bg-mid-gray" ng-hide="widgets.newIsHidden" ng-controller="WidgetsNewCtrl as widget">
+  <div class="pa2 grid-item new-box bg-moon-gray" ng-hide="widgets.newIsHidden" ng-controller="WidgetsNewCtrl as widget">
     <new-widgets ng-controller="WidgetsNewCtrl as widgets"></new-widgets>
   </div>
   <div gridster="widgets.gridsterOpts">
-    <div class="add-button overflow-hidden grid-item bg-mid-gray cover pa2" gridster-item="widgets.newButton">
+    <div class="add-button overflow-hidden grid-item bg-moon-gray cover pa2" gridster-item="widgets.newButton">
       <img ng-click="widgets.newWidget()" ng-class="{ cancel: widgets.newCancel }" class="new-button h-100 w-100 v-top pointer" src="/images/plus.png" alt="">
     </div>
 
@@ -32,11 +32,11 @@
         'bg-light-gray': item.data.weather[0].main === 'Clouds',
       }" class="pa2 h-100">
 
-        <img class="db-ns dib v-mid h-50" ng-if="item.data.weather[0].main === 'Clear'" ng-src="{{widgets.icons.clear.url}}">
-        <img class="db-ns dib v-mid h-50" ng-if="item.data.weather[0].main === 'Rain'" ng-src="{{widgets.icons.rain.url}}">
-        <img class="db-ns dib v-mid h-50" ng-if="item.data.weather[0].main === 'Drizzle'" ng-src="{{widgets.icons.rain.url}}">
-        <img class="db-ns dib v-mid h-50" ng-if="item.data.weather[0].main === 'Clouds'" ng-src="{{widgets.icons.cloudy.url}}">
-        <img class="db-ns dib v-mid h-50" ng-if="item.data.weather[0].main === 'Snow'" ng-src="{{widgets.icons.snow.url}}">
+        <img class="pa1 v-mid h-50" ng-if="item.data.weather[0].main === 'Clear'" ng-src="{{widgets.icons.clear.url}}">
+        <img class="pa1 v-mid h-50" ng-if="item.data.weather[0].main === 'Rain'" ng-src="{{widgets.icons.rain.url}}">
+        <img class="pa1 v-mid h-50" ng-if="item.data.weather[0].main === 'Drizzle'" ng-src="{{widgets.icons.rain.url}}">
+        <img class="pa1 v-mid h-50" ng-if="item.data.weather[0].main === 'Clouds'" ng-src="{{widgets.icons.cloudy.url}}">
+        <img class="pa1 v-mid h-50" ng-if="item.data.weather[0].main === 'Snow'" ng-src="{{widgets.icons.snow.url}}">
 
         <dl class="db-ns dib h-50">
           <dt class="dib m0 b">{{item.data.name}}, {{item.data.sys.country}}:</dt>
@@ -55,7 +55,7 @@
         </div>
         <button class="fr" ng-click="widgets.nextItem(item)">Next article</button>
         <!-- this ng-if stops the author being displayed if it's a link -->
-        <h4 class="" ng-if="item.data.articles[item.index].author.split('http').length === 1">{{ item.data.articles[item.index].author }}</h4>
+        <h4 class="pt1" ng-if="item.data.articles[item.index].author.split('http').length === 1">{{ item.data.articles[item.index].author }}</h4>
         <h3 class="f5 f4-l pt1"><a target="_blank" class="black" href="{{item.data.articles[0].url}}">{{ item.data.articles[item.index].title }}</a></h3>
         <p class="pt1">{{ item.data.articles[item.index].description }}</p>
 

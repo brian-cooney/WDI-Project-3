@@ -130,10 +130,10 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
     Widget
     .save(vm.widget)
     .$promise
-    .then(() => {
-      console.log(vm.widget);
-      $state.reload();
-    });
+    .then(widget => {
+      console.log('WIDGET CREATED:', widget);
+    })
+    .then(() => $state.reload());
   }
   vm.options = [
     { type: 'news', name: 'News' },
