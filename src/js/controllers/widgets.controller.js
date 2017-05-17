@@ -132,8 +132,8 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
     .$promise
     .then(widget => {
       console.log('WIDGET CREATED:', widget);
-    })
-    .then(() => $state.reload());
+      $state.reload();
+    });
   }
   vm.options = [
     { type: 'news', name: 'News' },
