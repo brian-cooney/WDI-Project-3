@@ -40,7 +40,6 @@ function WidgetsIndexCtrl(Widget, $rootScope, CurrentUserService) {
   $rootScope.$on('loggedIn', () => {
     vm.getUserWidgets();
   });
-  vm.nextItem = nextItem;
   vm.newButton = {
     sizeY: 1, sizeX: 1, maxSizeY: 1, maxSizeX: 1
   };
@@ -49,7 +48,7 @@ function WidgetsIndexCtrl(Widget, $rootScope, CurrentUserService) {
     draggable: { enabled: true }
   };
 
-  function nextItem(item) {
+  vm.nextItem = function nextItem(item) {
     // console.log(item.index)
     if (item.type === 'giphy') {
       if (item.index+1 === item.data.data.length) {
@@ -63,8 +62,16 @@ function WidgetsIndexCtrl(Widget, $rootScope, CurrentUserService) {
       if (item.index+1 === item.data.hits.length) {
         item.index = 0;
       } else item.index++;
+    } else if (item.type === 'events') {
+      if (item.index+1 === item.data.events.event.length) {
+        item.index = 0;
+      } else item.index++;
+    } else if (item.type === 'today') {
+      if (item.index+1 === item.data.data.Events.length) {
+        item.index = 0;
+      } else item.index++;
     }
-  }
+  };
 
   vm.icons = {
     clear: { url: '/images/weather-icons/clear.png' },

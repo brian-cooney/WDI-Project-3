@@ -15,6 +15,10 @@ ul, li {
 .gridster .gridster-item:hover .handle-se {
   border-color: transparent transparent white;
 }
+.gridster .gridster-item:hover .icon {
+  opacity: 1;
+  transition: all .2s ease;
+}
 header {
   height: 100px;
   margin-top: -100px;
@@ -92,6 +96,8 @@ main {
   drop-shadow(0 0 1px rgba(0,0,0,0.6));
   filter: drop-shadow(0 0 1px rgba(0,0,0,0.6))
   drop-shadow(0 0 1px rgba(0,0,0,0.6));
+  opacity: 0;
+  transition: all .2s ease;
 }
 
 .login, .register {
