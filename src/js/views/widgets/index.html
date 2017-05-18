@@ -58,14 +58,21 @@
       </div>
 
       <div ng-if="item.type === 'recipes'">
-        <img ng-src="{{ item.data.hits[0].recipe.image }}" alt="{{ item.data.hits[0].recipe.label }}">
-        <h3>{{ item.data.hits[0].recipe.label }}</h3>
-        <p>{{ item.data.hits[0].recipe.calories | number : 0 }}kcal</p>
-        <ul>
-          <li ng-repeat="ingredient in item.data.hits[0].recipe.ingredientLines">
-            {{ ingredient }}
-          </li>
-        </ul>
+        <div class="h-50 bg-center w-100 cover" style="background-image: url({{ item.data.hits[item.index].recipe.image }}" alt="{{ item.data.hits[item.index].recipe.label }})">
+          <img height="20" class="pointer icon fr pa2" src="/images/arrow.png" ng-click="widgets.nextItem(item)">
+          <h3 class="white f1 tc hc pv5">{{ item.data.hits[item.index].recipe.label }}</h3>
+        </div>
+
+        <p class="fr"><strong>{{ item.data.hits[item.index].recipe.calories | number : 0 }}kcal</strong></p>
+        <div class="pa3-ns">
+          <p>Ingredients:</p>
+          <ul class="pa2">
+            <li ng-repeat="ingredient in item.data.hits[item.index].recipe.ingredientLines">
+              <p> - {{ ingredient }}</p>
+            </li>
+          </ul>
+        </div>
+        <a class="fr pa4" href="{{ item.data.hits[item.index].recipe.url }}" target="_blank">See the full recipe!</a>
 
 
       </div>
@@ -93,7 +100,10 @@
       <div ng-if="item.type === 'events'">
         <!-- <img ng-src="" alt=""> -->
         <!-- {{ item.data }} -->
-        <h3 class="f4 pt2 pr3 tr">{{ item.data.events.event[0].title }}</h3>
+        <div class="bg-black-90 h-50">
+          <h3 class="f4 pt2 pv5 tc white">{{ item.data.events.event[0].title }}</h3>
+        </div>
+
         <p  class="f5 pa3" ng-bind-html="item.data.events.event[0].description | htmlToPlaintext | limitTo : 65">...</p>
         <p class="f5 pt3 pl3"><em>{{ item.data.events.event[0].venue_address }}</em></p>
         <p class="f5 pb3 pl3">{{ item.data.events.event[0].city_name }}</p>

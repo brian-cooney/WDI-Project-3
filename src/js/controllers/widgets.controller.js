@@ -36,6 +36,10 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
       if (item.index+1 === item.data.articles.length) {
         item.index = 0;
       } else item.index++;
+    } else if (item.type === 'recipes') {
+      if (item.index+1 === item.data.hits.length) {
+        item.index = 0;
+      } else item.index++;
     }
   }
 
