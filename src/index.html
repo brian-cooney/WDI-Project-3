@@ -12,33 +12,6 @@
 </head>
 
 <body class="sans-serif black-70 f7 f4-ns" ng-controller="MainCtrl as main" ng-class="{'dark-theme': main.dark}">
-  <header ng-class="{ 'bg-transparent': !main.user, 'dark-theme': main.dark }" class="fixed z-5 w-100 bg-white ph5 pv2 dt">
-    <div class="v-mid dtc">
-      <span ng-switch on="main.dark">
-        <a ui-sref="home"><img height="auto" class="v-mid absolute mt2" ng-switch-when="false" ng-src="{{'/images/logo1.png'}}"  alt="Piñata"></a>
-        <a ui-sref="home"><img height="auto" class="v-mid absolute mt2" ng-switch-when="true" ng-src="{{'/images/white-logo.png'}}"  alt="Piñata"></a>
-      </span>
-
-      <ul class="fr">
-        <li class="dib nav-hover1" ng-hide="main.user"><a ui-sref="login" ng-class="{'dark-theme-text': main.dark}"><span ng-class="{'dark-theme-text': main.dark}" id="red">Login</span> |</a></li>
-        <li class="dib nav-hover2" ng-hide="main.user"><a ng-class="{'dark-theme-text': main.dark}" ui-sref="register"><span ng-class="{'dark-theme-text': main.dark}" id="green">Register</span> |</a></li>
-        <li class="dib nav-hover3" ng-show="main.user"><a ng-class="{'dark-theme-text': main.dark}" href="" ng-click="main.logout()"><span ng-class="{'dark-theme-text': main.dark}" id="pink">Logout</span> |</a></li>
-        <li class="dib">
-          <span ng-class="{'dark-theme-text': main.dark}">Dark Theme:</span>
-          <label class="switch togg">
-            <input type="checkbox" ng-click="main.darkTheme()">
-            <div class="slider round"></div>
-          </label>
-        </li>
-        <!-- <div class="theme"> Dark Theme;
-          <label class="switch">
-            <input type="checkbox" ng-click="main.darkTheme()">
-            <div class="slider round"></div>
-          </label>
-        </div> -->
-      </ul>
-    </div>
-  </header>
   <main ui-view></main>
 </body>
 </html>
