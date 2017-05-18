@@ -12,11 +12,11 @@
 </head>
 
 <body class="sans-serif black-70 f7 f4-ns" ng-controller="MainCtrl as main" ng-class="{'dark-theme': main.dark}">
-  <header ng-hide="main.user" class="fixed z-5 w-100 bg-white ph5 pv2 dt" ng-class="{'dark-theme': main.dark}">
+  <header ng-class="{ 'bg-transparent': !main.user, 'dark-theme': main.dark }" class="fixed z-5 w-100 bg-white ph5 pv2 dt">
     <div class="v-mid dtc">
       <span ng-switch on="main.dark">
-        <a ui-sref="widgetsIndex"><img height="auto" class="v-mid absolute mt2" ng-switch-when="false" ng-src="{{'/images/logo1.png'}}"  alt="Piñata"></a>
-        <a ui-sref="widgetsIndex"><img height="auto" class="v-mid absolute mt2" ng-switch-when="true" ng-src="{{'/images/white-logo.png'}}"  alt="Piñata"></a>
+        <a ui-sref="home"><img height="auto" class="v-mid absolute mt2" ng-switch-when="false" ng-src="{{'/images/logo1.png'}}"  alt="Piñata"></a>
+        <a ui-sref="home"><img height="auto" class="v-mid absolute mt2" ng-switch-when="true" ng-src="{{'/images/white-logo.png'}}"  alt="Piñata"></a>
       </span>
 
       <ul class="fr">
