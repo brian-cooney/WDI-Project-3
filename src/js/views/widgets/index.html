@@ -82,7 +82,7 @@
         <h4>{{ item.data.text }}</h4>
       </div> -->
 
-      <div ng-if="item.type === 'today'">
+      <div ng-if="item.type === 'today'" style="background-color: {{item.color}}">
         <h3>On this day in history...</h3>
         <h4>In {{item.data.data.Events[0].year}}</h4>
         <h4>{{ item.data.data.Events[0].text }}</h4>
@@ -105,7 +105,7 @@
         <a target="_blank" href="{{ item.data.events.event[0].url }}">See more...</a>
       </div>
 
-      <div ng-if="item.type === 'ron'" class="dt h-100 tc">
+      <div ng-if="item.type === 'ron'" class="dt h-100 tc" style="background-color: {{item.color}}">
         <h3 class="dtc v-mid"><span class="f3">"</span>{{ item.data[0]}}<span class="f3">"</span></h3>
         <p class="dtc v-btm i">-Ron Swanson</p>
       </div>
