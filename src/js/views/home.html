@@ -1,2 +1,14 @@
-user: {{main.user}}
-<div ng-hide="main.user" class="ph5 pt3"><h1>HOME</h1>Not logged in</div>
+<!-- Background image -->
+  <div class="jumbotron h-100">
+    <!-- floating div -->
+    <div class="landingpageLogo">
+      <a href="#">
+        <img src="/images/landingpage-logo.png" alt="" class="">
+      </a>
+      <ul class="">
+        <li class="dib" ng-show="main.user"><a class=" pa3 ml3" ui-sref="login">Login</a></li>
+        <li class="dib" ng-show="main.user"><a class=" pa3 ml3" ui-sref="register">Register</a></li>
+      </ul>
+      <p>Some text</p>
+    </div>
+  </div>
