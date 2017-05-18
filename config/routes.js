@@ -11,8 +11,8 @@ router.route('/widgets/:id')
   // .get(widgets.show)
   .put(widgets.update)
   .delete(widgets.delete);
-router.route('/users/:userID/widgets/:id')
-  .get(widgets.index);
+// router.route('/users/:userID/widgets/:id')
+//   .get(widgets.index);
 
 router.route('/register')
   .post(authentications.register);
