@@ -23,7 +23,7 @@
 
 <div class="fr w-two-thirds pa3" ng-if="widgets.widget.type === 'weather'">
   <label class="db b f3 pb2">Choose weather location:</label>
-  <input class="pa2 h2 w-75 br2 bw0" type="text" ng-model="widgets.weatherLocation" placeholder="City name" ng-change="widgets.getWeather()">
+  <input class="pa2 h2 w-75 br2 bw0 ignore-dark" type="text" ng-model="widgets.weatherLocation" placeholder="City name" ng-change="widgets.getWeather()">
   <!-- {{widgets.url}} -->
 </div>
 
@@ -31,7 +31,7 @@
 
 <div class="fr w-two-thirds pa3" ng-if="widgets.widget.type === 'giphy'">
   <label class="db b f3 pb2">Enter your search terms:</label>
-  <input class="pa2 h2 w-75 br2 bw0" type="text" ng-model="widgets.giphySearchTerms" value="" ng-change="widgets.giphySearch()">
+  <input class="pa2 h2 w-75 br2 bw0 ignore-dark" type="text" ng-model="widgets.giphySearchTerms" value="" ng-change="widgets.giphySearch()">
   <p class="f6 pt2">Keywords separated by spaces</p>
   <!-- {{widgets.widget.url}} -->
 </div>
