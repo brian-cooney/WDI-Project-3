@@ -215,7 +215,7 @@ input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 30px #4b4c4c inset;
     -webkit-text-fill-color: white !important;
   }
-  .grow {
+  .grow, .ignore-dark {
     -webkit-text-fill-color: black !important;
     -webkit-box-shadow: none;
 
