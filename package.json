@@ -87,6 +87,6 @@
     "gulp-replace": "^0.5.4"
   },
   "engines": {
-    "node": ">=7.x"
+    "node": "0.12.0"
   }
 }
