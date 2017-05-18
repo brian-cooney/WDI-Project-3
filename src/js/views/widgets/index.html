@@ -87,35 +87,36 @@
 
       </div>
 
-      <div ng-if="item.type === 'advice'">
-        <h3>Wise Words of the Day</h3>
-        <h4>{{ item.data.slip.advice }}</h4>
+      <div ng-if="item.type === 'advice'" style="background-color: {{item.color}}">
+        <h3 class="tc">Wise Words of the Day</h3>
+        <h4 class="pt2">{{ item.data.slip.advice }}</h4>
       </div>
 
 
-      <div ng-if="item.type === 'today'" style="background-color: {{item.color}}">
-        <h3>On this day in history...</h3>
-        <h4>In {{item.data.data.Events[0].year}}</h4>
-        <h4>{{ item.data.data.Events[0].text }}</h4>
+      <div ng-if="item.type === 'today'" class="dt h-100 pa2" style="background-color: {{item.color}}">
+        <h3 class="tc">On this day in history...</h3>
+        <h4 class="pt2">In {{item.data.data.Events[0].year}}</h4>
+        <h5>{{ item.data.data.Events[0].text }}</h5>
+        <p class="dtc v-btm i"><a href="{{ item.data.data.Events[0].links[0].link}}">Read more...</a></p>
       </div>
 
       <div class="pa2 dt h-100 w-100 tc" style="background-color: {{item.color}}" ng-if="item.type === 'chuck'">
         <h4 class="v-mid dtc">{{ item.data.value }}</h4>
       </div>
 
-      <div ng-if="item.type === 'quote'">
-        <h3>{{ item.data[0].title }}</h3>
-        {{ item.data[0].content }}
+      <div ng-if="item.type === 'quote'" style="background-color: {{item.color}}" class="dt h-100 pa2">
+        <p class="dtc pt4" ng-bind-html="item.data[0].content | htmlToPlaintext | limitTo : 65"></p>
+        <p class="dtc v-btm tr">-{{ item.data[0].title }}</p>
       </div>
 
-      <div ng-if="item.type === 'events'">
+      <div ng-if="item.type === 'events'" style="background-color: {{item.color}}">
         <!-- <img ng-src="" alt=""> -->
         <!-- {{ item.data }} -->
         <div class="bg-black-90 h-50">
           <h3 class="f4 pt2 pv5 tc white">{{ item.data.events.event[0].title }}</h3>
         </div>
 
-        <p  class="f5 pa3" ng-bind-html="item.data.events.event[0].description | htmlToPlaintext | limitTo : 65">...</p>
+        <p class="f5 pa3" ng-bind-html="item.data.events.event[0].description | htmlToPlaintext | limitTo : 65">...</p>
         <p class="f5 pt3 pl3"><em>{{ item.data.events.event[0].venue_address }}</em></p>
         <p class="f5 pb3 pl3">{{ item.data.events.event[0].city_name }}</p>
         <a class="f5 pa3 fr" target="_blank" href="{{ item.data.events.event[0].url }}">See more...</a>
