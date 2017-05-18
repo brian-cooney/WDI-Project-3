@@ -22,15 +22,14 @@ header {
 main {
   margin-top: 100px;
 }
-.grid-news {
-  z-index: -1;
-}
 // make sure gifs don't get squished in mobile layout
 .gridster-mobile .gridster-item .giphy {
   height: 500px !important;
 }
 .new-box {
   height: 200px;
+  margin-bottom: 15px;
+  background-color: #60a0e0;
 }
 .new-box.ng-hide {
   animation: 0.2s expandOut linear;
@@ -60,10 +59,13 @@ main {
     opacity: 1;
   }
 }
-.new-button {
+.add-button {
+  background-color: #60a0e0;
+  border-radius: 100%;
   transition: all .2s ease;
 }
-.cancel {
+.add-button.cancel {
+  background-color: #f26c4f;
   transform: rotate(135deg);
   transition: all .2s ease;
 }
@@ -77,4 +79,117 @@ main {
   drop-shadow(0 0 1px rgba(0,0,0,0.6));
   filter: drop-shadow(0 0 1px rgba(0,0,0,0.6))
   drop-shadow(0 0 1px rgba(0,0,0,0.6));
+}
+
+.login, .register {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 35px;
+}
+.inputText {
+  margin-top: 30px;
+  width: 400px;
+  height: 30px;
+  font-size: 17px;
+  font-weight: 500;
+  border: none;
+  border-bottom: 1px solid #000;
+}
+.submitButton {
+  margin-top: 30px;
+  width: 400px;
+  height: 40px;
+  font-size: 13px;
+  border: none;
+  background-color: #e5e6e8;
+  font-weight: 800;
+}
+.inputText:focus {
+  outline-width: 0;
+}
+.submitButton:hover {
+  animation: colorchange 5s infinite;
+  -webkit-animation: colorchange 5s infinite;
+}
+.submitButton:focus {
+  background-color: rgba(0, 255, 0, .7);
+  outline-width: 0px;
+}
+.first {
+  border-bottom: 2px solid #f26c4f;
+}
+.second {
+  border-bottom: 2px solid #fff568;
+}
+.third {
+  border-bottom: 2px solid #7cc576;
+}
+.fourth {
+  border-bottom: 2px solid #8560a8;
+}
+.fith {
+  border-bottom: 2px solid #f06eaa;
+}
+.first:focus {
+  border-bottom: 4px solid #f26c4f;
+}
+.second:focus {
+  border-bottom: 4px solid #fff568;
+}
+.third:focus {
+  border-bottom: 4px solid #7cc576;
+}
+.fourth:focus {
+  border-bottom: 4px solid #8560a8;
+}
+.fith:focus {
+  border-bottom: 4px solid #f06eaa;
+}
+
+
+@keyframes colorchange
+{
+  0%   {background: #f26c4f;}
+  20%  {background: #fff568;}
+  40%  {background: #7cc576;}
+  60%  {background: #8560a8;}
+  80%  {background: #f06eaa;}
+  100% {background: #f26c4f;}
+}
+@-webkit-keyframes colorchange
+{
+  0%   {background: #f26c4f;}
+  20%  {background: #fff568;}
+  40%  {background: #7cc576;}
+  60%  {background: #8560a8;}
+  80%  {background: #f06eaa;}
+  100% {background: #f26c4f;}
+}
+.weather-rain {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+  background-color: #60a0e0;
+  background-image: url('/images/weather-icons/rain-white.png');
+}
+.weather-clear {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+  background-color: #fff568;
+  background-image: url('/images/weather-icons/clear-white.png');
+}
+.weather-clouds {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+  background-color: #90b0d0;
+  background-image: url('/images/weather-icons/clouds-white.png');
+}
+.weather-snow {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+  background-color: #dfefef;
+  background-image: url('/images/weather-icons/snow-white.png');
 }

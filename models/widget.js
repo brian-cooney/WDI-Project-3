@@ -18,12 +18,20 @@ const widgetSchema = new mongoose.Schema({
   index: { type: Number, default: 0 }
 });
 
+const colors = ['#f26c4f', '#fff568', '#7cc576', '#8560a8', '#f06eaa'];
+
+function randomColor() {
+  const random = Math.floor(Math.random() * 5);
+  return colors[random];
+}
+
 widgetSchema.pre('save', function(next) {
   const self = this;
   if (self.isNew) {
     rp(self.url)
     .then(response => {
       const data = JSON.parse(response);
+      self.color = randomColor();
       self.data = data;
       console.log('SAVED', this.type);
     })

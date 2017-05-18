@@ -93,7 +93,7 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
   };
 
   vm.gridsterOpts = {
-    mobileBreakPoint: 700,
+    mobileBreakPoint: 600,
     margins: [15, 15], // the pixel distance between each widget
     outerMargin: false,
     resizable: {
@@ -136,8 +136,8 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
     .$promise
     .then(widget => {
       console.log('WIDGET CREATED:', widget);
-    })
-    .then(() => $state.reload());
+      $state.reload();
+    });
   }
   vm.options = [
     { type: 'news', name: 'News' },
