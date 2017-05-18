@@ -85,5 +85,8 @@
     "main-bower-files": "^2.13.1",
     "require-dir": "^0.3.1",
     "gulp-replace": "^0.5.4"
+  },
+  "engines": {
+    "node": ">=7.x"
   }
 }
