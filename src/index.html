@@ -10,19 +10,16 @@
   <!-- endinject -->
 </head>
 <body class="sans-serif black-70" ng-controller="MainCtrl as main">
-  <header class="fixed z-5 w-100 bg-white ph5 v-mid">
-
+  <header class="fixed z-5 w-100 bg-white ph5 pv2 dt">
+    <div class="v-mid dtc">
       <a ui-sref="widgetsIndex"><img height="auto" class="v-mid" src="/images/logo1.png" alt="Piñata"></a>
       <ul class="fr">
         <li class="dib" ng-hide="main.user"><a ui-sref="login">Login</a></li>
         <li class="dib" ng-hide="main.user"><a ui-sref="register">Register</a></li>
-        <li class="dib" ng-show="main.user"><a ui-sref="widgetsIndex">Widgets</a></li>
-        <li class="dib" ng-show="main.user"><a ui-sref="widgetsNew">New Widget</a></li>
-        <li class="dib" ng-show="main.user"><a ui-sref="usersIndex">Users</a></li>
-        <li class="dib" ng-show="main.user"><a ng-click="main.logout()">Logout</a></li>
-
+        <li class="dib" ng-show="main.user"><a href="" ng-click="main.logout()">Logout</a></li>
       </ul>
+    </div>
   </header>
-  <main class="ph5 pt3" ui-view></main>
+  <main class="ph5 pv3" ui-view></main>
 </body>
 </html>

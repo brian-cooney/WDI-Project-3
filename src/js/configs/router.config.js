@@ -27,22 +27,10 @@ function Router($stateProvider, $locationProvider, $urlRouterProvider){
     controller: 'LoginCtrl',
     controllerAs: 'login'
   })
-  .state('usersIndex', {
-    url: '/users',
-    templateUrl: '/js/views/users/index.html',
-    controller: 'UsersIndexCtrl',
-    controllerAs: 'users'
-  })
   .state('widgetsIndex', {
     url: '/dashboard',
     templateUrl: '/js/views/widgets/index.html',
     controller: 'WidgetsIndexCtrl',
-    controllerAs: 'widgets'
-  })
-  .state('widgetsNew', {
-    url: '/widgets/new',
-    templateUrl: '/js/views/widgets/new.html',
-    controller: 'WidgetsNewCtrl',
     controllerAs: 'widgets'
   });
 

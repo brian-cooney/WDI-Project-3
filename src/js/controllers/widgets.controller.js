@@ -36,6 +36,10 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
       if (item.index+1 === item.data.articles.length) {
         item.index = 0;
       } else item.index++;
+    } else if (item.type === 'recipes') {
+      if (item.index+1 === item.data.hits.length) {
+        item.index = 0;
+      } else item.index++;
     }
   }
 
@@ -89,7 +93,7 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
   };
 
   vm.gridsterOpts = {
-    mobileBreakPoint: 700,
+    mobileBreakPoint: 600,
     margins: [15, 15], // the pixel distance between each widget
     outerMargin: false,
     resizable: {
@@ -132,8 +136,8 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
     .$promise
     .then(widget => {
       console.log('WIDGET CREATED:', widget);
-    })
-    .then(() => $state.reload());
+      $state.reload();
+    });
   }
   vm.options = [
     { type: 'news', name: 'News' },
