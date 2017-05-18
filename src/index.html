@@ -9,14 +9,19 @@
   <!-- inject:css -->
   <!-- endinject -->
 </head>
-<body class="sans-serif black-70" ng-controller="MainCtrl as main">
-  <header class="fixed z-5 w-100 bg-white ph5 pv2 dt">
+<body class="sans-serif black-70" ng-controller="MainCtrl as main" ng-class="{'dark-theme': main.dark}">
+  <header class="fixed z-5 w-100 bg-white ph5 pv2 dt" ng-class="{'dark-theme': main.dark}">
     <div class="v-mid dtc">
-      <a ui-sref="widgetsIndex"><img height="auto" class="v-mid" src="/images/logo1.png" alt="Piñata"></a>
+      <span ng-switch on="main.dark">
+        <a ui-sref="widgetsIndex"><img height="auto" class="v-mid" ng-switch-default ng-src="{{'/images/logo1.png'}}"  alt="Piñata"></a>
+        <a ui-sref="widgetsIndex"><img height="auto" class="v-mid" ng-switch-when="true" ng-src="{{'/images/white-logo.png'}}"  alt="Piñata"></a>
+      </span>
+
       <ul class="fr">
-        <li class="dib" ng-hide="main.user"><a ui-sref="login">Login</a></li>
-        <li class="dib" ng-hide="main.user"><a ui-sref="register">Register</a></li>
-        <li class="dib" ng-show="main.user"><a href="" ng-click="main.logout()">Logout</a></li>
+        <li class="dib" ng-hide="main.user"><a ng-class="{'dark-theme-text': main.dark}" ui-sref="login">Login</a></li>
+        <li class="dib" ng-hide="main.user"><a ng-class="{'dark-theme-text': main.dark}" ui-sref="register">Register</a></li>
+        <li class="dib" ng-show="main.user"><a ng-class="{'dark-theme-text': main.dark}" href="" ng-click="main.logout()">Logout</a></li>
+        <li class="dib"><a ng-click="main.darkTheme()" ng-class="{'dark-theme-text': main.dark}">[Dark Theme]</a></li>
       </ul>
     </div>
   </header>

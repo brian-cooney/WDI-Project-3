@@ -19,5 +19,15 @@ function MainCtrl($rootScope, CurrentUserService, $state) {
     CurrentUserService.removeUser();
   };
 
+  vm.dark = false;
+  vm.darkTheme = darkTheme;
+  function darkTheme() {
+    if (vm.dark === false) {
+      vm.dark = true;
+    } else {
+      vm.dark =false;
+    }
+    console.log(vm.dark);
+  }
 
 }

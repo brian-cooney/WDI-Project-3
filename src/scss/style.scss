@@ -194,3 +194,12 @@ main {
   background-color: #dfefef;
   background-image: url('/images/weather-icons/snow-white.png');
 }
+.dark-theme {
+  background-color: #4b4c4c !important;
+}
+.dark-theme-text {
+  color: white !important;
+}
+.dark-theme-text::placeholder {
+  color: white !important;
+}
