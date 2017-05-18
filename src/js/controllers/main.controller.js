@@ -5,9 +5,9 @@ angular
 MainCtrl.$inject = ['$rootScope', 'CurrentUserService', '$state'];
 function MainCtrl($rootScope, CurrentUserService, $state) {
   const vm = this;
-
   $rootScope.$on('loggedIn', () => {
     vm.user = CurrentUserService.currentUser;
+    // console.log('USER: ', vm.user.username)
   });
 
   $rootScope.$on('loggedOut', () => {

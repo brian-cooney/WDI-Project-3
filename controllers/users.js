@@ -1,5 +1,5 @@
 const User = require('../models/user');
-let currentUser;
+const Widget = require('../models/widget');
 
 function usersIndex(req, res) {
   User.find((err, users) => {
@@ -9,14 +9,18 @@ function usersIndex(req, res) {
   });
 }
 
+// also returns the current user's widgets when they log in
 function usersShow(req, res) {
-  User.findById(req.params.id, (err, user) => {
+  User
+  .findById(req.params.id, (err, user) => {
     if (err) return res.status(500).json({ message: 'Something went wrong.' });
     if (!user) return res.status(404).json({ message: 'User not found.' });
-    // console.log('USER: ', user);
-    currentUser = user;
-    return res.status(200).json(user);
+  })
+  .then(user => {
+    // console.log('USER: ', user.username)
+    res.status(200).json(user);
   });
+
 }
 
 function usersUpdate(req, res) {
@@ -39,6 +43,5 @@ module.exports = {
   index: usersIndex,
   show: usersShow,
   update: usersUpdate,
-  delete: usersDelete,
-  user: currentUser
+  delete: usersDelete
 };

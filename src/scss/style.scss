@@ -126,8 +126,7 @@ main {
 }
 .submitButton:focus {
   background-color: rgba(0, 255, 0, .7);
-  outline-width: thick;
-  outline-color: green;
+  outline-width: 0px;
 }
 .first {
   border-bottom: 2px solid #f26c4f;
