@@ -24,7 +24,7 @@
 <div class="fr w-two-thirds pa3" ng-if="widgets.widget.type === 'weather'">
   <h2>Choose weather location:</h2>
   <input type="text" ng-model="widgets.weatherLocation" placeholder="City name" ng-change="widgets.getWeather()">
-  {{widgets.url}}
+  <!-- {{widgets.url}} -->
 </div>
 
 <!-- Giphy -->
@@ -33,7 +33,7 @@
   <h2 class="pb2">Enter your search terms:</h2>
   <input class="pa2 h2 w5 br2 bw0" type="text" ng-model="widgets.giphySearchTerms" value="" ng-change="widgets.giphySearch()">
   <p class="f6 pt2">Keywords separated by spaces</p>
-  {{widgets.widget.url}}
+  <!-- {{widgets.widget.url}} -->
 </div>
 
 <!-- Events -->
@@ -74,7 +74,7 @@
 <!-- Submit -->
 
 <div class="w-two-thirds fr pa3">
-  <p>Widget: {{widgets.widget}}</p>
+  <!-- <p>Widget: {{widgets.widget}}</p> -->
   <input class="pointer grow br-pill bg-white w4 bw0 pa2 f3" type="submit" name="" value="Add">
 </div>
 

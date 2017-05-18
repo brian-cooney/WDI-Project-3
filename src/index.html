@@ -18,12 +18,12 @@
       </span>
 
       <ul class="fr">
-        <li class="dib" ng-hide="main.user"><a ng-class="{'dark-theme-text': main.dark}" ui-sref="login">Login</a></li>
-        <li class="dib" ng-hide="main.user"><a ng-class="{'dark-theme-text': main.dark}" ui-sref="register">Register</a></li>
-        <li class="dib" ng-show="main.user"><a ng-class="{'dark-theme-text': main.dark}" href="" ng-click="main.logout()">Logout</a></li>
-        <li class="dib" ng-class="{'dark-theme-text': main.dark}">
-          <p class="lh-copy">Dark Theme</p>
-          <label class="switch">
+        <li class="dib nav-hover1" ng-hide="main.user"><a ui-sref="login" ng-class="{'dark-theme-text': main.dark}"><span ng-class="{'dark-theme-text': main.dark}" id="red">Login</span> |</a></li>
+        <li class="dib nav-hover2" ng-hide="main.user"><a ng-class="{'dark-theme-text': main.dark}" ui-sref="register"><span ng-class="{'dark-theme-text': main.dark}" id="green">Register</span> |</a></li>
+        <li class="dib nav-hover3" ng-show="main.user"><a ng-class="{'dark-theme-text': main.dark}" href="" ng-click="main.logout()"><span ng-class="{'dark-theme-text': main.dark}" id="pink">Logout</span> |</a></li>
+        <li class="dib">
+          <span ng-class="{'dark-theme-text': main.dark}">Dark Theme:</span>
+          <label class="switch togg">
             <input type="checkbox" ng-click="main.darkTheme()">
             <div class="slider round"></div>
           </label>
