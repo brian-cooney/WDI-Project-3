@@ -36,8 +36,8 @@ main {
   margin-top: 100px;
 }
 // make sure gifs don't get squished in mobile layout
-.gridster-mobile .gridster-item .giphy {
-  height: 500px !important;
+.gridster-mobile .gridster-item {
+  height: 300px;
 }
 .new-box {
   height: 200px;
@@ -101,7 +101,6 @@ main {
 }
 .inputText {
   margin-top: 30px;
-  width: 400px;
   height: 30px;
   font-size: 17px;
   font-weight: 500;
@@ -110,7 +109,6 @@ main {
 }
 .submitButton {
   margin-top: 30px;
-  width: 400px;
   height: 40px;
   font-size: 13px;
   border: none;

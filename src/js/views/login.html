@@ -1,20 +1,18 @@
 <giphy></giphy>
 <div  class="login">
   <h1 ng-class="{'dark-theme-text': main.dark}">Login</h1>
-  <form ng-submit="login.login()">
-    <div>
-      <input class="inputText first" type="email" name="email" ng-model="login.user.email" placeholder="Email"
+  <div class="w-100 ph7-ns">
+    <form ng-submit="login.login()">
+      <input class="inputText w-100 first" type="email" name="email" ng-model="login.user.email" placeholder="Email"
       ng-class="{
-      'dark-theme': main.dark,
-      'dark-theme-text': main.dark
+        'dark-theme': main.dark,
+        'dark-theme-text': main.dark
       }" >
-    </div>
-    <div>
-      <input class="inputText second" type="password" name="password" ng-model="login.user.password" placeholder="Password" ng-class="{
-      'dark-theme': main.dark,
-      'dark-theme-text': main.dark
+      <input class="inputText w-100 second" type="password" name="password" ng-model="login.user.password" placeholder="Password" ng-class="{
+        'dark-theme': main.dark,
+        'dark-theme-text': main.dark
       }">
-    </div>
-    <input class="submitButton grow" type="submit" value="Submit">
-  </form>
+      <input class="submitButton w-100 grow" type="submit" value="Submit">
+    </form>
+  </div>
 </div>

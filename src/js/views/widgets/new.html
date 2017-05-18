@@ -1,5 +1,6 @@
+<div>
 <form class="" ng-submit="widgets.create()">
-  <div class="w-third pa3 fl">
+  <div class="w-third-ns w-100 pa3 fl widget-select">
 
     <label class="db b f3 pb2" for="type">Pick a widget: </label>
     <select class="h2 w-100" name="type" ng-model="widgets.widget.type" ng-options="option.type as option.name for option in widgets.options" ng-change="widgets.onChange(widgets.widget.type)" placeholder="Type">
@@ -21,25 +22,37 @@
 
 <!-- Weather -->
 
-<div class="fr w-two-thirds pa3" ng-if="widgets.widget.type === 'weather'">
+<div class="fr w-two-thirds-ns w-100 pa3 widget-options" ng-if="widgets.widget.type === 'weather'">
   <label class="db b f3 pb2">Choose weather location:</label>
   <input class="pa2 h2 w-75 br2 bw0 ignore-dark" type="text" ng-model="widgets.weatherLocation" placeholder="City name" ng-change="widgets.getWeather()">
   <!-- {{widgets.url}} -->
+  <!-- Submit -->
+
+  <div class="dtc pa3 fr">
+    <!-- <p>Widget: {{widgets.widget}}</p> -->
+    <input class="add-widget pointer v-btm relative grow br-pill bg-white w4 bw0 pa2 f5" type="submit" name="" value="Add">
+  </div>
 </div>
 
 <!-- Giphy -->
 
-<div class="fr w-two-thirds pa3" ng-if="widgets.widget.type === 'giphy'">
+<div class="fr w-two-thirds pa3 widget-options" ng-if="widgets.widget.type === 'giphy'">
   <label class="db b f3 pb2">Enter your search terms:</label>
-  <input class="pa2 h2 w-75 br2 bw0 ignore-dark" type="text" ng-model="widgets.giphySearchTerms" value="" ng-change="widgets.giphySearch()">
+  <input class="dib pa2 h2 w-50 br2 bw0 ignore-dark" type="text" ng-model="widgets.giphySearchTerms" value="" ng-change="widgets.giphySearch()">
+  <div class="pl3 fr">
+    <!-- <p>Widget: {{widgets.widget}}</p> -->
+    <input class="add-widget pointer v-btm relative grow br-pill bg-white w4 bw0 pa2 f5" type="submit" name="" value="Add">
+  </div>
   <p class="f6 pt2">Keywords separated by spaces</p>
   <!-- {{widgets.widget.url}} -->
+  <!-- Submit -->
+
 </div>
 
 <!-- Events -->
 
-<div class="fr w-two-thirds pa3" ng-if="widgets.widget.type === 'events'">
-  <h1 class="f3 pb2">Event filters:</h1>
+<div class="fr w-two-thirds pa3 widget-options" ng-if="widgets.widget.type === 'events'">
+  <h3 class="f3 pb2">Event filters:</h1>
   <div class="w-100">
   <div class="w-third pr2 fl">
     <select class="h2 w-100 br2 bw0" name="location" ng-model="widgets.eventsWidget.location" ng-options="eventsLocation.city for eventsLocation in widgets.eventsLocation" placeholder="Location" ng-change="widgets.events()">
@@ -66,23 +79,44 @@
     </select>
   </div>
 </div>
+<!-- Submit -->
+
+<div class="dtc pt3 fr">
+  <!-- <p>Widget: {{widgets.widget}}</p> -->
+  <input class="add-widget pointer v-btm relative grow br-pill bg-white w4 bw0 pa2 f5" type="submit" name="" value="Add">
+</div>
 
 </div>
 
 <!-- News -->
 
-<div class="fr w-two-thirds pa3" ng-if="widgets.widget.type === 'news'">
-  <h2 class="pb2" ng-if="widgets.widget.type === 'news'">Choose news source: </h2>
-  <select class="pa2 h2 w-75 br2 bw0" name="source" ng-model="widgets.newsWidget.source" ng-options="newsSourceOption.source as newsSourceOption.name for newsSourceOption in widgets.newsSourceOptions" placeholder="Source" ng-change="widgets.test()">
+<div class="fr w-two-thirds pa3 widget-options" ng-if="widgets.widget.type === 'news'">
+  <h3 class="pb2 f3" ng-if="widgets.widget.type === 'news'">Choose news source: </h2>
+  <select class="pa2 h2 w-50 br2 bw0" name="source" ng-model="widgets.newsWidget.source" ng-options="newsSourceOption.source as newsSourceOption.name for newsSourceOption in widgets.newsSourceOptions" placeholder="Source" ng-change="widgets.test()">
     <option value="" disabled selected style="display: none;">Please Select</option>
   </select>
-</div>
+  <!-- Submit -->
 
+  <div class="pl3 w-50 fr">
+    <!-- <p>Widget: {{widgets.widget}}</p> -->
+    <input class="add-widget pointer v-btm relative grow br-pill bg-white w4 bw0 pa2 f5" type="submit" name="" value="Add">
+  </div>
+</div>
 <!-- Submit -->
 
-<div class="w-two-thirds fr pa3">
+<div ng-if="
+  widgets.widget.type === 'ron' ||
+  widgets.widget.type === 'chuck' ||
+  widgets.widget.type === 'recipes' ||
+  widgets.widget.type === 'advice' ||
+  widgets.widget.type === 'today' ||
+  widgets.widget.type === 'quote'"
+  class="w-two-thirds dtc pa3 fr h-100 dt">
   <!-- <p>Widget: {{widgets.widget}}</p> -->
-  <input class="pointer grow br-pill bg-white w4 bw0 pa2 f4" type="submit" name="" value="Add">
+  <div class="pt4 tr h-100">
+    <input class="pointer v-btm relative grow br-pill bg-white w4 bw0 pa2 f5" type="submit" name="" value="Add">
+  </div>
 </div>
 
 </form>
+</div>

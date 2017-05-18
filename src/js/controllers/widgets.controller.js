@@ -4,10 +4,10 @@ angular
 // .controller('WidgetsNewCtrl', WidgetsNewCtrl);
 
 // finds only the widgets belonging to the logged in user
-WidgetsIndexCtrl.$inject = ['Widget', '$rootScope', 'CurrentUserService', '$state'];
-function WidgetsIndexCtrl(Widget, $rootScope, CurrentUserService, $state) {
+WidgetsIndexCtrl.$inject = ['Widget', '$rootScope', 'CurrentUserService'];
+function WidgetsIndexCtrl(Widget, $rootScope, CurrentUserService) {
   const vm = this;
-  $rootScope.$on('loggedIn', () => {
+  vm.getUserWidgets = function getUserWidgets() {
     vm.user = CurrentUserService.currentUser;
     vm.all = [];
     Widget
@@ -35,6 +35,10 @@ function WidgetsIndexCtrl(Widget, $rootScope, CurrentUserService, $state) {
         vm.widget = {};
       });
     };
+  };
+  if (CurrentUserService.currentUser) vm.getUserWidgets();
+  $rootScope.$on('loggedIn', () => {
+    vm.getUserWidgets();
   });
   vm.nextItem = nextItem;
   vm.newButton = {
@@ -115,6 +119,8 @@ function WidgetsIndexCtrl(Widget, $rootScope, CurrentUserService, $state) {
     mobileBreakPoint: 600,
     margins: [15, 15], // the pixel distance between each widget
     outerMargin: false,
+    mobileModeEnabled: false,
+    swapping: true,
     resizable: {
       enabled: true,
       handles: ['n', 'e', 's', 'w', 'ne', 'se', 'sw', 'nw'],

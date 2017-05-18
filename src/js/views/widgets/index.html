@@ -19,8 +19,10 @@
 
     <div ng-click="widgets.newWidget()" ng-class="{ cancel: widgets.newCancel }"
     class="add-button overflow-hidden grid-item bg-moon-gray cover pa2" gridster-item="widgets.newButton">
-      <img class="grow h-100 w-100 v-top pointer" src="/images/plus.png" alt="">
+      <img class="grow v-top pointer" src="/images/plus.png" alt="">
     </div>
+
+<!-- Container for grid item -->
 
     <div class="overflow-hidden border-box grid-item br2 cover" gridster-item="item" col="item.col" row="item.row" size-x="item.sizeX" size-y="item.sizeY" ng-repeat="item in widgets.all">
 
@@ -50,9 +52,9 @@
 
       <h2 ng-if="item.type === 'news' && item.data.status != 'ok'">News failed to load :(</h2>
       <div ng-if="item.type === 'news' && item.data.status === 'ok'"
-        class="absolute overflow-hidden z--1 w-100 h-100"
+        class="overflow-hidden z--1 w-100 h-100"
         style="background-color: {{item.color}}" >
-        <img height="20" class="absolute z-5 top-0 mt2 right-0 mr2 pointer icon fr" src="/images/arrow.png" ng-click="widgets.nextItem(item)">
+        <img height="20" class="z-5 top-0 mt2 right-0 mr2 pointer icon fr" src="/images/arrow.png" ng-click="widgets.nextItem(item)">
 
         <div class="h-50 bg-center w-100 cover"
           style="background-image: url({{item.data.articles[item.index].urlToImage}})"></div>
