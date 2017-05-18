@@ -1,11 +1,11 @@
 angular
 .module('wdi-group-project')
-.controller('WidgetsIndexCtrl', WidgetsIndexCtrl)
-.controller('WidgetsNewCtrl', WidgetsNewCtrl);
+.controller('WidgetsIndexCtrl', WidgetsIndexCtrl);
+// .controller('WidgetsNewCtrl', WidgetsNewCtrl);
 
 // finds only the widgets belonging to the logged in user
-WidgetsIndexCtrl.$inject = ['Widget', '$rootScope', 'CurrentUserService'];
-function WidgetsIndexCtrl(Widget, $rootScope, CurrentUserService) {
+WidgetsIndexCtrl.$inject = ['Widget', '$rootScope', 'CurrentUserService', '$state'];
+function WidgetsIndexCtrl(Widget, $rootScope, CurrentUserService, $state) {
   const vm = this;
   $rootScope.$on('loggedIn', () => {
     vm.user = CurrentUserService.currentUser;
@@ -17,6 +17,24 @@ function WidgetsIndexCtrl(Widget, $rootScope, CurrentUserService) {
       // console.log('WIDGETS FOUND: ', widgets)
       vm.all = widgets;
     });
+    vm.widget = {};
+    vm.widget.data = {};
+    vm.widget.index = 0;
+    vm.widget.user = vm.user._id;
+    vm.create = function widgetsCreate() {
+      // console.log(vm.widget);
+      Widget
+      .save(vm.widget)
+      .$promise
+      .then(widget => {
+        vm.widget = widget;
+        console.log('WIDGET CREATED:', vm.widget);
+      })
+      .then(() => {
+        vm.all.push(vm.widget);
+        vm.widget = {};
+      });
+    };
   });
   vm.nextItem = nextItem;
   vm.newButton = {
@@ -120,27 +138,12 @@ function WidgetsIndexCtrl(Widget, $rootScope, CurrentUserService) {
       } // optional callback fired when item is finished dragging
     }
   };
-}
+// }
 
-WidgetsNewCtrl.$inject = ['$state', 'Widget', 'CurrentUserService'];
-function WidgetsNewCtrl($state, Widget, CurrentUserService) {
-  const vm = this;
-  vm.create = widgetsCreate;
-  vm.widget = {};
-  vm.widget.data = {};
-  vm.widget.index = 0;
-  if (CurrentUserService.currentUser) vm.widget.user = CurrentUserService.currentUser._id;
-  function widgetsCreate() {
-    vm.all.push(vm.widget);
-    // console.log(vm.widget);
-    Widget
-    .save(vm.widget)
-    .$promise
-    .then(widget => {
-      console.log('WIDGET CREATED:', widget);
-      $state.go('widgetsIndex');
-    });
-  }
+// WidgetsNewCtrl.$inject = ['$state', 'Widget', 'CurrentUserService'];
+// function WidgetsNewCtrl($state, Widget, CurrentUserService) {
+//   const vm = this;
+
   vm.options = [
     { type: 'news', name: 'News' },
     { type: 'weather', name: 'Weather' },
