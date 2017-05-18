@@ -125,7 +125,6 @@ main {
   -webkit-animation: colorchange 5s infinite;
 }
 .submitButton:focus {
-  background-color: rgba(0, 255, 0, .7);
   outline-width: 0px;
 }
 .first {
@@ -158,7 +157,10 @@ main {
 .fith:focus {
   border-bottom: 4px solid #f06eaa;
 }
-
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset;
+    -webkit-text-fill-color: black !important;
+}
 
 @keyframes colorchange
 {
@@ -209,6 +211,15 @@ main {
 .dark-theme {
   background-color: #4b4c4c !important;
   transition: all .3s ease;
+  input {
+    -webkit-box-shadow: 0 0 0 30px #4b4c4c inset;
+    -webkit-text-fill-color: white !important;
+  }
+  .grow {
+    -webkit-text-fill-color: black !important;
+    -webkit-box-shadow: none;
+
+  }
 }
 .dark-theme-text {
   color: white !important;
