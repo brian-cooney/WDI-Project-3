@@ -273,11 +273,11 @@ body, header, input {
 }
 
 input:checked + .slider {
-  background-color: #f26c4f;
+  background-color: #60a0e0;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #f26c4f;
+  box-shadow: 0 0 1px #60a0e0;
 }
 
 input:checked + .slider:before {
