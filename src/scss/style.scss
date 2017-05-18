@@ -2,6 +2,7 @@
 @import 'helpers/tachyons';
 a {
   text-decoration: none;
+
 }
 body, html, ul, li, h1, h2, h3, h4, h5, h6, p, dd, dt, dl {
   margin: 0;
@@ -18,6 +19,18 @@ header {
   height: 100px;
   margin-top: -100px;
   line-height: 100px;
+  a,span {
+    color: black;
+  }
+  #red:hover {
+    color: #f26c4f !important;
+  }
+  #green:hover {
+    color: #7cc576 !important;
+  }
+  #pink:hover {
+    color: #f06eaa !important;
+  }
 }
 main {
   margin-top: 100px;
@@ -112,7 +125,6 @@ main {
   -webkit-animation: colorchange 5s infinite;
 }
 .submitButton:focus {
-  background-color: rgba(0, 255, 0, .7);
   outline-width: 0px;
 }
 .first {
@@ -145,7 +157,10 @@ main {
 .fith:focus {
   border-bottom: 4px solid #f06eaa;
 }
-
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset;
+    -webkit-text-fill-color: black !important;
+}
 
 @keyframes colorchange
 {
@@ -192,4 +207,89 @@ main {
   background-size: 80%;
   background-color: #dfefef;
   background-image: url('/images/weather-icons/snow-white.png');
+}
+.dark-theme {
+  background-color: #4b4c4c !important;
+  transition: all .3s ease;
+  input {
+    -webkit-box-shadow: 0 0 0 30px #4b4c4c inset;
+    -webkit-text-fill-color: white !important;
+  }
+  .grow {
+    -webkit-text-fill-color: black !important;
+    -webkit-box-shadow: none;
+
+  }
+}
+.dark-theme-text {
+  color: white !important;
+  transition: all .3s ease;
+}
+.dark-theme-text::placeholder {
+  color: white !important;
+  transition: all .3s ease;
+}
+body, header, input {
+  transition: all .3s ease;
+}
+.switch {
+  position: relative;
+  width: 40px;
+  height: 21px;
+  display: inline-block;
+  margin: 0 auto !important;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #f26c4f;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #f26c4f;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(19px);
+  -ms-transform: translateX(19px);
+  transform: translateX(19px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.togg {
+  top: 5px;
 }
