@@ -10,7 +10,7 @@
   <!-- endinject -->
 </head>
 <body class="sans-serif black-70" ng-controller="MainCtrl as main">
-  <header  class="fixed z-5 w-100 bg-white ph5 pv2 dt">
+  <header ng-hide="main.user" class="fixed z-5 w-100 bg-white ph5 pv2 dt">
     <div class="v-mid dtc">
       <a ui-sref="widgetsIndex"><img height="auto" class="v-mid" src="/images/logo1.png" alt="Piñata"></a>
       <ul class="fr">
