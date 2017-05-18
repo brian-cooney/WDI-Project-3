@@ -207,10 +207,10 @@ input:-webkit-autofill {
   background-image: url('/images/weather-icons/snow-white.png');
 }
 .dark-theme {
-  background-color: #4b4c4c !important;
+  background-color: #2d2d2d !important;
   transition: all .3s ease;
   input {
-    -webkit-box-shadow: 0 0 0 30px #4b4c4c inset;
+    -webkit-box-shadow: 0 0 0 30px #2d2d2d inset;
     -webkit-text-fill-color: white !important;
   }
   .grow, .ignore-dark {
