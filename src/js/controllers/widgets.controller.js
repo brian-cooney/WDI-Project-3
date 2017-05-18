@@ -131,13 +131,14 @@ function WidgetsNewCtrl($state, Widget, CurrentUserService) {
   vm.widget.index = 0;
   if (CurrentUserService.currentUser) vm.widget.user = CurrentUserService.currentUser._id;
   function widgetsCreate() {
-    console.log(vm.widget);
+    vm.all.push(vm.widget);
+    // console.log(vm.widget);
     Widget
     .save(vm.widget)
     .$promise
     .then(widget => {
       console.log('WIDGET CREATED:', widget);
-      $state.reload();
+      $state.go('widgetsIndex');
     });
   }
   vm.options = [
