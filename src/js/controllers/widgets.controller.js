@@ -1,22 +1,45 @@
 angular
 .module('wdi-group-project')
-.controller('WidgetsIndexCtrl', WidgetsIndexCtrl)
-.controller('WidgetsNewCtrl', WidgetsNewCtrl);
+.controller('WidgetsIndexCtrl', WidgetsIndexCtrl);
+// .controller('WidgetsNewCtrl', WidgetsNewCtrl);
 
 // finds only the widgets belonging to the logged in user
-WidgetsIndexCtrl.$inject = ['Widget', 'CurrentUserService'];
-function WidgetsIndexCtrl(Widget, CurrentUserService) {
+WidgetsIndexCtrl.$inject = ['Widget', '$rootScope', 'CurrentUserService'];
+function WidgetsIndexCtrl(Widget, $rootScope, CurrentUserService) {
   const vm = this;
-  if (CurrentUserService.currentUser) {
-    vm.user = CurrentUserService.currentUser._id;
+  vm.getUserWidgets = function getUserWidgets() {
+    vm.user = CurrentUserService.currentUser;
     vm.all = [];
     Widget
-    .query({ 'user': vm.user })
+    .query({ 'user': vm.user._id })
     .$promise
     .then(widgets => {
+      // console.log('WIDGETS FOUND: ', widgets)
       vm.all = widgets;
     });
-  }
+    vm.widget = {};
+    vm.widget.data = {};
+    vm.widget.index = 0;
+    vm.widget.user = vm.user._id;
+    vm.create = function widgetsCreate() {
+      // console.log(vm.widget);
+      Widget
+      .save(vm.widget)
+      .$promise
+      .then(widget => {
+        vm.widget = widget;
+        console.log('WIDGET CREATED:', vm.widget);
+      })
+      .then(() => {
+        vm.all.push(vm.widget);
+        vm.widget = {};
+      });
+    };
+  };
+  if (CurrentUserService.currentUser) vm.getUserWidgets();
+  $rootScope.$on('loggedIn', () => {
+    vm.getUserWidgets();
+  });
   vm.nextItem = nextItem;
   vm.newButton = {
     sizeY: 1, sizeX: 1, maxSizeY: 1, maxSizeX: 1
@@ -27,7 +50,7 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
   };
 
   function nextItem(item) {
-    console.log(item.index);
+    // console.log(item.index)
     if (item.type === 'giphy') {
       if (item.index+1 === item.data.data.length) {
         item.index = 0;
@@ -57,7 +80,7 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
   vm.newCancel = false;
   vm.newIsHidden = true;
   vm.newWidget = function newWidget() {
-    console.log('clicked');
+    // console.log('clicked');
     if (vm.newIsHidden) {
       vm.newIsHidden = false;
       vm.newCancel = true;
@@ -65,15 +88,15 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
       vm.newIsHidden = true;
       vm.newCancel = false;
     }
-    console.log(vm.newIsHidden);
+    // console.log(vm.newIsHidden);
   };
 
   vm.widgetUpdatePos = function widgetUpdatePos(widget) {
-    const index = vm.all.indexOf(widget);
     // console.log(vm.all[index]);
     // ONLY update the position/size if different from starting position/size
     if (vm.startY !== widget.sizeY || vm.startX !== widget.sizeX || vm.startCol !== widget.col || vm.startRow !== widget.row) {
-      console.log('pos and size updated');
+      const index = vm.all.indexOf(widget);
+      // console.log('pos and size updated');
       Widget
       .update({ id: widget._id }, {
         sizeX: vm.all[index].sizeX,
@@ -89,13 +112,15 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
     vm.startY = widget.sizeY;
     vm.startCol = widget.col;
     vm.startRow = widget.row;
-    console.log(vm.startY, vm.startX, vm.startCol, vm.startRow);
+    // console.log(vm.startY, vm.startX, vm.startCol, vm.startRow);
   };
 
   vm.gridsterOpts = {
     mobileBreakPoint: 600,
     margins: [15, 15], // the pixel distance between each widget
     outerMargin: false,
+    mobileModeEnabled: false,
+    swapping: true,
     resizable: {
       enabled: true,
       handles: ['n', 'e', 's', 'w', 'ne', 'se', 'sw', 'nw'],
@@ -119,26 +144,12 @@ function WidgetsIndexCtrl(Widget, CurrentUserService) {
       } // optional callback fired when item is finished dragging
     }
   };
-}
+// }
 
-WidgetsNewCtrl.$inject = ['$state', 'Widget', 'CurrentUserService'];
-function WidgetsNewCtrl($state, Widget, CurrentUserService) {
-  const vm = this;
-  vm.create = widgetsCreate;
-  vm.widget = {};
-  vm.widget.data = {};
-  vm.widget.index = 0;
-  vm.widget.user = CurrentUserService.currentUser._id;
-  function widgetsCreate() {
-    console.log(vm.widget);
-    Widget
-    .save(vm.widget)
-    .$promise
-    .then(widget => {
-      console.log('WIDGET CREATED:', widget);
-      $state.reload();
-    });
-  }
+// WidgetsNewCtrl.$inject = ['$state', 'Widget', 'CurrentUserService'];
+// function WidgetsNewCtrl($state, Widget, CurrentUserService) {
+//   const vm = this;
+
   vm.options = [
     { type: 'news', name: 'News' },
     { type: 'weather', name: 'Weather' },

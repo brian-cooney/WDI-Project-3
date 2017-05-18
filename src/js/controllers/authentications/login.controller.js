@@ -9,13 +9,14 @@ function LoginCtrl(User, CurrentUserService, $state) {
   vm.login = login;
   function login() {
     User
-      .login(vm.user).$promise
+      .login(vm.user)
+      .$promise
       .then(data => {
-        console.log(data);
+        console.log('LOGGED IN: ', data.message);
         CurrentUserService.getUser();
         $state.go('widgetsIndex');
       }, err => {
-        console.log(err);
+        console.log('ERROR: ',err);
       });
   }
 }

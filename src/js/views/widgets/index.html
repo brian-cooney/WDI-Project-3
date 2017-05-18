@@ -1,10 +1,13 @@
 <div ng-hide="main.user" class="ph5 pt3"><h1>HOME</h1>Not logged in</div>
-  <h2 ng-show="main.user" class="pv3">Hi, {{main.user.username}}. These are your widgets</h2>
+  <h2 ng-show="main.user" class="pv3" ng-class="{'dark-theme-text': main.dark}">Hi, {{main.user.username}}. These are your widgets</h2>
 
   <!-- New Widget -->
 
-  <div class="br4 pa2 grid-item new-box bg-moon-gray" ng-hide="widgets.newIsHidden" ng-controller="WidgetsNewCtrl as widget">
+  <!-- <div class="br4 pa2 grid-item new-box bg-moon-gray" ng-hide="widgets.newIsHidden" ng-controller="WidgetsNewCtrl as widget">
     <new-widgets ng-controller="WidgetsNewCtrl as widgets"></new-widgets>
+  </div> -->
+  <div class="br4 pa2 grid-item new-box bg-moon-gray" ng-hide="widgets.newIsHidden">
+    <new-widgets></new-widgets>
   </div>
 
   <!-- Gridster -->
@@ -16,10 +19,12 @@
 
     <div ng-click="widgets.newWidget()" ng-class="{ cancel: widgets.newCancel }"
     class="add-button overflow-hidden grid-item bg-moon-gray cover pa2" gridster-item="widgets.newButton">
-      <img class="grow h-100 w-100 v-top pointer" src="/images/plus.png" alt="">
+      <img class="grow v-top pointer" src="/images/plus.png" alt="">
     </div>
 
-    <div class="overflow-hidden border-box grid-item bg-white cover" gridster-item="item" col="item.col" row="item.row" size-x="item.sizeX" size-y="item.sizeY" ng-repeat="item in widgets.all">
+<!-- Container for grid item -->
+
+    <div class="overflow-hidden border-box grid-item br2 cover" gridster-item="item" col="item.col" row="item.row" size-x="item.sizeX" size-y="item.sizeY" ng-repeat="item in widgets.all">
 
 
       <img height="20" src="/images/delete.png" class="absolute pointer icon fl z-5 mt2 ml2" ng-click="widgets.delete(item)">
@@ -47,9 +52,9 @@
 
       <h2 ng-if="item.type === 'news' && item.data.status != 'ok'">News failed to load :(</h2>
       <div ng-if="item.type === 'news' && item.data.status === 'ok'"
-        class="absolute overflow-hidden z--1 w-100 h-100"
+        class="overflow-hidden z--1 w-100 h-100"
         style="background-color: {{item.color}}" >
-        <img height="20" class="absolute z-5 top-0 mt2 right-0 mr2 pointer icon fr" src="/images/arrow.png" ng-click="widgets.nextItem(item)">
+        <img height="20" class="z-5 top-0 mt2 right-0 mr2 pointer icon fr" src="/images/arrow.png" ng-click="widgets.nextItem(item)">
 
         <div class="h-50 bg-center w-100 cover"
           style="background-image: url({{item.data.articles[item.index].urlToImage}})"></div>
@@ -84,43 +89,44 @@
 
       </div>
 
-      <div ng-if="item.type === 'advice'">
-        <h3>Wise Words of the Day</h3>
-        <h4>{{ item.data.slip.advice }}</h4>
+      <div ng-if="item.type === 'advice'" style="background-color: {{item.color}}">
+        <h3 class="tc">Wise Words of the Day</h3>
+        <h4 class="pt2">{{ item.data.slip.advice }}</h4>
       </div>
 
 
-      <div ng-if="item.type === 'today'" style="background-color: {{item.color}}">
-        <h3>On this day in history...</h3>
-        <h4>In {{item.data.data.Events[0].year}}</h4>
-        <h4>{{ item.data.data.Events[0].text }}</h4>
+      <div ng-if="item.type === 'today'" class="dt h-100 pa2" style="background-color: {{item.color}}">
+        <h3 class="tc">On this day in history...</h3>
+        <h4 class="pt2">In {{item.data.data.Events[0].year}}</h4>
+        <h5>{{ item.data.data.Events[0].text }}</h5>
+        <p class="dtc v-btm i"><a href="{{ item.data.data.Events[0].links[0].link}}">Read more...</a></p>
       </div>
 
       <div class="pa2 dt h-100 w-100 tc" style="background-color: {{item.color}}" ng-if="item.type === 'chuck'">
         <h4 class="v-mid dtc">{{ item.data.value }}</h4>
       </div>
 
-      <div ng-if="item.type === 'quote'">
-        <h3>{{ item.data[0].title }}</h3>
-        {{ item.data[0].content }}
+      <div ng-if="item.type === 'quote'" style="background-color: {{item.color}}" class="dt h-100 pa2">
+        <p class="dtc pt4" ng-bind-html="item.data[0].content | htmlToPlaintext | limitTo : 65"></p>
+        <p class="dtc v-btm tr">-{{ item.data[0].title }}</p>
       </div>
 
-      <div ng-if="item.type === 'events'">
+      <div ng-if="item.type === 'events'" style="background-color: {{item.color}}">
         <!-- <img ng-src="" alt=""> -->
         <!-- {{ item.data }} -->
         <div class="bg-black-90 h-50">
           <h3 class="f4 pt2 pv5 tc white">{{ item.data.events.event[0].title }}</h3>
         </div>
 
-        <p  class="f5 pa3" ng-bind-html="item.data.events.event[0].description | htmlToPlaintext | limitTo : 65">...</p>
+        <p class="f5 pa3" ng-bind-html="item.data.events.event[0].description | htmlToPlaintext | limitTo : 65">...</p>
         <p class="f5 pt3 pl3"><em>{{ item.data.events.event[0].venue_address }}</em></p>
         <p class="f5 pb3 pl3">{{ item.data.events.event[0].city_name }}</p>
         <a class="f5 pa3 fr" target="_blank" href="{{ item.data.events.event[0].url }}">See more...</a>
       </div>
 
-      <div ng-if="item.type === 'ron'" class="dt h-100 tc" style="background-color: {{item.color}}">
+      <div ng-if="item.type === 'ron'" class="dt h-100 pa2" style="background-color: {{item.color}}">
         <h3 class="dtc v-mid"><span class="f3">"</span>{{ item.data[0]}}<span class="f3">"</span></h3>
-        <p class="dtc v-btm i">-Ron Swanson</p>
+        <p class="dtc v-btm tr i">-Ron Swanson</p>
       </div>
 
       <!-- <div ng-if="item.type === 'numberFact'">

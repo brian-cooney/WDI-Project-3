@@ -1,27 +1,54 @@
 <div class="register">
 
-  <h1>Register</h1>
+  <h1 ng-class="{'dark-theme-text': main.dark}">Register</h1>
   <form ng-submit="register.register()">
     <div>
-      <input class="inputText first" type="text" name="username" ng-model="register.user.username" placeholder="Username">
+      <input class="inputText first" type="text" name="username" ng-model="register.user.username" placeholder="Username" ng-class="{
+      'dark-theme': main.dark,
+      'dark-theme-text': main.dark
+      }">
     </div>
     <div>
-      <input class="inputText second" type="text" name="firstName" ng-model="register.user.firstName" placeholder="First name">
+      <input class="inputText second" type="text" name="firstName" ng-model="register.user.firstName" placeholder="First name"
+      ng-class="{
+      'dark-theme': main.dark,
+      'dark-theme-text': main.dark
+      }">
     </div>
     <div>
-      <input class="inputText third" type="text" name="lastName" ng-model="register.user.lastName" placeholder="Last name">
+      <input class="inputText third" type="text" name="lastName" ng-model="register.user.lastName" placeholder="Last name"
+      ng-class="{
+      'dark-theme': main.dark,
+      'dark-theme-text': main.dark
+      }">
     </div>
     <div>
-      <input class="inputText fourth" type="text" name="image" ng-model="register.user.image" placeholder="Image">
+      <input class="inputText fourth" type="text" name="image" ng-model="register.user.image" placeholder="Image"
+      ng-class="{
+      'dark-theme': main.dark,
+      'dark-theme-text': main.dark
+      }">
     </div>
     <div>
-      <input class="inputText fith" type="email" name="email" ng-model="register.user.email" placeholder="Email">
+      <input class="inputText fith" type="email" name="email" ng-model="register.user.email" placeholder="Email"
+      ng-class="{
+      'dark-theme': main.dark,
+      'dark-theme-text': main.dark
+      }">
     </div>
     <div>
-      <input class="inputText first" type="password" name="password" ng-model="register.user.password" placeholder="Password">
+      <input class="inputText first" type="password" name="password" ng-model="register.user.password" placeholder="Password"
+      ng-class="{
+      'dark-theme': main.dark,
+      'dark-theme-text': main.dark
+      }">
     </div>
     <div>
-      <input class="inputText second" type="password" name="passwordConfirmation" ng-model="register.user.passwordConfirmation" placeholder="Password confirmation">
+      <input class="inputText second" type="password" name="passwordConfirmation" ng-model="register.user.passwordConfirmation" placeholder="Password confirmation"
+      ng-class="{
+      'dark-theme': main.dark,
+      'dark-theme-text': main.dark
+      }">
     </div>
     <input class="submitButton grow" type="submit" value="Submit" />
   </form>
