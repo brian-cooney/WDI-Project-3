@@ -51,7 +51,7 @@
 <!-- Events -->
 
 <div class="fr w-two-thirds pa3 widget-options" ng-if="widgets.widget.type === 'events'">
-  <h3 class="f3 pb2">Event filters:</h1>
+  <h3 class="f3 pb2">Event filters:</h3>
   <div class="w-100">
   <div class="w-third pr2 fl">
     <select class="h2 w-100 br2 bw0" name="location" ng-model="widgets.eventsWidget.location" ng-options="eventsLocation.city for eventsLocation in widgets.eventsLocation" placeholder="Location" ng-change="widgets.events()">
@@ -90,7 +90,7 @@
 <!-- News -->
 
 <div class="fr w-two-thirds pa3 widget-options" ng-if="widgets.widget.type === 'news'">
-  <h3 class="pb2 f3" ng-if="widgets.widget.type === 'news'">Choose news source: </h2>
+  <h3 class="pb2 f3" ng-if="widgets.widget.type === 'news'">Choose news source: </h3>
   <select class="pa2 h2 w-50 br2 bw0" name="source" ng-model="widgets.newsWidget.source" ng-options="newsSourceOption.source as newsSourceOption.name for newsSourceOption in widgets.newsSourceOptions" placeholder="Source" ng-change="widgets.test()">
     <option value="" disabled selected style="display: none;">Please Select</option>
   </select>
