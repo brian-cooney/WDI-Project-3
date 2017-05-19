@@ -50,7 +50,19 @@
     }
   },
   "dependencies": {
-    "express": "^4.14.0"
+    "bcrypt": "^0.8.7",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.3",
+    "express": "^4.14.0",
+    "express-jwt": "^5.0.0",
+    "forever": "^0.15.3",
+    "jsonwebtoken": "^7.1.9",
+    "mongoose": "^4.9.9",
+    "morgan": "^1.8.1",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1",
+    "validator": "^5.6.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
@@ -75,6 +87,7 @@
     "gulp-order": "^1.1.1",
     "gulp-plumber": "^1.1.0",
     "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^2.2.0",
     "gulp-strip-css-comments": "^1.2.0",
@@ -86,7 +99,8 @@
     "require-dir": "^0.3.1",
     "gulp-replace": "^0.5.4"
   },
+  "repository": "git@github.com:patchyj/wdi-group-project.git",
   "engines": {
-    "node": ">=6.x"
+    "node": ">=7.x"
   }
 }

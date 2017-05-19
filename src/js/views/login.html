@@ -1,0 +1,20 @@
+<nav-directive></nav-directive>
+<div class="page ph5-l ph4-m ph2">
+  <div  class="login">
+    <h1 ng-class="{'dark-theme-text': main.dark}">Login</h1>
+    <div class="w-100 ph7-ns">
+      <form ng-submit="login.login()">
+        <input class="inputText w-100 first" type="email" name="email" ng-model="login.user.email" placeholder="Email"
+        ng-class="{
+          'dark-theme': main.dark,
+          'dark-theme-text': main.dark
+        }" >
+        <input class="inputText w-100 second" type="password" name="password" ng-model="login.user.password" placeholder="Password" ng-class="{
+          'dark-theme': main.dark,
+          'dark-theme-text': main.dark
+        }">
+        <input class="submitButton w-100 grow" type="submit" value="Submit">
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,155 @@
+<nav-directive></nav-directive>
+
+<div class="page ph5-l ph4-m ph2">
+  <div ng-hide="main.user" class="ph5 pt3"><h1>HOME</h1>Not logged in</div>
+  <h2 ng-show="main.user" class="pv3" ng-class="{'dark-theme-text': main.dark}">Hi, {{main.user.username}}. These are your widgets</h2>
+
+  <!-- New Widget -->
+
+  <!-- <div class="br4 pa2 grid-item new-box bg-moon-gray" ng-hide="widgets.newIsHidden" ng-controller="WidgetsNewCtrl as widget">
+  <new-widgets ng-controller="WidgetsNewCtrl as widgets"></new-widgets>
+</div> -->
+<div class="br4 pa2 grid-item new-box bg-moon-gray" ng-hide="widgets.newIsHidden">
+  <new-widgets></new-widgets>
+</div>
+
+<!-- Gridster -->
+
+<!-- change how the gridster directive behaves in the vm.gridsterOpts in WidgetsIndexCtrl -->
+<div gridster="widgets.gridsterOpts">
+
+  <!-- Add Widget Button -->
+
+  <div ng-click="widgets.newWidget()" ng-class="{ cancel: widgets.newCancel }"
+  class="add-button overflow-hidden grid-item bg-moon-gray cover pa2" gridster-item="widgets.newButton">
+  <img class="grow v-top pointer" src="/images/plus.png" alt="">
+</div>
+
+<!-- Container for grid item -->
+
+<div class="overflow-hidden border-box grid-item br2 cover" gridster-item="item" col="item.col" row="item.row" size-x="item.sizeX" size-y="item.sizeY" ng-repeat="item in widgets.all">
+
+
+  <img height="20" src="/images/delete.png" class="absolute pointer icon fl z-5 mt2 ml2" ng-click="widgets.delete(item)">
+
+  <!-- <p>Size: {{item.sizeX}}, {{item.sizeY}} Pos: {{item.col}}, {{item.row}}</p> -->
+
+  <div ng-if="item.type === 'giphy'"
+  style="background-image: url('{{item.data.data[item.index].images.original.url}}')"
+  class="giphy pa2 cover bg-center h5 h-100">
+  <img height="20" class="pointer icon fr" src="/images/arrow.png" ng-click="widgets.nextItem(item)">
+</div>
+
+<h2 ng-if="item.type === 'weather' && item.data.cod !== 200">City not found.</h2>
+<div ng-if="item.type === 'weather' && item.data.cod === 200"
+ng-class="{
+  'weather-rain': item.data.weather[0].main === 'Rain',
+  'weather-clear': item.data.weather[0].main === 'Clear',
+  'weather-clouds': item.data.weather[0].main === 'Clouds',
+  'weather-snow': item.data.weather[0].main === 'Snow',
+}" class="dt tc pa2 h-100 w-100">
+<p class="dtc v-mid m0">
+  <span class="b">{{item.data.name}}, {{item.data.sys.country}}:&nbsp;</span><span ng-repeat="weather in item.data.weather">{{ weather.main }}<span ng-if="!$last">, </span></span>
+  {{ (item.data.main.temp - 273.15).toFixed(2)}}&deg;C</p>
+</div>
+
+<h2 ng-if="item.type === 'news' && item.data.status != 'ok'">News failed to load :(</h2>
+<div ng-if="item.type === 'news' && item.data.status === 'ok'"
+class="overflow-hidden z--1 w-100 h-100"
+style="background-color: {{item.color}}" >
+<img height="20" class="z-5 top-0 mt2 right-0 mr2 pointer icon fr" src="/images/arrow.png" ng-click="widgets.nextItem(item)">
+
+<div class="h-50 bg-center w-100 cover"
+style="background-image: url({{item.data.articles[item.index].urlToImage}})"></div>
+<!-- this ng-if stops the author being displayed if it's a link -->
+<div class="flex-wrap pa2">
+  <h4 class="pt1" ng-if="item.data.articles[item.index].author.split('http').length === 1">
+    {{ item.data.articles[item.index].author }}</h4>
+    <h3 class="f5 f4-l pt1"><a target="_blank" class="black" href="{{item.data.articles[0].url}}">
+      {{ item.data.articles[item.index].title }}</a></h3>
+      <p class="justify-end pt1">{{ item.data.articles[item.index].description }}</p>
+    </div>
+
+  </div>
+
+  <div ng-if="item.type === 'recipes'">
+    <div class="h-50 bg-center w-100 cover" style="background-image: url({{ item.data.hits[item.index].recipe.image }}" alt="{{ item.data.hits[item.index].recipe.label }})">
+      <img height="20" class="pointer icon fr pa2" src="/images/arrow.png" ng-click="widgets.nextItem(item)">
+      <h3 class="white f1 tc hc pv5">{{ item.data.hits[item.index].recipe.label }}</h3>
+    </div>
+
+    <p class="fr"><strong>{{ item.data.hits[item.index].recipe.calories | number : 0 }}kcal</strong></p>
+    <div class="pa3-ns">
+      <p>Ingredients:</p>
+      <ul class="pa2">
+        <li ng-repeat="ingredient in item.data.hits[item.index].recipe.ingredientLines">
+          <p> - {{ ingredient }}</p>
+        </li>
+      </ul>
+    </div>
+    <a class="fr pa4" href="{{ item.data.hits[item.index].recipe.url }}" target="_blank">See the full recipe!</a>
+
+
+  </div>
+
+  <div ng-if="item.type === 'advice'" style="background-color: {{item.color}}" class="pa3 dt h-100 w-100">
+    <p class="">Wise Words of the Day:</p>
+    <h3 class="pt2">"{{ item.data.slip.advice }}"</h3>
+  </div>
+
+
+  <div ng-if="item.type === 'today'" class="h-100 pa2" style="background-color: {{item.color}}">
+    <img height="20" class="z-5 top-0 right-0 pointer icon fr" src="/images/arrow.png" ng-click="widgets.nextItem(item)">
+    <div class="pt3 pl2">
+      <h3 class="pb2">On this day in history...</h3>
+      <h4 class="pb2">In {{item.data.data.Events[item.index].year}}</h4>
+      <p class="pb3">{{ item.data.data.Events[item.index].text }}</p>
+      <p class="tr"><a class="black" href="{{ item.data.data.Events[item.index].links[item.index].link}}">Read more...</a></p>
+    </div>
+  </div>
+
+  <div class="pa2 dt h-100 w-100 tc" style="background-color: {{item.color}}" ng-if="item.type === 'chuck'">
+    <h4 class="v-mid dtc">{{ item.data.value }}</h4>
+  </div>
+
+  <div ng-if="item.type === 'quote'" style="background-color: {{item.color}}" class="dt h-100 pa3">
+    <div class="dtc v-mid">
+      <h3 class="di">"</h3><h3 class="di" ng-bind-html="item.data[0].content | htmlToPlaintext | limitTo : 65"></h3><h3 class="di">"</h3>
+      <p class="pt3 tr i">-{{ item.data[0].title }}</p>
+    </div>
+  </div>
+
+  <!-- Events -->
+
+  <div ng-if="item.type === 'events'" style="background-color: {{item.color}}" class="overflow-hidden z--1 w-100 h-100 pa2">
+    <img height="20" class="z-5 top-0 right-0 pointer icon fr" src="/images/arrow.png" ng-click="widgets.nextItem(item)">
+    <div class="pt3">
+      <!-- <img ng-src="" alt=""> -->
+      <!-- {{ item.data }} -->
+      <h3 class="f3">{{ item.data.events.event[item.index].title }}</h3>
+      <p class="pt2" ng-bind-html="item.data.events.event[item.index].description | htmlToPlaintext | limitTo : 65">...</p>
+      <p class="f5 pt2"><em>{{ item.data.events.event[item.index].venue_address }}</em></p>
+      <p class="f5 pt2">{{ item.data.events.event[item.index].city_name }}</p>
+      <a class="black fr" target="_blank" href="{{ item.data.events.event[item.index].url }}">See more...</a>
+    </div>
+  </div>
+
+  <!-- Ron -->
+
+  <div ng-if="item.type === 'ron'" class="dt h-100 pa3" style="background-color: {{item.color}}">
+    <div class="dtc v-mid">
+      <h3 class="pb3"><span class="f3">"</span>{{ item.data[0]}}<span class="f3">"</span></h3>
+      <p class="tr i">-Ron Swanson</p>
+    </div>
+
+  </div>
+
+  <!-- <div ng-if="item.type === 'numberFact'">
+  <h3>Number Fact of the Day</h3>
+  <h5>Today is the {{ date }} day of the year</h5>
+  <h4>{{ item.data.text }}</h4>
+</div> -->
+
+</div>
+</div>
+</div>

@@ -1,1 +1,299 @@
 // Import all of your scss files here
+@import 'helpers/tachyons';
+a {
+  text-decoration: none;
+
+}
+body, html, ul, li, h1, h2, h3, h4, h5, h6, p, dd, dt, dl {
+  margin: 0;
+  padding: 0;
+}
+ul, li {
+  list-style: none
+}
+
+.gridster .gridster-item:hover .handle-se {
+  border-color: transparent transparent white;
+}
+.gridster .gridster-item:hover .icon {
+  opacity: 1;
+  transition: all .2s ease;
+}
+header {
+  height: 100px;
+  // margin-top: -100px;
+  line-height: 100px;
+  a,span {
+    color: black;
+  }
+  #red:hover {
+    color: #f26c4f !important;
+  }
+  #green:hover {
+    color: #7cc576 !important;
+  }
+  #pink:hover {
+    color: #f06eaa !important;
+  }
+}
+.page {
+  padding-top: 130px;
+}
+// make sure gifs don't get squished in mobile layout
+.gridster-mobile .gridster-item {
+  height: 300px;
+}
+.new-box {
+  height: 200px;
+  margin-bottom: 15px;
+  background-color: #60a0e0;
+}
+.new-box.ng-hide {
+  animation: 0.2s expandOut linear;
+}
+.new-box.ng-hide-remove {
+  animation: 0.2s expandIn linear;
+  opacity: 1;
+  height: 200px;
+}
+@keyframes expandOut {
+  0% {
+    height: 200px;
+    opacity: 1;
+  }
+  100% {
+    height: 0;
+    opacity: 0;
+  }
+}
+@keyframes expandIn {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    height: 200px;
+    opacity: 1;
+  }
+}
+.add-button {
+  background-color: #60a0e0;
+  border-radius: 100%;
+  transition: all .2s ease;
+}
+.add-button.cancel {
+  background-color: #f26c4f;
+  transform: rotate(135deg);
+  transition: all .2s ease;
+}
+.oops {
+  margin: 0 auto;
+  width: 955px;
+  height: 505
+}
+.icon {
+  -webkit-filter: drop-shadow(0 0 1px rgba(0,0,0,0.6))
+  drop-shadow(0 0 1px rgba(0,0,0,0.6));
+  filter: drop-shadow(0 0 1px rgba(0,0,0,0.6))
+  drop-shadow(0 0 1px rgba(0,0,0,0.6));
+  opacity: 0;
+  transition: all .2s ease;
+}
+
+.login, .register {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 35px;
+}
+.inputText {
+  margin-top: 30px;
+  height: 30px;
+  font-size: 17px;
+  font-weight: 500;
+  border: none;
+  border-bottom: 1px solid #000;
+}
+.submitButton {
+  margin-top: 30px;
+  height: 40px;
+  font-size: 13px;
+  border: none;
+  background-color: #e5e6e8;
+  font-weight: 800;
+}
+.inputText:focus {
+  outline-width: 0;
+}
+.submitButton:hover {
+  animation: colorchange 5s infinite;
+  -webkit-animation: colorchange 5s infinite;
+}
+.submitButton:focus {
+  outline-width: 0px;
+}
+.first {
+  border-bottom: 2px solid #f26c4f;
+}
+.second {
+  border-bottom: 2px solid #fff568;
+}
+.third {
+  border-bottom: 2px solid #7cc576;
+}
+.fourth {
+  border-bottom: 2px solid #8560a8;
+}
+.fith {
+  border-bottom: 2px solid #f06eaa;
+}
+.first:focus {
+  border-bottom: 4px solid #f26c4f;
+}
+.second:focus {
+  border-bottom: 4px solid #fff568;
+}
+.third:focus {
+  border-bottom: 4px solid #7cc576;
+}
+.fourth:focus {
+  border-bottom: 4px solid #8560a8;
+}
+.fith:focus {
+  border-bottom: 4px solid #f06eaa;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset;
+    -webkit-text-fill-color: black !important;
+}
+
+@keyframes colorchange
+{
+  0%   {background: #f26c4f;}
+  20%  {background: #fff568;}
+  40%  {background: #7cc576;}
+  60%  {background: #8560a8;}
+  80%  {background: #f06eaa;}
+  100% {background: #f26c4f;}
+}
+@-webkit-keyframes colorchange
+{
+  0%   {background: #f26c4f;}
+  20%  {background: #fff568;}
+  40%  {background: #7cc576;}
+  60%  {background: #8560a8;}
+  80%  {background: #f06eaa;}
+  100% {background: #f26c4f;}
+}
+.weather-rain {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+  background-color: #60a0e0;
+  background-image: url('/images/weather-icons/rain-white.png');
+}
+.weather-clear {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+  background-color: #fff568;
+  background-image: url('/images/weather-icons/clear-white.png');
+}
+.weather-clouds {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+  background-color: #90b0d0;
+  background-image: url('/images/weather-icons/clouds-white.png');
+}
+.weather-snow {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+  background-color: #dfefef;
+  background-image: url('/images/weather-icons/snow-white.png');
+}
+.dark-theme {
+  background-color: #2d2d2d !important;
+  transition: all .3s ease;
+  input {
+    -webkit-box-shadow: 0 0 0 30px #2d2d2d inset;
+    -webkit-text-fill-color: white !important;
+  }
+  .grow, .ignore-dark {
+    -webkit-text-fill-color: black !important;
+    -webkit-box-shadow: none;
+
+  }
+}
+.dark-theme-text {
+  color: white !important;
+  transition: all .3s ease;
+}
+.dark-theme-text::placeholder {
+  color: white !important;
+  transition: all .3s ease;
+}
+body, header, input {
+  transition: all .3s ease;
+}
+.switch {
+  position: relative;
+  width: 40px;
+  height: 21px;
+  display: inline-block;
+  margin: 0 auto !important;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #60a0e0;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #60a0e0;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(19px);
+  -ms-transform: translateX(19px);
+  transform: translateX(19px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.togg {
+  top: 5px;
+}
