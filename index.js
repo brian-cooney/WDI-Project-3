@@ -11,7 +11,6 @@ const app        = express();
 const dest       = `${__dirname}/public`;
 const expressJWT = require('express-jwt');
 
-
 mongoose.connect(config.db);
 
 app.use(express.static(dest));
