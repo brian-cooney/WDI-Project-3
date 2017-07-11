@@ -2,7 +2,7 @@
 
 ![pinata_devices](https://user-images.githubusercontent.com/25333173/28065120-2db3e3b2-662f-11e7-920b-bd782f924a63.jpeg)
 
-## Pinata news widget app 
+
 https://pinata-api-feed.herokuapp.com/ 
 https://github.com/brian-cooney/WDI-Project-3 
 
